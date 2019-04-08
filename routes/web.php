@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'vistasController@home')->name('home')->middleware('auth');
+
+Route::get('login', 'Auth\LoginController@show')->name('login')->middleware('guest');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout');
+
+Route::resource('register', 'Auth\RegisterController')->middleware('guest');

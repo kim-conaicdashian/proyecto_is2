@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Academico;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -40,6 +41,10 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function index(){
+        return view('auth.register');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -63,10 +68,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Academico::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function store(Request $request){
+        $academico = new Academico();
+        //dd($request);
+        $request->validate([
+            'nombre' => 'required',
+            'email'=> 'required|email|unique:academicos,email',
+            'password' => 'required|min:3|confirmed'
+        ]);
+        
+        //dd($request);
+
+        
+            $academico->nombre = $request ->input('nombre');
+            $academico->email = $request-> input('email');
+            $academico->password = bcrypt(request('password'));
+
+            $academico->remember_token = "_token";
+            $academico->save();
+            
+            return redirect('login');
+       
+       
+        //return back()->withErrors(['email' => 'Los datos no son validos'])->withInput(request(['email']));
     }
 }

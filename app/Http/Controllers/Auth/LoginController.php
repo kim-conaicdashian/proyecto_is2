@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {
@@ -18,7 +20,9 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    
+
+    //use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -34,6 +38,29 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest',['only'=> 'show']);
+    }
+
+    public function show(){
+        return view('auth.login');
+    }
+    
+
+    public function login(Request $request){
+        $credentials = $this->validate(request(), [
+            'email' => 'email|required|string',
+            'password' => 'required|string'
+        ]);
+
+        if(Auth::attempt($credentials)){
+            return redirect('/');
+        }
+
+        return back()->withErrors(['email' => 'Los datos no son validos'])->withInput(request(['email']));
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('login');
     }
 }
