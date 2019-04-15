@@ -19,7 +19,7 @@ class CreateTablas extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('privilegio')->default(false);
-            $table->integer('categoria_id')->unsigned()->nullable();
+            // $table->integer('categoria_id')->unsigned()->nullable(); por el momento no lo necesita por que ya tiene la llave foranea la tabla categorias
             
             $table->rememberToken();
 

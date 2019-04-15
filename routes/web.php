@@ -18,3 +18,6 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 
 Route::resource('register', 'Auth\RegisterController')->middleware('guest');
+
+//======================================RUTAS PARA EL CRUD DE CATEGORIAS========================================================
+Route::resource('categorias','ControladorCategorias');
