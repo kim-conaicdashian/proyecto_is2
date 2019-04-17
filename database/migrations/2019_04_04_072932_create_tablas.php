@@ -28,7 +28,7 @@ class CreateTablas extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->longText('descripcion');
             $table->integer('academico_id')->unsigned()->nullable();           
             $table->timestamps();
         });
@@ -40,7 +40,7 @@ class CreateTablas extends Migration
         Schema::create('planes_de_acciones', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('descripcion');
+            $table->longText('descripcion');
             $table->integer('categoria_id')->unsigned()->nullable();
             $table->boolean('completado')->default(false);
             $table->timestamps();

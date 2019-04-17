@@ -28,6 +28,7 @@
                 <th>Descripcion</th> 
                 <th>Acciones</th>
             </tr>
+            
             @foreach ($categorias as $categoria)
                 <tr>
                     <td>{{$categoria->nombre}}</td>

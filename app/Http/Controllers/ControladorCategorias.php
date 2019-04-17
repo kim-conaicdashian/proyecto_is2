@@ -8,6 +8,10 @@ use App\Academico;
 
 class ControladorCategorias extends Controller
 {
+    
+    
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,7 @@ class ControladorCategorias extends Controller
     public function index()
     {
         $categorias= Categoria::all();
-        return view('categorias.inicio',compact('categorias'));
+        return view('categorias.listaCategorias',compact('categorias'));
     }
 
     /**

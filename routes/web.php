@@ -15,9 +15,13 @@ Route::get('/', 'vistasController@home')->name('home')->middleware('auth');
 
 Route::get('login', 'Auth\LoginController@show')->name('login')->middleware('guest');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::resource('register', 'Auth\RegisterController')->middleware('guest');
 
 //======================================RUTAS PARA EL CRUD DE CATEGORIAS========================================================
 Route::resource('categorias','ControladorCategorias');
+//======================================RUTAS PARA EL CRUD DE PLAN DE ACCION========================================================
+Route::resource('plan','ControladorPlanDeAccion');
+//==============================================================================================================================
+Route::get('categoriaAsignada','ControladorPlanDeAccion@listaPlanes')->name('categoriaAsignada');

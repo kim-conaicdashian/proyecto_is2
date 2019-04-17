@@ -27,7 +27,7 @@
         @method("put")
         <div class="form-group">
           <label for="exampleInputEmail1">Nombre</label>
-          <input type="text" class="form-control"  name='nombreCategoria' value = '{{$categoria->nombre}}'placeholder="Escriba el nombre de la categoria">
+          <input type="text" class="form-control"  name='nombreCategoria' value = '{{$categoria->nombre}}'placeholder="Escriba el nombre para la categoria">
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Descripcion</label>
