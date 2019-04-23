@@ -15,4 +15,8 @@ class Categoria extends Model
     public function planes(){
         return $this->hasMany(PlanAccion::class);
     }
+
+    public function recomendaciones(){
+        return $this->hasMany(Recomendacion::class);
+    }
 }

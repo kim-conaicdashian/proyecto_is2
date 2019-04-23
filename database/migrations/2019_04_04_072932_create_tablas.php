@@ -35,6 +35,17 @@ class CreateTablas extends Migration
         Schema::table('categorias',function(Blueprint $table){
             $table->foreign('academico_id')->references('id')->on('academicos')->onDelete('cascade')->onUpdate('cascade');
         });
+
+        Schema::create('recomendaciones', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+            $table->longText('descripcion');
+            $table->integer('categoria_id')->unsigned()->nullable();
+            $table->timestamps();
+        });
+        Schema::table('recomendaciones',function(Blueprint $table){
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
+        });
         
         
         Schema::create('planes_de_acciones', function (Blueprint $table) {
