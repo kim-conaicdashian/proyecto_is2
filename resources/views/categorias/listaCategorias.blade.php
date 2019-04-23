@@ -41,9 +41,8 @@
                             <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Quiere borrar al profesor {{ $categoria->nombre }}?')" >Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')" >Eliminar</button>
                             </form>
-                
                         </div>
                     </td>
                 </tr>

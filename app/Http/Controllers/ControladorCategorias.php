@@ -42,14 +42,35 @@ class ControladorCategorias extends Controller
      */
     public function store(Request $request)
     {
-        $categoria = new Categoria();
-        $academico = Academico::findOrFail($request->academicoID);
-        $categoria ->nombre= $request->input('nombreCategoria');
-        $categoria ->descripcion= $request->input('descripcionCategoria');
-        $categoria -> academico()-> associate($academico);
-        $categoria->save();
+        
+        $credentials=$this->validate($request, array(
+            'nombreCategoria' => 'required|min:5|max:100',
+            'descripcionCategoria'=> 'required|min:10',
+            
+        ));
+        if($credentials){
+            $categoria = new Categoria();
+            $categoria ->nombre= $request->input('nombreCategoria');
+            $categoria ->descripcion= $request->input('descripcionCategoria');
+            //condiciona que si se envia el formulario sin academicos pongo el atributo academico_id con el valor de null
+            if($request->academicoID == 'NULL'){
+                $categoria ->academico_id= null;
+                $categoria->save();
+                return redirect()->route('categorias.index');
+            }else{
+                $academico = Academico::findOrFail($request->academicoID);
+                $categoria -> academico()->associate($academico);
+                $categoria->save();
+                return redirect()->route('categorias.index');
+            }
+            
+        }else{
+            //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
+            return back()->withInput(request(['nombreCategoria']));
+        }
+        
 
-        return redirect()->route('categorias.index');
+        
     }
 
     /**
@@ -85,14 +106,32 @@ class ControladorCategorias extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $academico = Academico::findOrFail($request->academicoID);
         
-        $categoria ->nombre= $request->input('nombreCategoria');
-        $categoria ->descripcion= $request->input('descripcionCategoria');
-        $categoria -> academico()-> associate($academico);
-        $categoria->save();
-        return redirect()->route('categorias.index');
+        $credentials=$this->validate($request, array(
+            'nombreCategoria' => 'required|min:5|max:100',
+            'descripcionCategoria'=> 'required|min:10',
+            
+        ));
+        // dd($request->academicoID);
+        if($credentials){
+            $categoria = Categoria::findOrFail($id);
+            $categoria ->nombre= $request->input('nombreCategoria');
+            $categoria ->descripcion= $request->input('descripcionCategoria');
+            //condiciona que si se envia el formulario sin academicos pongo el atributo academico_id con el valor de null
+            if($request->academicoID == null){
+                $categoria ->academico_id= null;
+                $categoria->save();
+                return redirect()->route('categorias.index');
+            }else{
+                $academico = Academico::findOrFail($request->academicoID);
+                $categoria -> academico()->associate($academico);
+                $categoria->save();
+                return redirect()->route('categorias.index');
+            }
+        }else{
+            //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
+            return back()->withInput(request(['nombreCategoria']));
+        }
     }
 
     /**

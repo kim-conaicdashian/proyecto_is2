@@ -45,15 +45,25 @@ class ControladorPlanDeAccion extends Controller
      */
     public function store(Request $request)
     {
-        $plan = new PlanAccion();
-        $idCategoria= Auth::user()->categoria->id;
-        $categoria = Categoria::findOrFail($idCategoria);
-        
-        $plan->nombre = $request->input("nombrePlan");
-        $plan->descripcion = $request->input("descripcionPlan");
-        $plan->categoria()->associate($categoria);
-        $plan->save();
-        return redirect()->route('categoriaAsignada');
+        $credentials=$this->validate($request, array(
+            'nombrePlan' => 'required|min:5|max:100',
+            'descripcionPlan'=> 'required|min:10',
+            
+        ));
+        if($credentials){
+            $plan = new PlanAccion();
+            $idCategoria= Auth::user()->categoria->id;
+            $categoria = Categoria::findOrFail($idCategoria);
+            
+            $plan->nombre = $request->input("nombrePlan");
+            $plan->descripcion = $request->input("descripcionPlan");
+            $plan->categoria()->associate($categoria);
+            $plan->save();
+            return redirect()->route('categoriaAsignada');
+        }else{
+            //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
+            return back()->withInput(request(['nombrePlan']));
+        }
     }
 
     /**
@@ -88,15 +98,24 @@ class ControladorPlanDeAccion extends Controller
      */
     public function update(Request $request, $id)
     {
-        $plan = PlanAccion::findOrFail($id);
-        $idCategoria= Auth::user()->categoria->id;
-        $categoria = Categoria::findOrFail($idCategoria);
-        
-        $plan->nombre = $request->input("nombrePlan");
-        $plan->descripcion = $request->input("descripcionPlan");
-        $plan->categoria()->associate($categoria);
-        $plan->save();
-        return redirect()->route('categoriaAsignada');
+        $credentials=$this->validate($request, array(
+            'nombrePlan' => 'required|min:5|max:100',
+            'descripcionPlan'=> 'required|min:10',
+            
+        ));
+        if($credentials){
+            $plan = PlanAccion::findOrFail($id);
+            $idCategoria= Auth::user()->categoria->id;
+            $categoria = Categoria::findOrFail($idCategoria);
+            
+            $plan->nombre = $request->input("nombrePlan");
+            $plan->descripcion = $request->input("descripcionPlan");
+            $plan->categoria()->associate($categoria);
+            $plan->save();
+            return redirect()->route('categoriaAsignada');
+        }else{
+            return back()->withInput(request(['nombrePlan']));
+        }
     }
 
     /**

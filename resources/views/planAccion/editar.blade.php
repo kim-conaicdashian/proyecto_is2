@@ -14,13 +14,15 @@
         <form method="POST" action='{{route('plan.update',$plan->id)}}'>
             @csrf
             @method("put")
-            <div class="form-group">
+            <div class="form-group" {{ $errors->has('nombrePlan') ? 'has-error' : ''}}>
             <label for="exampleInputEmail1">Nombre</label>
-            <input type="text" class="form-control"  name='nombrePlan'value = {{$plan->nombre}} placeholder="Escriba el nombre para el plan de accion">
+                <input type="text" class="form-control"  name='nombrePlan'value = {{$plan->nombre}} placeholder="Escriba el nombre para el plan de accion">
+                {!! $errors->first('nombrePlan','<span class="help-block" style="color:red;">:message</span>')!!}
             </div>
-            <div class="form-group">
+            <div class="form-group" {{ $errors->has('descripcionPlan') ? 'has-error' : ''}}>
             <label for="exampleInputPassword1">Descripcion</label>
-            <textarea rows="4" cols="50" name='descripcionPlan'>{{$plan->descripcion}}</textarea>
+                <textarea rows="4" cols="50" name='descripcionPlan'>{{$plan->descripcion}}</textarea>
+                {!! $errors->first('descripcionPlan','<span class="help-block" style="color:red;">:message</span>')!!}
             </div>
             
             <button type="submit" class="btn btn-primary">Editar plan de accion</button>
