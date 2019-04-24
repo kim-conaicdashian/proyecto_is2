@@ -12,4 +12,8 @@ class Recomendacion extends Model
     public function categoria(){
         return $this->belongsTo(Categoria::class,'categoria_id');
     }
+
+    public function planes(){
+        return $this->hasMany(PlanAccion::class);
+    }
 }

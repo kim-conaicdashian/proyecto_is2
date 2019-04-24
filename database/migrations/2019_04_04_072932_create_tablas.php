@@ -53,11 +53,13 @@ class CreateTablas extends Migration
             $table->string('nombre');
             $table->longText('descripcion');
             $table->integer('categoria_id')->unsigned()->nullable();
+            $table->integer('recomendacion_id')->unsigned()->nullable();
             $table->boolean('completado')->default(false);
             $table->timestamps();
         });
         Schema::table('planes_de_acciones',function(Blueprint $table){
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('recomendacion_id')->references('id')->on('recomendaciones')->onDelete('cascade')->onUpdate('cascade');
         });
 
         Schema::create('evidencias', function (Blueprint $table) {

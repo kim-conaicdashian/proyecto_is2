@@ -14,4 +14,8 @@ class PlanAccion extends Model
     public function categoria(){
         return $this->belongsTo('App\Categoria','categoria_id');
     }
+
+    public function recomendacion(){
+        return $this->belongsTo(Recomendacion::class);
+    }
 }
