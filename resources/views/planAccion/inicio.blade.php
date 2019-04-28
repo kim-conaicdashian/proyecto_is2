@@ -13,7 +13,7 @@
     <title>Document</title>
 </head>
 <body>
-    
+
     <h1>{{auth()->user()->categoria->nombre}}</h1>
     <h2>Descripcion de la categoria</h2>
     <p>{{auth()->user()->categoria->descripcion}}</p>
@@ -25,6 +25,16 @@
         @foreach ($recomendaciones as $recomendacion)
             <h3> Título de la recomendación: {{$recomendacion->nombre}} </h4>
             <p> Descripción: {{$recomendacion->descripcion}} </p>
+            <div style="float: right">
+                <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
+                {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
+                <form style="float:left" action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >Eliminar</button>
+                </form>
+            </div>
             @if ($recomendacion->plan_accion != NULL)
                 @foreach ($planes as $plan)
                     @if ($plan->recomendacion_id == $recomendacion->id)
@@ -32,8 +42,8 @@
                         <table style="width:50%">
                             <tr>
                                 <th>Nombre</th>
-                                <th>Descripcion</th> 
-                                <th>Completado</th> 
+                                <th>Descripcion</th>
+                                <th>Completado</th>
                                 <th>Acciones</th>
                             </tr>
                             <tr>
@@ -50,7 +60,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar el plan de acción:  {{ $plan->nombre }}?')" >Eliminar</button>
                                         </form>
-                            
+
                                     </div>
                                 </td>
                             </tr>

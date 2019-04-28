@@ -47,7 +47,7 @@ class ControladorRecomendaciones extends Controller
             $recomendacion = new Recomendacion();
             $idCategoria= Auth::user()->categoria->id;
             $categoria = Categoria::findOrFail($idCategoria);
-            
+
             $recomendacion->nombre = $request->input("nombre");
             $recomendacion->descripcion = $request->input("descripcion");
             $recomendacion->categoria()->associate($categoria);
@@ -79,6 +79,8 @@ class ControladorRecomendaciones extends Controller
     public function edit($id)
     {
         //
+        $recomendacion = Recomendacion::findOrFail($id);
+        return view('recomendaciones.edit',compact('recomendacion'));
     }
 
     /**
@@ -91,6 +93,20 @@ class ControladorRecomendaciones extends Controller
     public function update(Request $request, $id)
     {
         //
+        $credentials=$this->validate($request, array(
+            'nombreRec' => 'required|min:5|max:100',
+            'descripcionRec'=> 'required|min:10',
+
+        ));
+        if($credentials){
+            $recomendacion = Recomendacion::findOrFail($id);
+            $recomendacion ->nombre= $request->input('nombreRec');
+            $recomendacion ->descripcion= $request->input('descripcionRec');
+            $recomendacion->save();
+            return redirect()->route('categoriaAsignada');
+        }else{
+            return back()->withInput(request(['nombreCategoria']));
+        }
     }
 
     /**
@@ -101,6 +117,8 @@ class ControladorRecomendaciones extends Controller
      */
     public function destroy($id)
     {
-        //
+      $recomendacion= Recomendacion::findOrFail($id);
+      $recomendacion-> delete();
+      return redirect()->route('categoriaAsignada');
     }
 }
