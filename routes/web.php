@@ -25,3 +25,6 @@ Route::resource('categorias','ControladorCategorias');
 Route::resource('plan','ControladorPlanDeAccion');
 //==============================================================================================================================
 Route::get('categoriaAsignada','ControladorPlanDeAccion@listaPlanes')->name('categoriaAsignada');
+//==============================================================================================================================
+Route::resource('recomendacion','ControladorRecomendaciones');
+//==============================================================================================================================

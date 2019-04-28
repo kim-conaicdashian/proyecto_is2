@@ -8,7 +8,7 @@ class Categoria extends Model
 {
     protected $table='categorias';
     protected $fillable =['nombre','descripcion'];
-    
+    public $timestamps = false;
     public function academico(){
         return $this->belongsTo(Academico::class);
     }

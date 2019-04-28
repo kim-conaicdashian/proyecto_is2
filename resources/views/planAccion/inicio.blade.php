@@ -18,39 +18,57 @@
     <h2>Descripcion de la categoria</h2>
     <p>{{auth()->user()->categoria->descripcion}}</p>
 <br>
-    <h3>Planes de accion</h3>
-    <form action="/plan/create">
-        <input type="submit" value="Crear plan de accion" />
+    <h2>Recomendaciones</h3>
+    @if($recomendaciones->count() == 0)
+        <h3> No hay recomendaciones para la categoría {{auth()->user()->categoria->nombre}}</h3>
+    @else
+        @foreach ($recomendaciones as $recomendacion)
+            <h3> Título de la recomendación: {{$recomendacion->nombre}} </h4>
+            <p> Descripción: {{$recomendacion->descripcion}} </p>
+            @if ($recomendacion->plan_accion != NULL)
+                @foreach ($planes as $plan)
+                    @if ($plan->recomendacion_id == $recomendacion->id)
+                        <h3> Plan de acción propuesto </h3>
+                        <table style="width:50%">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripcion</th> 
+                                <th>Completado</th> 
+                                <th>Acciones</th>
+                            </tr>
+                            <tr>
+                                <td>{{$plan->nombre}}</td>
+                                <td>{{$plan->descripcion}}</td>
+                                <td><input type="checkbox" name="completado" value='ACTUALIZAR_ITERACION_2' > <br></td>
+                                <td>
+                                    <div style="float: right">
+                                        <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
+                                        {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                                        {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
+                                        <form style="float:left" action="{{ route('plan.destroy',$plan->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar el plan de acción:  {{ $plan->nombre }}?')" >Eliminar</button>
+                                        </form>
+                            
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    @endif
+                @endforeach
+            @else
+                <p> No hay un plan de acción actualmente para esta recomendación. </p>
+                <form action="{{ route('plan.create')}}">
+                    <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
+                    <input type='submit' value='Crear plan de accion' />
+                </form>
+            @endif
+        @endforeach
+    @endif
+    <p> Fin de las recomendaciones. </p>
+    <form action="/recomendacion/create">
+        <input type="submit" value="Agregar recomendación" />
     </form>
-   
-        <table style="width:50%">
-            <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th> 
-                <th>Completado</th> 
-                <th>Acciones</th>
-            </tr>
-           
-            @foreach ($planes as $plan)
-                <tr>
-                    <td>{{$plan->nombre}}</td>
-                    <td>{{$plan->descripcion}}</td>
-                    <td><input type="checkbox" name="completado" value='pitochuy' > <br></td>
-                    <td>
-                        <div style="float: right">
-                            <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
-                            {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                            {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                            <form style="float:left" action="{{ route('plan.destroy',$plan->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Quiere borrar el plan de accion:  {{ $plan->nombre }}?')" >Eliminar</button>
-                            </form>
-                
-                        </div>
-                    </td>
-                </tr>
-            @endforeach
-            </table>
 </body>
 </html>

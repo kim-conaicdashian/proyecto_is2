@@ -22,15 +22,12 @@ class CreateTablas extends Migration
             // $table->integer('categoria_id')->unsigned()->nullable(); por el momento no lo necesita por que ya tiene la llave foranea la tabla categorias
             
             $table->rememberToken();
-
-            $table->timestamps();
         });
         Schema::create('categorias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->longText('descripcion');
             $table->integer('academico_id')->unsigned()->nullable();           
-            $table->timestamps();
         });
         Schema::table('categorias',function(Blueprint $table){
             $table->foreign('academico_id')->references('id')->on('academicos')->onDelete('cascade')->onUpdate('cascade');
@@ -40,8 +37,8 @@ class CreateTablas extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->longText('descripcion');
-            $table->integer('categoria_id')->unsigned()->nullable();
-            $table->timestamps();
+            $table->integer('categoria_id')->unsigned();
+            $table->integer('plan_accion')->unsigned()->nullable();
         });
         Schema::table('recomendaciones',function(Blueprint $table){
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
@@ -55,7 +52,6 @@ class CreateTablas extends Migration
             $table->integer('categoria_id')->unsigned()->nullable();
             $table->integer('recomendacion_id')->unsigned()->nullable();
             $table->boolean('completado')->default(false);
-            $table->timestamps();
         });
         Schema::table('planes_de_acciones',function(Blueprint $table){
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
@@ -67,7 +63,6 @@ class CreateTablas extends Migration
             $table->string('nombre_archivo');
             $table->string('tipo_archivo');
             $table->string('archivo_bin');
-            $table->timestamps();
         });
 
         Schema::create('evidencias_planes', function (Blueprint $table) {
@@ -83,7 +78,6 @@ class CreateTablas extends Migration
         Schema::create('password_resets', function (Blueprint $table) {
             $table->string('email')->index();
             $table->string('token');
-            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -100,5 +94,6 @@ class CreateTablas extends Migration
         Schema::dropIfExists('evidencias');
         Schema::dropIfExists('evidencias_planes');
         Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('recomendaciones');
     }
 }

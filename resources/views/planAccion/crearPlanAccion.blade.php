@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <form method="POST" action='{{route('plan.store')}}'>
+    <form method="POST" action="{{route('plan.store')}}">
         @csrf
         <div class="form-group" {{ $errors->has('nombrePlan') ? 'has-error' : ''}}>
           <label for="exampleInputEmail1">Nombre</label>
@@ -23,7 +23,7 @@
           <textarea rows="4" cols="50" name='descripcionPlan'></textarea>
           {!! $errors->first('descripcionPlan','<span class="help-block" style="color:red;">:message</span>')!!}
         </div>
-        
+        <input type='hidden' name='rec' value='{{$rec}}'/>
         <button type="submit" class="btn btn-primary">Crear plan de accion</button>
       </form>
       

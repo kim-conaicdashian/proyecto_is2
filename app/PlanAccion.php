@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PlanAccion extends Model
 {
     protected $table='planes_de_acciones';
-
+    public $timestamps = false;
     public function evidencias(){
         return $this->belongsToMany('App\Evidencia','evidencias_planes');
     }

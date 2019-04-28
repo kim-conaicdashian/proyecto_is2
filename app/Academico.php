@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Academico extends Authenticatable
 {
     use Notifiable;
-
+    public $timestamps = false;
     protected $table='academicos';
     protected $fillable =['nombre','email','password'];
     protected $hidden = ['password', 'remember_token',];
@@ -19,3 +19,4 @@ class Academico extends Authenticatable
         return $this->hasOne(Categoria::class, 'academico_id');
     }
 }
+

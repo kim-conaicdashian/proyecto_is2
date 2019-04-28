@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PlanAccion;
 use Illuminate\Support\Facades\Auth;
 use App\Categoria;
+use App\Recomendacion;
 
 class ControladorPlanDeAccion extends Controller
 {
@@ -14,7 +15,8 @@ class ControladorPlanDeAccion extends Controller
         $idCategoria= Auth::user()->categoria->id;//agarro el id de la categoria que tiene el usuario autenticado
         $categoria = Categoria::findOrFail($idCategoria);
         $planes = PlanAccion::where('categoria_id',$idCategoria)->get();//agarro todos los planes que tengan la categoria del usuario
-        return view('planAccion.inicio',compact('planes','categoria'));
+        $recomendaciones = Recomendacion::where('categoria_id', $idCategoria)->get();
+        return view('planAccion.inicio',compact('planes','categoria', 'recomendaciones'));
     }
     /**
      * Display a listing of the resource.
@@ -34,7 +36,9 @@ class ControladorPlanDeAccion extends Controller
     public function create()
     {
         //falta mandar la categoria para manejarla en la vista
-        return view('planAccion.crearPlanAccion');
+        //Se agrego parametro $id_recomendacion.
+        $rec = $_REQUEST['rec_id'];
+        return view('planAccion.crearPlanAccion', compact('rec'));
     }
 
     /**
@@ -48,7 +52,6 @@ class ControladorPlanDeAccion extends Controller
         $credentials=$this->validate($request, array(
             'nombrePlan' => 'required|min:5|max:100',
             'descripcionPlan'=> 'required|min:10',
-            
         ));
         if($credentials){
             $plan = new PlanAccion();
@@ -58,7 +61,11 @@ class ControladorPlanDeAccion extends Controller
             $plan->nombre = $request->input("nombrePlan");
             $plan->descripcion = $request->input("descripcionPlan");
             $plan->categoria()->associate($categoria);
+            $plan->recomendacion_id = $request->input("rec");
             $plan->save();
+            $recomendacion = Recomendacion::findOrFail($request->input("rec"));
+            $recomendacion ->plan_accion = $plan ->id;
+            $recomendacion->save();
             return redirect()->route('categoriaAsignada');
         }else{
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
