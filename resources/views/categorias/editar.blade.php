@@ -27,7 +27,7 @@
         @method("put")
         <div class="form-group" {{ $errors->has('nombreCategoria') ? 'has-error' : ''}}>
           <label for="exampleInputEmail1">Nombre</label>
-          <input type="text" class="form-control"  name='nombreCategoria' value = '{{$categoria->nombre}}'placeholder="Escriba el nombre para la categoria">
+          <input type="text" class="form-control"  name='nombreCategoria' value="{{$categoria->nombre}}" placeholder="Escriba el nombre para la categoria">
           {!! $errors->first('nombreCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
         </div>
         <div class="form-group" {{ $errors->has('descripcionCategoria') ? 'has-error' : ''}}>

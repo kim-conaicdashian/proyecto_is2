@@ -16,7 +16,7 @@
             @method("put")
             <div class="form-group" {{ $errors->has('nombreRec') ? 'has-error' : ''}}>
             <label for="exampleInputEmail1">Nombre</label>
-                <input type="text" class="form-control"  name='nombreRec' value={{$recomendacion->nombre}} placeholder="Escriba el nuevo nombre para la recomendación">
+                <input type="text" class="form-control"  name='nombreRec' value="{{$recomendacion->nombre}}"" placeholder="Escriba el nuevo nombre para la recomendación">
                 {!! $errors->first('nombreRec','<span class="help-block" style="color:red;">:message</span>')!!}
             </div>
             <div class="form-group" {{ $errors->has('descripcionRec') ? 'has-error' : ''}}>
