@@ -1,0 +1,110 @@
+@extends('layouts.app')
+@section('content')
+    <br>
+    <h2>Lista academicos</h2>
+    
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach ($academicos as $academico)
+                <tr>
+                    <th>{{$academico->id}}</th>
+                    <td>{{$academico->nombre}}</td>
+                    <td>{{$academico->email}}</td>
+                    <td style="width: 77px;">
+                        <a type="button" class="btn btn-info btn-sm" href="{{ route('academicos.edit', $academico->id) }}">Editar</a>
+                    </td>
+                    <td style="width: 90px;">
+                        <form style="margin: 0px;" action="{{ route('academicos.destroy',$academico->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Quiere borrar al usuario {{ $academico->nombre }}?')" >Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+           @endforeach
+        </tbody>
+    </table>
+    {{ $academicos->links() }}
+    <div class="box-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarAcademicoModal">Agregar academico</button>
+    </div>
+
+
+    {{--Modal para Registrar a un usuario--}}
+    <div class="modal fade" id="agregarAcademicoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Agregar un usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method= "POST" action="{{ route('academicos.store') }}">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <div class="col-md-6">
+                                <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                {!! $errors->first('email', '<span style="color:red;">:message</span>') !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorias') }}</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="academicoID" id="card_type">
+                                    @foreach ($categorias as $categoria)
+                                        <option  value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group row mb-4">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">{{ __('Regístrate') }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--Fin Modal para Registrar a un usuario--}}
+@endsection
