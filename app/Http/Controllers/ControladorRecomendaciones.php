@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Recomendacion;
 use Illuminate\Support\Facades\Auth;
 use App\Categoria;
+use Session;
 
 class ControladorRecomendaciones extends Controller
 {
@@ -52,6 +53,7 @@ class ControladorRecomendaciones extends Controller
             $recomendacion->descripcion = $request->input("descripcion");
             $recomendacion->categoria()->associate($categoria);
             $recomendacion->save();
+            Session::flash('message_crear','Se ha creado una recomendación con éxito.');
             return redirect()->route('categoriaAsignada');
         }else{
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
@@ -103,6 +105,7 @@ class ControladorRecomendaciones extends Controller
             $recomendacion ->nombre= $request->input('nombreRec');
             $recomendacion ->descripcion= $request->input('descripcionRec');
             $recomendacion->save();
+            Session::flash('message_editar','Se ha editado la recomendación con éxito.');
             return redirect()->route('categoriaAsignada');
         }else{
             return back()->withInput(request(['nombreCategoria']));
@@ -119,6 +122,7 @@ class ControladorRecomendaciones extends Controller
     {
       $recomendacion= Recomendacion::findOrFail($id);
       $recomendacion-> delete();
+      Session::flash('message_borrar','Se ha eliminado la recomendación con éxito.');
       return redirect()->route('categoriaAsignada');
     }
 }
