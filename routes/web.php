@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'vistasController@home')->name('home')->middleware('auth');
+Route::get('/', 'vistasController@home')->name('home')->middleware('permiso');
 
 Route::get('login', 'Auth\LoginController@show')->name('login')->middleware('guest');
 Route::post('login', 'Auth\LoginController@login');
@@ -28,6 +28,6 @@ Route::get('categoriaAsignada','ControladorPlanDeAccion@listaPlanes')->name('cat
 //==============================================================================================================================
 Route::resource('recomendacion','ControladorRecomendaciones')->middleware('auth');
 //==============================================================================================================================
-Route::resource('evidencias','ControladorEvidencias');
+Route::resource('evidencias','ControladorEvidencias')->middleware('auth');
 
 Route::resource('academicos','ControladorAcademicos');
