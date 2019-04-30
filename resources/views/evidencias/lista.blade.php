@@ -17,12 +17,30 @@
           border: 1px solid black;
           border-collapse: collapse;
         }
-        </style>
+
+        body {
+            background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+        }
+
+        @media (pointer: coarse) and (hover: none) {
+            header {
+            background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+            }
+            header video {
+            display: none;
+            }
+        }
+</style>
+
 {{-- <body class="container"> --}}
 <div class="container">
 
         
-        <h1 class="my-4">Lista de evidencias
+        <h1 class="my-4" style="text-align: center">Lista de evidencias
         </h1>
       
         @if($evidencias->count() > 0)
@@ -57,7 +75,10 @@
             <br>
             <p>No hay evidencias registradas.</p>
         @endif
+
+        
         </div>
+        <a href="evidencias/create"><button class="btn" style="float:right">Crear nueva evidencia</button></a>
 </body>
 
 </html>
