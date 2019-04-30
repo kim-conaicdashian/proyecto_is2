@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'vistasController@home')->name('home')->middleware('auth');
+Route::get('/', 'vistasController@home')->name('home')->middleware('permiso');
 
 Route::get('login', 'Auth\LoginController@show')->name('login')->middleware('guest');
 Route::post('login', 'Auth\LoginController@login');
@@ -20,11 +20,11 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::resource('register', 'Auth\RegisterController')->middleware('guest');
 
 //======================================RUTAS PARA EL CRUD DE CATEGORIAS========================================================
-Route::resource('categorias','ControladorCategorias');
+Route::resource('categorias','ControladorCategorias')->middleware('auth');
 //======================================RUTAS PARA EL CRUD DE PLAN DE ACCION========================================================
-Route::resource('plan','ControladorPlanDeAccion');
+Route::resource('plan','ControladorPlanDeAccion')->middleware('auth');
 //==============================================================================================================================
-Route::get('categoriaAsignada','ControladorPlanDeAccion@listaPlanes')->name('categoriaAsignada');
+Route::get('categoriaAsignada','ControladorPlanDeAccion@listaPlanes')->name('categoriaAsignada')->middleware('auth');
 //==============================================================================================================================
-Route::resource('recomendacion','ControladorRecomendaciones');
+Route::resource('recomendacion','ControladorRecomendaciones')->middleware('auth');
 //==============================================================================================================================
