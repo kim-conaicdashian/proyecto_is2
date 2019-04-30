@@ -18,8 +18,7 @@
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-                                    {!! $errors->first('email', '<span style="color:red;">:message</span>') !!}
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                                 </div>
                             </div>
     
@@ -49,4 +48,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var password, password2;
+
+        password = document.getElementById('password');
+        password2 = document.getElementById('password-confirm');
+
+        password.onchange = password2.onkeyup = passwordMatch;
+
+        function passwordMatch() {
+            if(password.value !== password2.value)
+                password2.setCustomValidity('Las contraseñas no coinciden.');
+            else
+                password2.setCustomValidity('');
+        }
+    </script>
 @endsection
