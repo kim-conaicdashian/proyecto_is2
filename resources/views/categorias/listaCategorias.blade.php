@@ -59,47 +59,57 @@
 @extends('layouts.app')
 @section('content')
      <!-- Page Content -->
-  <div class="container">
-      <div class="card border-0 shadow my-5">
-        <div class="card-body p-5">
-              <form action="/categorias/create">
-                  <input class="btn btn-success" type="submit" value="Crear categoria" />
-              </form>
-              @if($categorias->count() > 0)
-                  <table style="width:100%">
-                      <tr>
-                          <th>Nombre</th>
-                          <th>Descripcion</th> 
-                          <th>Acciones</th>
-                      </tr>
-                      
-                      @foreach ($categorias as $categoria)
-                          <tr>
-                              <td>{{$categoria->nombre}}</td>
-                              <td style="height:10px;">{{$categoria->descripcion}}</td>
-                              <td>
-                                  <div style="float: right">
-                                      <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar</a> 
-                                      {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                                      {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                                      <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
-                                          @csrf
-                                          @method('DELETE')
-                                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')" >Eliminar</button>
-                                      </form>
-                                  </div>
-                              </td>
-                          </tr>
-                      @endforeach
-                      </table>
-                 
-              @else 
-                  <p>No hay categorias registradas.</p>
-              @endif
-              {{ $categorias->links() }}
-          <div style="height: 20px"></div>
-          <p class="lead mb-0"></p>
+     <div class="container">
+        <div class="card border-0 shadow my-5">
+          <div class="card-body p-5">
+            <h1>Listado de categorías.</h1>
+            <br>
+                <form action="/categorias/create">
+                    <input class="btn btn-success" type="submit" value="Crear categoria" />
+                </form><br>
+                @if($categorias->count() > 0)
+                    <table style="width:100%">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripcion</th>
+                            <th> Nombre del encargado</th> 
+                            <th>Acciones</th>
+                        </tr>
+                        
+                        @foreach ($categorias as $categoria)
+                            <tr>
+                                {{-- @php
+                                  echo $categoria->academico->nombre;
+                                @endphp --}}
+                                <td>{{$categoria->nombre}}</td>
+                                <td style="height:10px;">{{$categoria->descripcion}}</td>
+                                <td>{{$categoria->academico->nombre}}</td>
+                                <td>
+                                    <div style="float: right">
+                                        <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar</a> 
+                                        {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                                        {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
+                                        <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" 
+                                                        onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')" >
+                                                        Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </table>
+                   
+                @else 
+                    <p>No hay categorias registradas.</p>
+                @endif
+                <br>
+                {{ $categorias->links() }}
+            <div style="height: 20px"></div>
+            <p class="lead mb-0"></p>
+          </div>
         </div>
-      </div>
-    </div>
 @endsection

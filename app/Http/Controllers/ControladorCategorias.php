@@ -19,8 +19,10 @@ class ControladorCategorias extends Controller
     {
         //$categorias= Categoria::all();
 
-        $categorias = DB::table('categorias')->paginate(5);
-        return view('categorias.listaCategorias',compact('categorias'));
+        // $categorias = DB::table('categorias')->paginate(5);
+        // return view('categorias.listaCategorias',compact('categorias'));
+        $categorias = Categoria::with('academico')->paginate(5); 
+        return view('categorias.listaCategorias')->with(['categorias'=>$categorias]);
     }
 
     /**
@@ -96,8 +98,10 @@ class ControladorCategorias extends Controller
     public function edit($id)
     {
         $categoria= Categoria::findOrFail($id);
+        $academicoID= $categoria->academico->id;
+        $academico= Academico::findOrFail($academicoID); //academico de la categoria a editar
         $academicos= Academico::all();
-        return view('categorias.editar',compact('categoria','academicos'));
+        return view('categorias.editar',compact('categoria','academico','academicos'));
     }
 
     /**
