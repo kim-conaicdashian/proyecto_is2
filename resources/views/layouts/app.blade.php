@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
 </head>
 <body>
-    @include('includes.navbar')
+    
     <div class="container">
         @yield('content')
     </div>
