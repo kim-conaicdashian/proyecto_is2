@@ -24,6 +24,25 @@
     <script scr="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 </head>
 
+<style>
+    body {
+      background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+    }
+    
+    @media (pointer: coarse) and (hover: none) {
+      header {
+        background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+      }
+      header video {
+        display: none;
+      }
+    }
+    </style>
+
 <body class="container">
       
       <!-- Page Content -->
@@ -37,11 +56,13 @@
                     <div class="form-group">
                       <h4>Nombre de la evidencia</h4>
                       <input type="text" class="form-control"  name='nombreEvidencia' placeholder="Escriba el nombre de la evidencia">
+                      {!! $errors->first('nombreEvidencia','<span class="help-block" style="color:red;">:message</span>')!!}
                     </div>
                     <br><br>
                     <div class="form-group">
                         <h4>Archivo de la evidencia</h4>
                         <input class="btn" type="file" name="archivo">
+                        {!! $errors->first('archivo','<span class="help-block" style="color:red;">:message</span>')!!}
                     </div>
 
                     <br><br>

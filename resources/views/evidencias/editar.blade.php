@@ -23,6 +23,25 @@
     <script scr="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script scr="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 </head>
+
+<style>
+    body {
+        background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+    }
+    
+    @media (pointer: coarse) and (hover: none) {
+        header {
+        background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+        }
+        header video {
+        display: none;
+        }
+    }
+</style>
 <body class="container">
     
     <!-- Page Content -->
@@ -37,6 +56,7 @@
                         <div class="form-group">
                           <h4>Nombre de la evidencia</h4>
                           <input type="text" class="form-control"  name='nombreEvidencia' value="{{ $evidencia->nombre_archivo }}" placeholder="Escriba el nombre de la evidencia">
+                          {!! $errors->first('nombreEvidencia','<span class="help-block" style="color:red;">:message</span>')!!}
                         </div>
                         <br><br>
                         <div class="form-group">                            
@@ -75,7 +95,7 @@
                             <p>No hay planes registrados.</p>
                         @endif
                         <br>
-                        <button style="float: right" submit" class="btn btn-primary">Crear evidencia</button>
+                        <button style="float: right" type="submit" class="btn btn-primary">Editar evidencia</button>
                       </form>
               </div>
             </div>

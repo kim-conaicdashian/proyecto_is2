@@ -41,8 +41,15 @@ class ControladorEvidencias extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $evidencia = new Evidencia();
+        $evidencia = new Evidencia();
+        $verificados = $this->validate($request, array(
+            'nombreEvidencia' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
+            'archivo' => 'required'
+        ));
+
+        if($verificados)
+        {
+            
             $archivo = request()->file('archivo');
             
             $evidencia->nombre_archivo = $request->input('nombreEvidencia');
@@ -59,12 +66,13 @@ class ControladorEvidencias extends Controller
             
             // el tercer parámetro indica a qué sistema de archivos se subirá. En este caso, es a public_path()
             $archivo->storeAs('archivos/', $nombreArchivo, 'uploads');
-    
-        } catch (\Throwable $err) {
-            echo "Se necesita subir un archivo.";
-        }
 
-        return redirect()->route('evidencias.index');
+            return redirect()->route('evidencias.index');
+
+        }else{
+            //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
+            return back()->withInput(request(['nombreCategoria'=>'hehexd']));
+        }
     }
 
     /**
@@ -101,17 +109,25 @@ class ControladorEvidencias extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {          
+    {   
         $evidencia = Evidencia::findOrFail($id);
+        $verificados = $this->validate($request, array(
+            'nombreEvidencia' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
+        ));
         
         $archivo = request()->file('archivo');
         
         $evidencia->nombre_archivo = $request->input('nombreEvidencia');
 
-        $evidencia->tipo_archivo = $archivo->getClientOriginalExtension();
-
-        $nombreArchivo = $archivo->getClientOriginalName();
-        $evidencia->archivo_bin = "/archivos/".$nombreArchivo;            
+        // el tercer parámetro indica a qué sistema de archivos se subirá. En este caso, es a public_path()
+        if($request->hasFile('archivo'))
+        {
+            $nombreArchivo = $archivo->getClientOriginalName();
+            $evidencia->tipo_archivo = $archivo->getClientOriginalExtension();
+            $archivo->storeAs('archivos/', $nombreArchivo, 'uploads');                
+            $evidencia->archivo_bin = "/archivos/".$nombreArchivo;    
+        }
+        
         $plan = PlanAccion::findOrFail($request->input('plan'));
         
         $estaEnPlanes = false;
@@ -129,11 +145,7 @@ class ControladorEvidencias extends Controller
             $evidencia->planes()->attach($plan);
         }
 
-        $evidencia->save();
-                                                                                                                    
-        // el tercer parámetro indica a qué sistema de archivos se subirá. En este caso, es a public_path()
-        $archivo->storeAs('archivos/', $nombreArchivo, 'uploads');
-        
+        $evidencia->save();                                                                                                                
 
         return redirect()->route('evidencias.index');
     }
