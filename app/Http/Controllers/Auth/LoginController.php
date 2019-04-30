@@ -56,7 +56,7 @@ class LoginController extends Controller
             return redirect('/');
         }
 
-        return back()->withErrors(['email' => 'Los datos no son validos'])->withInput(request(['email']));
+        return back()->withErrors(['email'=> 'El correo o la contraseña ingresadas no son validas']);
     }
 
     public function logout(){
