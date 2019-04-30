@@ -1,6 +1,7 @@
 <!DOCTYPE html>
     @extends('layouts.app')
     @section('content')
+    <title> Mi categoría </title>
     <style>
         .filterable {
             margin-top: 15px;
@@ -25,6 +26,14 @@
         .filterable .filters input[disabled]:-ms-input-placeholder {
             color: #333;
         }
+        body {
+        background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        }
+        
     </style>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
@@ -102,7 +111,7 @@
                                     <p style="font-weight: bold"> No hay un plan de acción actualmente para esta recomendación. </p>
                                     <form action="{{ route('plan.create')}}">
                                         <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                                        <input type='submit' class="btn btn-primary" value='Crear plan de accion' />
+                                        <input type='submit' class="btn btn-primary" value='Crear plan de acción' />
                                     </form>
                                 @endif
                             </div>
