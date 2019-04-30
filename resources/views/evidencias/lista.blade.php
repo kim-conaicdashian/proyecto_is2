@@ -1,42 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Editar evidencia</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script scr="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script scr="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-    <title>Evidencias</title>
-</head>
-<style>
-        table, th, td {
-          border: 1px solid black;
-          border-collapse: collapse;
-        }
-
-        body {
-            background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            background-size: cover;
-            -o-background-size: cover;
-        }
-
-        @media (pointer: coarse) and (hover: none) {
-            header {
-            background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
-            }
-            header video {
-            display: none;
-            }
-        }
-</style>
-
-{{-- <body class="container"> --}}
+@extends('layouts.app')
+@section('content')
 <div class="container">
 
         
@@ -79,6 +43,5 @@
         
         </div>
         <a href="evidencias/create"><button class="btn" style="float:right">Crear nueva evidencia</button></a>
-</body>
 
-</html>
+@endsection

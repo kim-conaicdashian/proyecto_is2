@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
-<style>
-    body {
-        background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;
-        }
-</style>
+
 <div class="container">
   <title> Agregar plan de acción </title>
   <h2 style="margin-top:20px;"> Agregar plan de acción </h2>
@@ -32,3 +24,4 @@
       <button type="submit" class="btn btn-primary">Crear plan de accion</button>
     </form>
 </div>
+@endsection

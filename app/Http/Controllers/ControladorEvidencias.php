@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Evidencia;
 use App\PlanAccion;
+use App\Categoria;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 
@@ -18,8 +19,10 @@ class ControladorEvidencias extends Controller
      */
     public function index()
     {
+        $academico_id = auth()->user()->id;
+        $categoria_academico = Categoria::findOrFail($academico_id);
         $evidencias = Evidencia::all();
-        return view('evidencias.lista', compact('evidencias'));
+        return view('evidencias.lista', compact('evidencias','categoria_academico'));
     }
 
     /**
@@ -29,8 +32,10 @@ class ControladorEvidencias extends Controller
      */
     public function create()
     {
+        $academico_id = auth()->user()->id;
+        $categoria_academico = Categoria::findOrFail($academico_id);
         $planes = PlanAccion::all();
-        return view('evidencias.crear', compact('planes'));
+        return view('evidencias.crear', compact('planes','categoria_academico'));
     }
 
     /**
@@ -83,9 +88,11 @@ class ControladorEvidencias extends Controller
      */
     public function show($id)
     {
+        $academico_id = auth()->user()->id;
+        $categoria_academico = Categoria::findOrFail($academico_id);
         $evidencia = Evidencia::findOrFail($id);
 
-        return view('evidencias.mostrar', compact('evidencia'));
+        return view('evidencias.mostrar', compact('evidencia','categoria_academico'));
     }
 
     /**
@@ -96,9 +103,11 @@ class ControladorEvidencias extends Controller
      */
     public function edit($id)
     {
+        $academico_id = auth()->user()->id;
+        $categoria_academico = Categoria::findOrFail($academico_id);
         $evidencia= Evidencia::findOrFail($id);
         $planes= PlanAccion::all();
-        return view('evidencias.editar', compact('evidencia','planes'));
+        return view('evidencias.editar', compact('evidencia','planes','categoria_academico'));
     }
 
     /**

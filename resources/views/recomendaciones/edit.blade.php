@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
-<style>
-    body {
-        background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;
-        }
-</style>
-<html lang="en">
+
     <div class="container">
         <title>Editar la recomendación {{$recomendacion->nombre}}  </title>
         <h1 style="text-align:center;margin-top:20px;"> Editar la recomendación: {{$recomendacion->nombre}} </h1>
@@ -32,4 +23,4 @@
             <button type="submit" class="btn btn-primary">Editar recomendación</button>
         </form>
     </div>
-</html>
+@endsection

@@ -26,18 +26,7 @@
         .filterable .filters input[disabled]:-ms-input-placeholder {
             color: #333;
         }
-        body {
-        background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;
-        }
-        
     </style>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     
     @if (Session::has('message_crear'))
         <div class="alert alert-success">{{ Session::get('message_crear') }}</div>

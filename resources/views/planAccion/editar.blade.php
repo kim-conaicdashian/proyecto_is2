@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
-<style>
-    body {
-        background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;
-        }
-</style>
 <div class="container">
     <title> Editar plan de acción </title>
     <h2 style="text-align:center;margin-top:20px;"> {{$plan->nombre}} </h2>
@@ -31,3 +22,4 @@
         <button type="submit" class="btn btn-primary">Editar plan de acción</button>
     </form>
 </div>
+@endsection
