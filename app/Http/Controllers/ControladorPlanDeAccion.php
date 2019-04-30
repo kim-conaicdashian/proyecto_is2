@@ -50,8 +50,8 @@ class ControladorPlanDeAccion extends Controller
     public function store(Request $request)
     {
         $credentials=$this->validate($request, array(
-            'nombrePlan' => 'required|min:5|max:100',
-            'descripcionPlan'=> 'required|min:10',
+            'nombrePlan' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
+            'descripcionPlan'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
         ));
         if($credentials){
             $plan = new PlanAccion();
@@ -106,8 +106,8 @@ class ControladorPlanDeAccion extends Controller
     public function update(Request $request, $id)
     {
         $credentials=$this->validate($request, array(
-            'nombrePlan' => 'required|min:5|max:100',
-            'descripcionPlan'=> 'required|min:10',
+            'nombrePlan' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
+            'descripcionPlan'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
             
         ));
         if($credentials){

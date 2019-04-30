@@ -1,17 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\Academico;
+use App\Rules\Categoria as AppCategoria;
 
 class ControladorCategorias extends Controller
 {
     
-    
-    
-
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +17,8 @@ class ControladorCategorias extends Controller
      */
     public function index()
     {
-        $categorias= Categoria::all();
+        // $categorias= Categoria::all();
+        $categorias = DB::table('categorias')->paginate(5);
         return view('categorias.listaCategorias',compact('categorias'));
     }
 
@@ -42,14 +41,16 @@ class ControladorCategorias extends Controller
      */
     public function store(Request $request)
     {
-        
+        $categoria = new Categoria();
         $credentials=$this->validate($request, array(
-            'nombreCategoria' => 'required|min:5|max:100',
-            'descripcionCategoria'=> 'required|min:10',
+            'nombreCategoria' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/'.$categoria->id,
+            'descripcionCategoria'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
             
         ));
+        
+        
         if($credentials){
-            $categoria = new Categoria();
+            // $categoria = new Categoria();
             $categoria ->nombre= $request->input('nombreCategoria');
             $categoria ->descripcion= $request->input('descripcionCategoria');
             //condiciona que si se envia el formulario sin academicos pongo el atributo academico_id con el valor de null
@@ -66,7 +67,7 @@ class ControladorCategorias extends Controller
             
         }else{
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
-            return back()->withInput(request(['nombreCategoria']));
+            return back()->withInput(request(['nombreCategoria'=>'hehexd']));
         }
         
 
@@ -108,8 +109,8 @@ class ControladorCategorias extends Controller
     {
         
         $credentials=$this->validate($request, array(
-            'nombreCategoria' => 'required|min:5|max:100',
-            'descripcionCategoria'=> 'required|min:10',
+            'nombreCategoria' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
+            'descripcionCategoria'=> 'required|min:10|regex:/([a-zA-Z]+\w*+$)+/',
             
         ));
         // dd($request->academicoID);
@@ -118,7 +119,7 @@ class ControladorCategorias extends Controller
             $categoria ->nombre= $request->input('nombreCategoria');
             $categoria ->descripcion= $request->input('descripcionCategoria');
             //condiciona que si se envia el formulario sin academicos pongo el atributo academico_id con el valor de null
-            if($request->academicoID == null){
+            if($request->academicoID == 'NULL'){
                 $categoria ->academico_id= null;
                 $categoria->save();
                 return redirect()->route('categorias.index');

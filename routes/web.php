@@ -28,4 +28,6 @@ Route::get('categoriaAsignada','ControladorPlanDeAccion@listaPlanes')->name('cat
 //==============================================================================================================================
 Route::resource('recomendacion','ControladorRecomendaciones')->middleware('auth');
 //==============================================================================================================================
-Route::resource('academicos', 'ControladorAcademicos');
+Route::resource('evidencias','ControladorEvidencias');
+
+Route::resource('academicos','ControladorAcademicos');

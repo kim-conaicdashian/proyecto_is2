@@ -1,84 +1,131 @@
 <!DOCTYPE html>
-<style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-</style>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-
-    <h1>{{auth()->user()->categoria->nombre}}</h1>
-    <h2>Descripcion de la categoria</h2>
-    <p>{{auth()->user()->categoria->descripcion}}</p>
-<br>
-    <h2>Recomendaciones</h3>
-    @if($recomendaciones->count() == 0)
-        <h3> No hay recomendaciones para la categoría {{auth()->user()->categoria->nombre}}</h3>
-    @else
-        @foreach ($recomendaciones as $recomendacion)
-            <h3> Título de la recomendación: {{$recomendacion->nombre}} </h4>
-            <p> Descripción: {{$recomendacion->descripcion}} </p>
-            <div style="float: right">
-                <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
-                {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                <form style="float:left" action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >Eliminar</button>
-                </form>
-            </div>
-            @if ($recomendacion->plan_accion != NULL)
-                @foreach ($planes as $plan)
-                    @if ($plan->recomendacion_id == $recomendacion->id)
-                        <h3> Plan de acción propuesto </h3>
-                        <table style="width:50%">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Completado</th>
-                                <th>Acciones</th>
-                            </tr>
-                            <tr>
-                                <td>{{$plan->nombre}}</td>
-                                <td>{{$plan->descripcion}}</td>
-                                <td><input type="checkbox" name="completado" value='ACTUALIZAR_ITERACION_2' > <br></td>
-                                <td>
-                                    <div style="float: right">
-                                        <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
+    @extends('layouts.app')
+    @section('content')
+    <title> Mi categoría </title>
+    <style>
+        .filterable {
+            margin-top: 15px;
+        }
+        .filterable .panel-heading .pull-right {
+            margin-top: -20px;
+        }
+        .filterable .filters input[disabled] {
+            background-color: transparent;
+            border: none;
+            cursor: auto;
+            box-shadow: none;
+            padding: 0;
+            height: auto;
+        }
+        .filterable .filters input[disabled]::-webkit-input-placeholder {
+            color: #333;
+        }
+        .filterable .filters input[disabled]::-moz-placeholder {
+            color: #333;
+        }
+        .filterable .filters input[disabled]:-ms-input-placeholder {
+            color: #333;
+        }
+        body {
+        background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        }
+        
+    </style>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    
+    @if (Session::has('message_crear'))
+        <div class="alert alert-success">{{ Session::get('message_crear') }}</div>
+    @elseif (Session::has('message_borrar'))
+        <div class="alert alert-warning">{{ Session::get('message_borrar') }}</div>
+    @elseif (Session::has('message_editar'))
+        <div class="alert alert-info">{{ Session::get('message_editar') }}</div>
+    @endif
+    <div class="container">
+        <h1 style="text-align: center">{{auth()->user()->categoria->nombre}}</h1>
+        <hr>
+        <h2 style="text-align: center">Descripcion de la categoria : {{auth()->user()->categoria->descripcion}}</h2>
+        <hr>
+        @if($recomendaciones->count() == 0)
+            <h3 style="text-align: center"> No hay recomendaciones para la categoría {{auth()->user()->categoria->nombre}}</h3>
+        @else
+            <div class="accordion" id="recomendaciones">
+                @foreach ($recomendaciones as $recomendacion)
+                    <div class="card">
+                        <div class="card-header" id="heading{{$recomendacion->id}}">
+                            <h2 class="mb-0">
+                                <div  data-toggle="collapse" data-target="#{{$recomendacion->id}}" aria-expanded="false" aria-controls="collapse{{$recomendacion->id}}">
+                                    {{$recomendacion->nombre}}
+                                    <div style="float: left">
+                                        <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
                                         {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
                                         {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                                        <form style="float:left" action="{{ route('plan.destroy',$plan->id) }}" method="POST">
+                                        <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar el plan de acción:  {{ $plan->nombre }}?')" >Eliminar</button>
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >Eliminar</button>
                                         </form>
-
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
-                    @endif
+                                </div>
+                            </h2>
+                        </div>
+                        <div id="collapse{{$recomendacion->id}}" class="collapse show" aria-labelledby="heading{{$recomendacion->id}}" data-parent="#recomendaciones">
+                            <div class="card-body">
+                                <h3>Descripción: {{$recomendacion->descripcion}}</h3>
+                                <hr>
+                                @if ($recomendacion->plan_accion != NULL)
+                                    @foreach ($planes as $plan)
+                                        @if ($plan->recomendacion_id == $recomendacion->id)
+                                            <h3> Plan de acción propuesto </h3>
+                                            <table style="width:100%">
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{$plan->nombre}}</td>
+                                                    <td>{{$plan->descripcion}}</td>
+                                                    <td>
+                                                        <div style="float: right">
+                                                            <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
+                                                            {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                                                            {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
+                                                            <form style="float:left" action="{{ route('plan.destroy',$plan->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar el plan de acción:  {{ $plan->nombre }}?')" >Eliminar</button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    <p style="font-weight: bold"> No hay un plan de acción actualmente para esta recomendación. </p>
+                                    <form action="{{ route('plan.create')}}">
+                                        <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
+                                        <input type='submit' class="btn btn-primary" value='Crear plan de acción' />
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
-            @else
-                <p> No hay un plan de acción actualmente para esta recomendación. </p>
-                <form action="{{ route('plan.create')}}">
-                    <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                    <input type='submit' value='Crear plan de accion' />
-                </form>
-            @endif
-        @endforeach
-    @endif
-    <p> Fin de las recomendaciones. </p>
-    <form action="/recomendacion/create">
-        <input type="submit" value="Agregar recomendación" />
-    </form>
-</body>
-</html>
+            </div>
+        @endif
+        <div style="text-align:center">
+            <form action="/recomendacion/create">
+                <hr>
+                <input type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
+            </form>
+        </div>
+    </div>
+<br>
+@endsection
