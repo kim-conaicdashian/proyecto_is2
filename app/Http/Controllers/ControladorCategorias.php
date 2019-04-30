@@ -18,10 +18,9 @@ class ControladorCategorias extends Controller
     public function index()
     {
         //$categorias= Categoria::all();
-        $academico_id = auth()->user()->id;
-        $categoria_academico = Categoria::findOrFail($academico_id);
+
         $categorias = DB::table('categorias')->paginate(5);
-        return view('categorias.listaCategorias',compact('categorias','categoria_academico'));
+        return view('categorias.listaCategorias',compact('categorias'));
     }
 
     /**
@@ -31,10 +30,9 @@ class ControladorCategorias extends Controller
      */
     public function create()
     {   
-        $academico_id = auth()->user()->id;
-        $categoria_academico = Categoria::findOrFail($academico_id);
+
         $academicos = Academico::all();
-        return view('categorias.crearCategoria',compact('academicos','categoria_academico'));
+        return view('categorias.crearCategoria',compact('academicos'));
     }
 
     /**
@@ -97,11 +95,9 @@ class ControladorCategorias extends Controller
      */
     public function edit($id)
     {
-        $academico_id = auth()->user()->id;
-        $categoria_academico = Categoria::findOrFail($academico_id);
         $categoria= Categoria::findOrFail($id);
         $academicos= Academico::all();
-        return view('categorias.editar',compact('categoria','academicos','categoria_academico'));
+        return view('categorias.editar',compact('categoria','academicos'));
     }
 
     /**

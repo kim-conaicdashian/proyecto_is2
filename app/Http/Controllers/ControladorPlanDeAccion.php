@@ -12,13 +12,12 @@ class ControladorPlanDeAccion extends Controller
 {
 
     public function listaPlanes(){
-        $academico_id = auth()->user()->id;
-        $categoria_academico = Categoria::findOrFail($academico_id);
+        
         $idCategoria= Auth::user()->categoria->id;//agarro el id de la categoria que tiene el usuario autenticado
         $categoria = Categoria::findOrFail($idCategoria);
         $planes = PlanAccion::where('categoria_id',$idCategoria)->get();//agarro todos los planes que tengan la categoria del usuario
         $recomendaciones = Recomendacion::where('categoria_id', $idCategoria)->get();
-        return view('planAccion.inicio',compact('planes','categoria', 'recomendaciones','categoria_academico'));
+        return view('planAccion.inicio',compact('planes','categoria', 'recomendaciones'));
     }
     /**
      * Display a listing of the resource.

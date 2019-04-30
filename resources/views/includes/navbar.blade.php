@@ -8,12 +8,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="categoriaAsignada">{{$categoria_academico->nombre}}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="evidencias">Subir Evidencias</a>
-            </li>
+            
             @if (auth()->user()->privilegio == 1)
                 <li class="nav-item">
                     <a class="nav-link" href="categorias">Manejo de Categorias</a>

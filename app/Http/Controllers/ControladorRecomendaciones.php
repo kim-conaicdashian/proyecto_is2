@@ -27,9 +27,9 @@ class ControladorRecomendaciones extends Controller
      */
     public function create()
     {
-        $academico_id = auth()->user()->id;
-        $categoria_academico = Categoria::findOrFail($academico_id);
-        return view('recomendaciones.create',compact('categoria_academico'));
+
+
+        return view('recomendaciones.create');
     }
 
     /**
@@ -81,10 +81,9 @@ class ControladorRecomendaciones extends Controller
      */
     public function edit($id)
     {
-        $academico_id = auth()->user()->id;
-        $categoria_academico = Categoria::findOrFail($academico_id);
+
         $recomendacion = Recomendacion::findOrFail($id);
-        return view('recomendaciones.edit',compact('recomendacion','categoria_academico'));
+        return view('recomendaciones.edit',compact('recomendacion'));
     }
 
     /**
