@@ -47,14 +47,19 @@ class ControladorEvidencias extends Controller
             
             $evidencia->nombre_archivo = $request->input('nombreEvidencia');
 
-            $evidencia->tipo_archivo = request()->file('archivo')->guessClientExtension();
-            $evidencia->archivo_bin = '';
+            $evidencia->tipo_archivo = $archivo->getClientOriginalExtension();
+
+            $nombreArchivo = $archivo->getClientOriginalName();
+
+            $evidencia->archivo_bin = "/archivos/".$nombreArchivo;
             $plan = PlanAccion::findOrFail($request->input('plan'));
+            
             $evidencia->save();
             $evidencia->planes()->attach($plan);
-            //request()->file('archivo')->store('archivos');
-            //dd(Storage::url(request()->file('archivo')));
-            //Storage::putFileAs(request()->file('archivo'), new File('/'), 'example.jpg');
+            
+            // el tercer parámetro indica a qué sistema de archivos se subirá. En este caso, es a public_path()
+            $archivo->storeAs('archivos/', $nombreArchivo, 'uploads');
+    
         } catch (\Throwable $err) {
             echo "Se necesita subir un archivo.";
         }
@@ -70,7 +75,9 @@ class ControladorEvidencias extends Controller
      */
     public function show($id)
     {
-        //
+        $evidencia = Evidencia::findOrFail($id);
+
+        return view('evidencias.mostrar', compact('evidencia'));
     }
 
     /**
@@ -94,27 +101,39 @@ class ControladorEvidencias extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        try {            
-            $evidencia = Evidencia::findOrFail($id);
-            $archivo = request()->file('archivo');
-            
-            $evidencia->nombre_archivo = $request->input('nombreEvidencia');
+    {          
+        $evidencia = Evidencia::findOrFail($id);
+        
+        $archivo = request()->file('archivo');
+        
+        $evidencia->nombre_archivo = $request->input('nombreEvidencia');
 
-            $evidencia->tipo_archivo = request()->file('archivo')->guessClientExtension();
-            $evidencia->archivo_bin = '';
-            $plan = PlanAccion::findOrFail($request->input('plan'));
-            
-            
-            $evidencia->save();
-            $evidencia->planes()->attach($plan);
-            
-            //request()->file('archivo')->store('archivos');
-            //dd(Storage::url(request()->file('archivo')));
-            //Storage::putFileAs(request()->file('archivo'), new File('/'), 'example.jpg');
-        } catch (\Throwable $err) {
-            echo "Se necesita subir un archivo.";
+        $evidencia->tipo_archivo = $archivo->getClientOriginalExtension();
+
+        $nombreArchivo = $archivo->getClientOriginalName();
+        $evidencia->archivo_bin = "/archivos/".$nombreArchivo;            
+        $plan = PlanAccion::findOrFail($request->input('plan'));
+        
+        $estaEnPlanes = false;
+        for( $i = 0; $i < count($evidencia->planes) ; $i++ )
+        {
+            if($plan->id == $evidencia->planes[$i]->id)
+            {
+                $estaEnPlanes = true;
+                break;
+            }
         }
+
+        if(!$estaEnPlanes)
+        {
+            $evidencia->planes()->attach($plan);
+        }
+
+        $evidencia->save();
+                                                                                                                    
+        // el tercer parámetro indica a qué sistema de archivos se subirá. En este caso, es a public_path()
+        $archivo->storeAs('archivos/', $nombreArchivo, 'uploads');
+        
 
         return redirect()->route('evidencias.index');
     }

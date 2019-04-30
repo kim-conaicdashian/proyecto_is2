@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>Editar evidencia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Categorias</title>
+    <script scr="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script scr="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <title>Evidencias</title>
 </head>
 <style>
         table, th, td {
@@ -15,44 +18,46 @@
           border-collapse: collapse;
         }
         </style>
-<body class="container">
+{{-- <body class="container"> --}}
+<div class="container">
 
-    <h1>Lista de evidencias</h1>
-    <form action="/evidencias/create">
-        <input type="submit" value="Crear evidencia" />
-    </form>
-    @if($evidencias->count() > 0)
-        <table style="width:50%">
-            <tr>
-                <th>Nombre</th>
-                             
-            </tr>
-            
-            @foreach ($evidencias as $evidencia)
-                <tr>
-                    <div class="container">
-                        <td>
-                            {{$evidencia->nombre_archivo}}                                            
-                            <div style="float: right">
-                                <a class="btn btn-info btn-sm" href="/evidencias/{{$evidencia->id}}/edit">Editar</a>
-                                <form style="float:left" action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Quiere borrar la evidencia {{ $evidencia->nombre }}?')" >Eliminar</button>
-                                </form>
-                    
+        
+        <h1 class="my-4">Lista de evidencias
+        </h1>
+      
+        @if($evidencias->count() > 0)
+            <div class="row">
+            @foreach($evidencias as $evidencia)
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="{{$evidencia->archivo_bin}}" alt="image">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                            <a href="evidencias/{{$evidencia->id}}"><p style="text-align: center">{{$evidencia->nombre_archivo}}</p></a>
+                            </h4>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <form action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm btn-block" onclick="return confirm('Quiere borrar la evidencia {{ $evidencia->nombre }}?')" >Eliminar</button>
+                                    </form>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a style="float:right" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">Editar</a>
+                                </div>
                             </div>
-                        </td>
+                        </div>
                     </div>
-                </tr>
+                </div>
+
             @endforeach
-            </table>
-       
-    @else
-        <br>
-        <p>No hay evidencias registradas.</p>
-    @endif
-    
+        @else
+            <br>
+            <p>No hay evidencias registradas.</p>
+        @endif
+        </div>
 </body>
-</html>
+
 </html>
