@@ -1,4 +1,5 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+@extends('auth.layouts.app')
 @section('content')
     <style>
         :root {
@@ -156,7 +157,7 @@
                             </div>
                 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{ __('Login') }}</button>
-                            <a class="d-block text-center mt-2 small" href="register">{{ __('No tienes una cuenta? Resgistrate.') }}</a>
+                            <a class="d-block text-center mt-2 small" href="register">{{ __('No tienes una cuenta? Registrate.') }}</a>
                         </form>
                     </div>
                 </div>

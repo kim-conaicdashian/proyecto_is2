@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-@extends('layouts.app')
+@extends('auth.layouts.app')
 @section('content')
     <style>
         :root {
