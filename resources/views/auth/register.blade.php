@@ -123,20 +123,23 @@
                         <form method="POST" action="{{ route('register.store') }}">
                             @csrf
                             <div class="form-group form-label-group">
-                                <input type="text" class="form-control" placeholder="Username" id="inputUserame"  name="nombre" value="{{ old('nombre') }}" required>
+                                <input type="text" class="form-control" {{ $errors->has('nombre') ? 'has-error' : ''}} placeholder="Username" id="inputUserame"  name="nombre" value="{{ old('nombre') }}" required>
                                 <label for="inputUserame">{{ __('Nombre') }}</label>
+                                {!! $errors->first('nombre','<span class="help-block" style="color:red;">:message</span>')!!}
                             </div>
                 
                             <div class="form-label-group">
-                                <input type="email" class="form-control" placeholder="Email address" id="inputEmail" name="email" value="{{ old('email') }}" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                                <input type="email" class="form-control" {{ $errors->has('email') ? 'has-error' : ''}} placeholder="Email address" id="inputEmail" name="email" value="{{ old('email') }}" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                                 <label for="inputEmail">{{ __('Correo electronico') }}</label>
+                                {!! $errors->first('email','<span class="help-block" style="color:red;">:message</span>')!!}
                             </div>
                             
                             <hr>
                 
                             <div class="form-label-group">
-                                <input type="password" placeholder="Password" id="inputPassword" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input type="password" placeholder="Password" id="inputPassword" class="form-control" {{ $errors->has('password') ? 'has-error' : ''}} name="password" required>
                                 <label for="inputPassword">{{ __('Contraseña') }}</label>
+                                {!! $errors->first('password','<span class="help-block" style="color:red;">:message</span>')!!}
                             </div>
                             
                             <div class="form-label-group">

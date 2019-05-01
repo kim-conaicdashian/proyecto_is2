@@ -79,7 +79,7 @@ class RegisterController extends Controller
         $academico = new Academico();
         //dd($request);
         $request->validate([
-            'nombre' => 'required',
+            'nombre' => 'required|min:4',
             'email'=> 'required|email|unique:academicos,email',
             'password' => 'required|min:3|confirmed'
         ]);
