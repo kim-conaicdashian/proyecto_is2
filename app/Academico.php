@@ -15,6 +15,7 @@ class Academico extends Authenticatable
     protected $fillable =['nombre','email','password'];
     protected $hidden = ['password', 'remember_token',];
 
+    //relacion de la tabla academico con la tabla categoria.
     public function categoria(){
         return $this->hasOne(Categoria::class, 'academico_id');
     }

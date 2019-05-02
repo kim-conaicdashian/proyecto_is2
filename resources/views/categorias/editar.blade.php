@@ -76,16 +76,22 @@
                   {!! $errors->first('nombreCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
                 </div>
                 <div class="form-group" {{ $errors->has('descripcionCategoria') ? 'has-error' : ''}}>
-                  <label for="exampleInputPassword1" ><strong>Descripcion</strong></label>
+                  <label for="exampleInputPassword1" ><strong>Descripción</strong></label>
                   <textarea rows="4" cols="50" class="form-control" name='descripcionCategoria'>{{$categoria->descripcion}}</textarea>
                   {!! $errors->first('descripcionCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
                 </div>
                
                 @if($academicos->count() > 0)
                     <div class="panel panel-primary" id="result_panel">
-                        <div class="panel-heading"><h3 class="panel-title">Academico asignado a esta categoria: {{$academico->nombre}}</h3>
+                        {{-- checo si existe un academico con isset($var), esto regresa un booleano --}}
+                        @if(isset($academicoAsignado))
+                          <div class="panel-heading"><h3 class="panel-title">Académico asignado a esta categoria: {{$academicoAsignado->nombre}}</h3>
+                        @else
+                        <div class="panel-heading"><h3 class="panel-title">Esta categoría por el momento no tiene ningún académico asignado.</h3>
+                        @endif
+ 
                       <br>
-                        <div class="panel-heading"><h3 class="panel-title">Lista de academicos</h3>
+                        <div class="panel-heading"><h3 class="panel-title">Lista de académicos</h3>
                         </div>
                         <div class="panel-body">
                             <select class="form-control" name="academicoID" id="card_type">
@@ -98,10 +104,10 @@
                     </div>
                     
                     @else 
-                        <p>No hay academicos registrados.</p>
+                        <p>No hay académicos registrados.</p>
                         <input class="hidden" value='NULL'>
                     @endif
-                <button type="submit" class="btn btn-primary">Editar categoria</button>
+                <button type="submit" class="btn btn-primary">Editar categoría</button>
               </form>
         <div style="height: 200px"></div>
         

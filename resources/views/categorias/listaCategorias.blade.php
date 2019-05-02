@@ -65,30 +65,23 @@
             <h1>Listado de categorías.</h1>
             <br>
                 <form action="/categorias/create">
-                    <input class="btn btn-success" type="submit" value="Crear categoria" />
+                    <input class="btn btn-success" type="submit" value="Crear categoría" />
                 </form><br>
                 @if($categorias->count() > 0)
                     <table style="width:100%">
                         <tr>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
-                            <th> Nombre del encargado</th> 
+                            <th>Descripción</th>
                             <th>Acciones</th>
                         </tr>
                         
                         @foreach ($categorias as $categoria)
                             <tr>
-                                {{-- @php
-                                  echo $categoria->academico->nombre;
-                                @endphp --}}
-                                <td>{{$categoria->nombre}}</td>
+                                <td><a href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>
                                 <td style="height:10px;">{{$categoria->descripcion}}</td>
-                                <td>{{$categoria->academico->nombre}}</td>
                                 <td>
                                     <div style="float: right">
                                         <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar</a> 
-                                        {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                                        {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
                                         <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -104,7 +97,7 @@
                         </table>
                    
                 @else 
-                    <p>No hay categorias registradas.</p>
+                    <p>No hay categorías registradas.</p>
                 @endif
                 <br>
                 {{ $categorias->links() }}
