@@ -11,17 +11,15 @@ class ControladorCategorias extends Controller
 {
     
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Funcion que se encarga de desplegar 5 categorias y despues paginarlas en la vista listaCategorias.
+     * @return vista con todas las categorias.
+     * 
      */
     public function index()
     {
-        //$categorias= Categoria::all();
-
-        // $categorias = DB::table('categorias')->paginate(5);
-        // return view('categorias.listaCategorias',compact('categorias'));
+        //con la funcion with() encuentro las categorias relacionadas con la tabla academico.
         $categorias = Categoria::with('academico')->paginate(5); 
+        //regreso la vista con la variable como arreglo
         return view('categorias.listaCategorias')->with(['categorias'=>$categorias]);
     }
 
@@ -31,14 +29,16 @@ class ControladorCategorias extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-
+    {
         $academicos = Academico::all();
         return view('categorias.crearCategoria',compact('academicos'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Funcion que se encarga de crear el objeto de tipo categoria, valida que los datos ingresados por el usuario
+     * sean los correctos,si no, regresa un error a la vista, si la validacion pasa  llena los atributos de ese objeto 
+     * con los datos que ingresa el usuario y despues lo guarda en la base de datos
+     * 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -54,9 +54,10 @@ class ControladorCategorias extends Controller
         
         
         if($credentials){
-            // $categoria = new Categoria();
+            
             $categoria ->nombre= $request->input('nombreCategoria');
             $categoria ->descripcion= $request->input('descripcionCategoria');
+
             //condiciona que si se envia el formulario sin academicos pongo el atributo academico_id con el valor de null
             if($request->academicoID == 'NULL'){
                 $categoria ->academico_id= null;
@@ -86,7 +87,8 @@ class ControladorCategorias extends Controller
      */
     public function show($id)
     {
-        //
+        $categoria= Categoria::findOrFail($id);
+        return view('categorias.verCategoriaSeleccionada', compact('categoria'));
     }
 
     /**
@@ -98,10 +100,16 @@ class ControladorCategorias extends Controller
     public function edit($id)
     {
         $categoria= Categoria::findOrFail($id);
-        $academicoID= $categoria->academico->id;
-        $academico= Academico::findOrFail($academicoID); //academico de la categoria a editar
         $academicos= Academico::all();
-        return view('categorias.editar',compact('categoria','academico','academicos'));
+        //checa si la categoria tiene un academico o no
+        if($categoria->academico == null){
+            return view('categorias.editar',compact('categoria','academicos'));
+        }else {
+            $academicoID= $categoria->academico->id;
+            $academicoAsignado= Academico::findOrFail($academicoID); //academico de la categoria a editar
+             // $academicos= Academico::all();
+            return view('categorias.editar',compact('categoria','academicos','academicoAsignado'));
+        }
     }
 
     /**
