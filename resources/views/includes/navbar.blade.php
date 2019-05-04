@@ -10,15 +10,15 @@
             </li>
             @if (auth()->user()->categoria)
             <li class="nav-item">
-                    <a class="nav-link" id="home" href="categoriaAsignada" disabled="">Mi categoria</a>
+                    <a class="nav-link" id="home" href="/categoriaAsignada" disabled="">Mi categoria</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="evidencias" href="evidencias" disabled="">Subir Evidencias</a>
+                    <a class="nav-link" id="evidencias" href="/evidencias" disabled="">Subir Evidencias</a>
                 </li>
             @endif
             @if (auth()->user()->privilegio == 1)
                 <li class="nav-item">
-                    <a class="nav-link" id="categorias" href="categorias" disabled="">Manejo de Categorias</a>
+                    <a class="nav-link" id="categorias" href="/categorias" disabled="">Manejo de Categorias</a>
                 </li>
                 {{--
                     <li class="nav-item">
