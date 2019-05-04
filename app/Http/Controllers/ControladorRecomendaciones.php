@@ -7,6 +7,7 @@ use App\Recomendacion;
 use Illuminate\Support\Facades\Auth;
 use App\Categoria;
 use Session;
+use App\PlanAccion;
 
 class ControladorRecomendaciones extends Controller
 {
@@ -70,7 +71,9 @@ class ControladorRecomendaciones extends Controller
      */
     public function show($id)
     {
-        //
+        $recomendacion = Recomendacion::findOrFail($id);
+        $planes = PlanAccion::with('recomendacion')->where('recomendacion_id',$recomendacion->id)->paginate(5); 
+        return view('recomendaciones.verRecomendacionSeleccionada',compact('recomendacion'))->with(['planes'=>$planes]);
     }
 
     /**
