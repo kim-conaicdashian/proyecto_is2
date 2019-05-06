@@ -53,6 +53,7 @@ class ControladorPlanDeAccion extends Controller
         $credentials=$this->validate($request, array(
             'nombrePlan' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
             'descripcionPlan'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
+            'fecha_termino' => 'required',
         ));
         if($credentials){
             $plan = new PlanAccion();
@@ -112,6 +113,7 @@ class ControladorPlanDeAccion extends Controller
         $credentials=$this->validate($request, array(
             'nombrePlan' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
             'descripcionPlan'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
+            'fecha_termino' => 'required',
             'completado' => 'required',
         ));
         if($credentials){
