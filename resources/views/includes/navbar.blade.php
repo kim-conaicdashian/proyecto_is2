@@ -13,7 +13,7 @@
                     <a class="nav-link" id="home" href="categoriaAsignada" disabled="">Mi categoría</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="evidencias" href="evidencias" disabled="">Subir Evidencias</a>
+                    <a class="nav-link" id="evidencias" href="/evidencias" disabled="">Subir Evidencias</a>
                 </li>
             @endif
             @if (auth()->user()->privilegio == 1)

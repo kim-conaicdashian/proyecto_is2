@@ -34,6 +34,7 @@
                                 <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver recomendación</a>
                             <hr>
                             
+
                         @endforeach
                         
                     @else
@@ -43,8 +44,6 @@
                     @endif
                     
                 </div>
-                    
-
             <div style="height: 100px"></div>
                 <p class="lead mb-0"></p>
             </div>

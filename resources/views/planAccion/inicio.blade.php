@@ -49,7 +49,7 @@
                         <div class="card-header" id="heading{{$recomendacion->id}}">
                             <h2 class="mb-0">
                                 <div  data-toggle="collapse" data-target="#{{$recomendacion->id}}" aria-expanded="false" aria-controls="collapse{{$recomendacion->id}}">
-                                    {{$recomendacion->nombre}}
+                                    <a href="{{route('recomendacion.show',$recomendacion->id)}}">{{$recomendacion->nombre}}</a>
                                     <div style="float: left">
                                         <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
                                         {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
@@ -109,12 +109,6 @@
                 @endforeach
             </div>
         @endif
-        <div style="text-align:center">
-            <form action="/recomendacion/create">
-                <hr>
-                <input type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
-            </form>
-        </div>
     </div>
 <br>
 @endsection

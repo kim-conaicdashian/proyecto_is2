@@ -7,6 +7,7 @@ use App\Recomendacion;
 use Illuminate\Support\Facades\Auth;
 use App\Categoria;
 use Session;
+use App\PlanAccion;
 
 class ControladorRecomendaciones extends Controller
 {

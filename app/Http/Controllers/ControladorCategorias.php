@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categoria;
 use App\Academico;
 use App\Rules\Categoria as AppCategoria;
+use App\Recomendacion;
 
 class ControladorCategorias extends Controller
 {
