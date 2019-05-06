@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categoria;
 use App\Academico;
 use App\Rules\Categoria as AppCategoria;
+use App\Recomendacion;
 
 class ControladorCategorias extends Controller
 {
@@ -88,7 +89,8 @@ class ControladorCategorias extends Controller
     public function show($id)
     {
         $categoria= Categoria::findOrFail($id);
-        return view('categorias.verCategoriaSeleccionada', compact('categoria'));
+        $recomendaciones =$categoria->recomendaciones;
+        return view('categorias.verCategoriaSeleccionada', compact('categoria','recomendaciones'));
     }
 
     /**
