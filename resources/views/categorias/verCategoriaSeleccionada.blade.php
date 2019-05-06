@@ -30,23 +30,23 @@
                         <h2 class="panel-title">Recomendaciones para esta categoría:</h2>
                         <hr>
                         @foreach ($recomendaciones as $recomendacion)
-                            <h4>{{$recomendacion->nombre}}</h4>
+                        @if (auth()->user()->privilegio==1)
+                        <div style="float: left">
+                            <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
+                            {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                            {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
+                            <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >Eliminar</button>
+                            </form>
+                        </div>
+                    @endif    
+                        <h4>{{$recomendacion->nombre}}</h4>
                                 <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver recomendación</a>
                             <hr>
-                            @if (auth()->user()->privilegio==1)
-                                <div style="float: left">
-                                    <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
-                                    {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                                    {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                                    <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >Eliminar</button>
-                                    </form>
-                                </div>
-                            @endif
-                            <div class="panel-heading"><h3 class="panel-title">Recomendaciones para esta categoría: {{$recomendacion->nombre}} </h3>
-                            </div>
+
+
                             
                         @endforeach
                         
@@ -59,7 +59,6 @@
                 @if (auth()->user()->privilegio== 1)
                     <div style="text-align:center">
                         <form action="{{route('recomendacion.create2',$categoria->id)}}">
-                            <hr>
                             <input type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
                         </form>
                     </div>
