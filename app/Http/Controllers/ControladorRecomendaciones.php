@@ -108,7 +108,7 @@ class ControladorRecomendaciones extends Controller
             $recomendacion ->descripcion= $request->input('descripcionRec');
             $recomendacion->save();
             Session::flash('message_editar','Se ha editado la recomendación con éxito.');
-            return redirect()->route('categoriaAsignada');
+            return redirect('categorias');
         }else{
             return back()->withInput(request(['nombreCategoria']));
         }
