@@ -27,8 +27,6 @@ class ControladorRecomendaciones extends Controller
      */
     public function create()
     {
-
-
         return view('recomendaciones.create');
     }
 
@@ -70,7 +68,10 @@ class ControladorRecomendaciones extends Controller
      */
     public function show($id)
     {
-        //
+        $recomendacion = Recomendacion::findOrFail($id);
+        $categoria = $recomendacion->categoria;
+        $plan = $recomendacion->planes;
+        return view('recomendaciones.show', compact('recomendacion', 'plan', 'categoria'));
     }
 
     /**
