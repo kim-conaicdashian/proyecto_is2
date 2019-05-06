@@ -50,17 +50,7 @@
                             <h2 class="mb-0">
                                 <div  data-toggle="collapse" data-target="#{{$recomendacion->id}}" aria-expanded="false" aria-controls="collapse{{$recomendacion->id}}">
                                     <a href="{{route('recomendacion.show',$recomendacion->id)}}">{{$recomendacion->nombre}}</a>
-                                    <div style="float: left">
-                                        <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
-                                        {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                                        {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                                        <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >Eliminar</button>
-                                        </form>
-                                    </div>
-                                </div>
+                                    
                             </h2>
                         </div>
                         <div id="collapse{{$recomendacion->id}}" class="collapse show" aria-labelledby="heading{{$recomendacion->id}}" data-parent="#recomendaciones">
