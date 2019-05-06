@@ -82,7 +82,9 @@ class ControladorPlanDeAccion extends Controller
      */
     public function show($id)
     {
-        //
+        $plan = PlanAccion::findOrFail($id);
+        $evidencias = $plan->evidencias;
+        return view('planAccion.show', compact('plan','evidencias'));
     }
 
     /**

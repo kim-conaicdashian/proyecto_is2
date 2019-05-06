@@ -119,7 +119,7 @@
                         <!-- Background image for card set in CSS! -->
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">{{ __('Registrate') }}</h5>
+                        <h5 class="card-title text-center">{{ __('Regístrate') }}</h5>
                         <form method="POST" action="{{ route('register.store') }}">
                             @csrf
                             <div class="form-group form-label-group">
@@ -130,7 +130,7 @@
                 
                             <div class="form-label-group">
                                 <input type="email" class="form-control" {{ $errors->has('email') ? 'has-error' : ''}} placeholder="Email address" id="inputEmail" name="email" value="{{ old('email') }}" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                                <label for="inputEmail">{{ __('Correo electronico') }}</label>
+                                <label for="inputEmail">{{ __('Correo electrónico') }}</label>
                                 {!! $errors->first('email','<span class="help-block" style="color:red;">:message</span>')!!}
                             </div>
                             
@@ -147,8 +147,8 @@
                                 <label for="inputConfirmPassword">{{ __('Confirmar Contraseña') }}</label>
                             </div>
                 
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{ __('Regístrate') }}</button>
-                                <a class="d-block text-center mt-2 small" href="{{route('login')}}">ingresar</a>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('Regístrate') }}</button>
+                                <a class="d-block text-center mt-2 small" href="{{route('login')}}">Ingresar</a>
 
                         </form>
                     </div>
