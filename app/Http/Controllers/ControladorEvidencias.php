@@ -86,9 +86,7 @@ class ControladorEvidencias extends Controller
      */
     public function show($id)
     {
-
         $evidencia = Evidencia::findOrFail($id);
-
         return view('evidencias.mostrar', compact('evidencia'));
     }
 

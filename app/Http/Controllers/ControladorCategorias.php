@@ -89,7 +89,7 @@ class ControladorCategorias extends Controller
     public function show($id)
     {
         $categoria= Categoria::findOrFail($id);
-        $recomendaciones =$categoria->recomendaciones;
+        $recomendaciones = $categoria->recomendaciones;
         return view('categorias.verCategoriaSeleccionada', compact('categoria','recomendaciones'));
     }
 

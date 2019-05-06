@@ -69,8 +69,9 @@ class ControladorRecomendaciones extends Controller
     public function show($id)
     {
         $recomendacion = Recomendacion::findOrFail($id);
-        $planes = PlanAccion::with('recomendacion')->where('recomendacion_id',$recomendacion->id)->paginate(5); 
-        return view('recomendaciones.verRecomendacionSeleccionada',compact('recomendacion'))->with(['planes'=>$planes]);
+        $categoria = $recomendacion->categoria;
+        $plan = $recomendacion->planes;
+        return view('recomendaciones.show', compact('recomendacion', 'plan', 'categoria'));
     }
 
     /**

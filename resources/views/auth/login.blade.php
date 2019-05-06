@@ -146,7 +146,7 @@
                 
                             <div class="form-label-group">
                                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Ingresar email" value="{{ old('email') }}" required>
-                                <label for="inputEmail">Correo Electronico</label>
+                                <label for="inputEmail">Correo Electrónico</label>
                             </div>
                             
                             <hr>
@@ -156,8 +156,8 @@
                                 <label for="inputPassword">Contraseña</label>
                             </div>
                 
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">{{ __('Login') }}</button>
-                            <a class="d-block text-center mt-2 small" href="register">{{ __('No tienes una cuenta? Registrate.') }}</a>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('Login') }}</button>
+                            <a class="d-block text-center mt-2 small" href="register">{{ __('¿No tienes una cuenta? Regístrate.') }}</a>
                         </form>
                     </div>
                 </div>
