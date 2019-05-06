@@ -30,7 +30,6 @@
                         @endforeach
                         
                     @else
-                    
                         <div class="panel-heading"><h3 class="panel-title">No hay recomendaciones asignadas para esta categoría. </h3>
                         </div>
                     @endif
@@ -38,7 +37,7 @@
                 </div>
                 @if (auth()->user()->privilegio== 1)
                     <div style="text-align:center">
-                        <form action="/recomendacion/create">
+                        <form action="{{route('recomendacion.create2',$categoria->id)}}">
                             <hr>
                             <input type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
                         </form>

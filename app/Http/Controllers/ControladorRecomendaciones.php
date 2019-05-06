@@ -26,11 +26,10 @@ class ControladorRecomendaciones extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idCategoria)
     {
-
-
-        return view('recomendaciones.create');
+        $categoria = Categoria::findOrFail($idCategoria);
+        return view('recomendaciones.create',compact('categoria'));
     }
 
     /**
@@ -39,7 +38,7 @@ class ControladorRecomendaciones extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$idCategoria)
     {
         //
         $credentials=$this->validate($request, array(
@@ -48,15 +47,13 @@ class ControladorRecomendaciones extends Controller
         ));
         if($credentials){
             $recomendacion = new Recomendacion();
-            $idCategoria= Auth::user()->categoria->id;
             $categoria = Categoria::findOrFail($idCategoria);
-
             $recomendacion->nombre = $request->input("nombre");
             $recomendacion->descripcion = $request->input("descripcion");
             $recomendacion->categoria()->associate($categoria);
             $recomendacion->save();
             Session::flash('message_crear','Se ha creado una recomendación con éxito.');
-            return redirect()->route('categoriaAsignada');
+            return  redirect('/categorias');
         }else{
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
             return back()->withInput(request(['nombre']));
