@@ -88,11 +88,11 @@
                                     @endforeach
                                 @else
                                     <p style="font-weight: bold"> No hay un plan de acción actualmente para esta recomendación. </p>
-                                    <form action="{{ route('plan.create')}}">
-                                        <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                                        <input type='submit' class="btn btn-primary" value='Crear plan de acción' />
-                                    </form>
                                 @endif
+                                <form action="{{ route('plan.create')}}">
+                                    <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
+                                    <input type='submit' class="btn btn-primary" value='Crear plan de acción' />
+                                </form>
                             </div>
                         </div>
                     </div>
