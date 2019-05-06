@@ -21,7 +21,7 @@
       </div>
       <div class="form-group" {{ $errors->has('fecha_termino') ? 'has-error' : ''}}>
         <label  style="font-size: 24px;">Fecha de termino:</label>
-        <input type="date" class="form-control"  name='fecha_termino' >
+        <input style="width: 15%;" type="date" class="form-control"  name='fecha_termino' >
         {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
       </div>
       <input type='hidden' name='rec' value='{{$rec}}'/>

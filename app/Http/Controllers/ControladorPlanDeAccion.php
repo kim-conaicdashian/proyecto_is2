@@ -112,7 +112,7 @@ class ControladorPlanDeAccion extends Controller
         $credentials=$this->validate($request, array(
             'nombrePlan' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
             'descripcionPlan'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
-            
+            'completado' => 'required',
         ));
         if($credentials){
             $plan = PlanAccion::findOrFail($id);
@@ -121,6 +121,8 @@ class ControladorPlanDeAccion extends Controller
             
             $plan->nombre = $request->input("nombrePlan");
             $plan->descripcion = $request->input("descripcionPlan");
+            $plan->fecha_termino = $request->input("fecha_termino");
+            $plan->completado = $request->input("completado");
             $plan->categoria()->associate($categoria);
             $plan->save();
             return redirect()->route('categoriaAsignada');

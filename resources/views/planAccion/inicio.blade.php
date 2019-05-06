@@ -1,6 +1,11 @@
 <!DOCTYPE html>
     @extends('layouts.app')
     @section('content')
+    @php
+        $now = new \DateTime();
+        $now = $now->format('Y-m-d');    
+        //dd($now);
+    @endphp
     <title> Mi categoría </title>
     <style>
         .filterable {
@@ -61,8 +66,10 @@
                                     @foreach ($planes as $plan)
                                         @if ($plan->completado == 1)
                                             <div style="background: lime;">
+                                        @elseif($now > $plan->fecha_termino)
+                                            <div style="background: yellow;">   
                                         @else
-                                            <div style="background: yellow;">
+                                            <div>
                                         @endif
                                             @if ($plan->recomendacion_id == $recomendacion->id)
                                                 <h3> Plan de acción propuesto </h3>
@@ -70,14 +77,14 @@
                                                     <tr>
                                                         <th>Nombre</th>
                                                         <th>Descripcion</th>
-                                                        <th>Acciones</th>
+                                                        <th style="width: 12%;">Acciones</th>
                                                     </tr>
                                                     <tr>
                                                         <td>{{$plan->nombre}}</td>
                                                         <td>{{$plan->descripcion}}</td>
                                                         <td>
                                                             <div style="float: right">
-                                                                <a href="">Completar Plan</a>
+                                                                
                                                                 <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
                                                                 {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
                                                                 {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
