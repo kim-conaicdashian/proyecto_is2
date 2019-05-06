@@ -36,8 +36,14 @@
                     @endif
                     
                 </div>
-                    
-
+                @if (auth()->user()->privilegio== 1)
+                    <div style="text-align:center">
+                        <form action="/recomendacion/create">
+                            <hr>
+                            <input type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
+                        </form>
+                    </div>
+                @endif
             <div style="height: 100px"></div>
                 <p class="lead mb-0"></p>
             </div>

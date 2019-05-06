@@ -109,12 +109,6 @@
                 @endforeach
             </div>
         @endif
-        <div style="text-align:center">
-            <form action="/recomendacion/create">
-                <hr>
-                <input type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
-            </form>
-        </div>
     </div>
 <br>
 @endsection
