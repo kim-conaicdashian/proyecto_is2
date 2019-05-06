@@ -59,33 +59,41 @@
                                 <hr>
                                 @if ($recomendacion->plan_accion != NULL)
                                     @foreach ($planes as $plan)
-                                        @if ($plan->recomendacion_id == $recomendacion->id)
-                                            <h3> Plan de acción propuesto </h3>
-                                            <table style="width:100%">
-                                                <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Descripcion</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>{{$plan->nombre}}</td>
-                                                    <td>{{$plan->descripcion}}</td>
-                                                    <td>
-                                                        <div style="float: right">
-                                                            <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
-                                                            {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                                                            {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                                                            <form style="float:left" action="{{ route('plan.destroy',$plan->id) }}" method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar el plan de acción:  {{ $plan->nombre }}?')" >Eliminar</button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                        @if ($plan->completado == 1)
+                                            <div style="background: lime;">
+                                        @else
+                                            <div style="background: yellow;">
                                         @endif
+                                            @if ($plan->recomendacion_id == $recomendacion->id)
+                                                <h3> Plan de acción propuesto </h3>
+                                                <table style="width:100%">
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{$plan->nombre}}</td>
+                                                        <td>{{$plan->descripcion}}</td>
+                                                        <td>
+                                                            <div style="float: right">
+                                                                <a href="">Completar Plan</a>
+                                                                <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
+                                                                {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                                                                {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
+                                                                <form style="float:left" action="{{ route('plan.destroy',$plan->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar el plan de acción:  {{ $plan->nombre }}?')" >Eliminar</button>
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            @endif
+                                        </div>
                                     @endforeach
+                                   
                                 @else
                                     <p style="font-weight: bold"> No hay un plan de acción actualmente para esta recomendación. </p>
                                 @endif
