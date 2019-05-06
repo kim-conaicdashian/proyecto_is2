@@ -61,6 +61,7 @@ class ControladorPlanDeAccion extends Controller
             
             $plan->nombre = $request->input("nombrePlan");
             $plan->descripcion = $request->input("descripcionPlan");
+            $plan->fecha_termino = $request->input("fecha_termino");
             $plan->categoria()->associate($categoria);
             $plan->recomendacion_id = $request->input("rec");
             $plan->save();

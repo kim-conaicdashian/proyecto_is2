@@ -9,7 +9,8 @@
                 <div class="row text-center">
                     @if($plan->categoria)
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Pertenece a la categoría: {{$plan->categoria->nombre}} </i></h6></div>
-                        <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Encargado de la categoría: {{$plan->categoria->academico->nombre}} </i></h6>
+                        <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Encargado de la categoría: {{$plan->categoria->academico->nombre}} </i></h6></div>
+                        <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Fecha de termino: {{$plan->fecha_termino}} </i></h6></div>
                     </div>
                     @else
                         <div class="col"><h6 class="panel-title"><i>No hay ningún académico asignado a esta categoria.</i></h6>
