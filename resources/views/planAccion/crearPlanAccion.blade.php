@@ -21,7 +21,7 @@
       </div>
       <input type='hidden' name='rec' value='{{$rec}}'/>
       <hr>
-      <button type="submit" class="btn btn-primary">Crear plan de accion</button>
+      <button type="submit" class="btn pretty-btn">Crear plan de accion</button>
     </form>
 </div>
 @endsection
