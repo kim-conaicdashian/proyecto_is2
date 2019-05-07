@@ -69,6 +69,7 @@ class CreateTablas extends Migration
             $table->longText('descripcion');
             $table->integer('categoria_id')->unsigned()->nullable();
             $table->integer('recomendacion_id')->unsigned()->nullable();
+            $table->date('fecha_termino');
             $table->boolean('completado')->default(false);
         });
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
+<title> {{$evidencia->nombre_archivo}} </title>
 <div class="card h-100 text-center" style="background-color:transparent;">
     <h1>{{$evidencia->nombre_archivo}}</h1>
     {{-- <img style="width:100%" src="{{asset('public/storage/app/archivos/'.$evidencia->archivo_bin)}}"> --}}

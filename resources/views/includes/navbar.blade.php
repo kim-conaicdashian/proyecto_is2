@@ -10,7 +10,7 @@
             </li>
             @if (auth()->user()->categoria)
             <li class="nav-item">
-                    <a class="nav-link" id="home" href="categoriaAsignada" disabled="">Mi categoría</a>
+                    <a class="nav-link" id="home" href="/categoriaAsignada" disabled="">Mi categoría</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="evidencias" href="evidencias" disabled="">Subir Evidencias</a>
@@ -18,11 +18,11 @@
             @endif
             @if (auth()->user()->privilegio == 1)
                 <li class="nav-item">
-                    <a class="nav-link" id="categorias" href="categorias" disabled="">Manejo de Categorías</a>
+                    <a class="nav-link" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
                 </li>
                 {{--
                     <li class="nav-item">
-                        <a class="nav-link" href="academicos">Manejo de Academicos</a>
+                        <a class="nav-link" href="academicos">Manejo de Académicos</a>
                     </li>
                     --}}
             @endif
@@ -32,7 +32,7 @@
         </a>
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button class="btn btn-outline-info my-2 my-sm-0">Logout</button>
+            <button class="btn btn-outline-info my-2 my-sm-0">Cerrar sesión</button>
         </form>
     </div>
 </div>

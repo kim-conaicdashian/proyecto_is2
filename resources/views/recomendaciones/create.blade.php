@@ -8,7 +8,7 @@
     <p style="font-size:12px; text-align:center"><i>Plan de acción:</i></p>
     <h1 style="text-align:center;margin-top:20px;"> {{auth()->user()->categoria->nombre}} </h1>
     <hr>
-    <form method="POST" action='{{route('recomendacion.store')}}'>
+    <form method="POST" action='{{route('recomendacion.store2',$categoria->id)}}'>
         @csrf
             <label for="exampleInputEmail1" style="font-size: 24px;">Nombre:</label>
             <input type="text" class="form-control"  name='nombre' placeholder="Escriba el nombre de la recomendación..." style="margin-bottom:20px;">

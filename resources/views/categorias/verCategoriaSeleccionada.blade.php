@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <title> {{$categoria->nombre}} </title>
     <div class="container">
         <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
             <div class="card h-100 text-center" style="background-color:transparent;">
@@ -8,8 +9,8 @@
                 <h1 style="font-family: helvetica">{{$categoria->nombre}}</h1>
                 <div class="row text-center">
                     @if(isset($categoria->academico))
-                        <div class="col"><h6 class="panel-title" style="text-align: center; ">Encargado de la categoría: {{$categoria->academico->nombre}} </h6>
-                    </div>
+                        <div class="panel-heading"><h3 class="panel-title">Académico encargado de esta categoría: {{$categoria->academico->nombre}} </h3>
+                        </div>
                     @else
                         <div class="col"><h6 class="panel-title"><i>No hay ningún académico asignado a esta categoria.</i></h6>
                         </div>
@@ -30,21 +31,28 @@
                         <h2 class="panel-title">Recomendaciones para esta categoría:</h2>
                         <hr>
                         @foreach ($recomendaciones as $recomendacion)
-                            <h4>{{$recomendacion->nombre}}</h4>
+                        @if (auth()->user()->privilegio==1)
+                        <div style="float: left">
+                            <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
+                            {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                            {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
+                            <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >Eliminar</button>
+                            </form>
+                        </div>
+                    @endif    
+                        <h4>{{$recomendacion->nombre}}</h4>
                                 <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver recomendación</a>
                             <hr>
-                            
                         @endforeach
                         
                     @else
-                    
-                        <div class="panel-heading"><h6 class="panel-title"><i>No hay recomendaciones asignadas para esta categoría.</i></h6>
+                        <div class="panel-heading"><h3 class="panel-title">No hay recomendaciones asignadas para esta categoría. </h3>
                         </div>
                     @endif
-                    
                 </div>
-                    
-
             <div style="height: 100px"></div>
                 <p class="lead mb-0"></p>
             </div>

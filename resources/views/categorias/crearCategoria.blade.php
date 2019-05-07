@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crear categoria</title>
+    <title>Crear categoría</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -37,7 +37,7 @@
         
         @if($academicos->count() > 0)
             <div class="panel panel-primary" id="result_panel">
-                <div class="panel-heading"><h3 class="panel-title">Lista de academicos</h3>
+                <div class="panel-heading"><h3 class="panel-title">Lista de académicos</h3>
                 </div>
                 <div class="panel-body">
                     <select class="form-control" name="academicoID" id="card_type">
@@ -49,10 +49,10 @@
                 </div>
             </div>
             @else 
-                <p>No hay academicos registrados.</p>
+                <p>No hay académicos registrados.</p>
                 <input class='hidden' name='academicoID' value='NULL'>
             @endif
-        <button type="submit" class="btn btn-primary">Crear categoria</button>
+        <button type="submit" class="btn btn-primary">Crear categoría</button>
       </form>
       
       
@@ -62,6 +62,7 @@
 @extends('layouts.app')
 @section('content')
       <!-- Page Content -->
+    <title> Crear categoría </title>
   <div class="container">
       <div class="card border-0 shadow my-5">
         <div class="card-body p-5">

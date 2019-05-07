@@ -13,6 +13,7 @@
     }
 </style>
 <div class="container" >
+    <title> Evidencias </title>
     <h1 class="my-4" style="text-align: center">Lista de evidencias</h1>
     
     @if($evidencias->count() > 0)
