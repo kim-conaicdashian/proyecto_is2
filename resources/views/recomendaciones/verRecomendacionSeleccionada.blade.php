@@ -12,7 +12,7 @@
                     <div class="panel-heading"><h3 class="panel-title">Académicos asociado a esta recomendación : {{$recomendacion->categoria->academico->nombre}} </h3>
                     </div>
                     {{-- @else
-                        <div class="panel-heading"><h3 class="panel-title">No hay ningún académico asignado a esta categoria. </h3>
+                        <div class="panel-heading"><h3 class="panel-title">No hay ningún académico asignado a esta categoría. </h3>
                         </div>
                     @endif
                      --}}

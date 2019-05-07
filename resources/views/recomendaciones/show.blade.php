@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <title> {{$recomendacion->nombre}} </title>
     <div class="container">
         <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
             <div class="card h-100 text-center" style="background-color:transparent;">
@@ -12,7 +13,7 @@
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Encargado de la categoría: {{$categoria->academico->nombre}} </i></h6>
                     </div>
                     @else
-                        <div class="col"><h6 class="panel-title"><i>No hay ningún académico asignado a esta categoria.</i></h6>
+                        <div class="col"><h6 class="panel-title"><i>No hay ningún académico asignado a esta categoría.</i></h6>
                         </div>
                     @endif
                 </div>

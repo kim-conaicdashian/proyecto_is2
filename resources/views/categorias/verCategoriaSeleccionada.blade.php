@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <title> {{$categoria->nombre}} </title>
     <div class="container">
         <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
             <div class="card h-100 text-center" style="background-color:transparent;">
@@ -8,7 +9,7 @@
                 <h1 style="font-family: helvetica">{{$categoria->nombre}}</h1>
                 <div class="row text-center">
                     @if(isset($categoria->academico))
-                        <div class="panel-heading"><h3 class="panel-title">Académicos encargado de esta categoría: {{$categoria->academico->nombre}} </h3>
+                        <div class="panel-heading"><h3 class="panel-title">Académico encargado de esta categoría: {{$categoria->academico->nombre}} </h3>
                         </div>
                     @else
                         <div class="col"><h6 class="panel-title"><i>No hay ningún académico asignado a esta categoria.</i></h6>

@@ -43,7 +43,7 @@
     <div class="container">
         <h1 style="text-align: center">{{auth()->user()->categoria->nombre}}</h1>
         <hr>
-        <h2 style="text-align: center">Descripcion de la categoria : {{auth()->user()->categoria->descripcion}}</h2>
+        <h2 style="text-align: center">Descripción de la categoría : {{auth()->user()->categoria->descripcion}}</h2>
         <hr>
         @if($recomendaciones->count() == 0)
             <h3 style="text-align: center"> No hay recomendaciones para la categoría {{auth()->user()->categoria->nombre}}</h3>
@@ -76,7 +76,7 @@
                                                 <table style="width:100%">
                                                     <tr>
                                                         <th>Nombre</th>
-                                                        <th>Descripcion</th>
+                                                        <th>Descripción</th>
                                                         <th style="width: 12%;">Acciones</th>
                                                     </tr>
                                                     <tr>

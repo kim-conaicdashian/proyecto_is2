@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('content')
     <!-- Page Content -->
+    <title> Editar evidencia </title>
     <div class="container">
             <div class="card border-0 shadow my-5">
               <div class="card-body p-5">

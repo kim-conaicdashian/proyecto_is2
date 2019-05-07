@@ -17,7 +17,7 @@
         </style>
 <body>
 
-    <h1>Lista de categorias</h1>
+    <h1>Lista de categorías</h1>
     <form action="/categorias/create">
         <input type="submit" value="Crear categoria" />
     </form>
@@ -25,7 +25,7 @@
         <table style="width:50%">
             <tr>
                 <th>Nombre</th>
-                <th>Descripcion</th> 
+                <th>Descripción</th> 
                 <th>Acciones</th>
             </tr>
             
@@ -36,7 +36,7 @@
                     <td>
                         <div style="float: right">
                             <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar</a> --}}
-                            {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                            {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicación.</a> --}}
                             {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
                             {{-- <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
                                 @csrf
@@ -50,7 +50,7 @@
             </table>
        
     @else 
-        <p>No hay categorias registradas.</p>
+        <p>No hay categorías registradas.</p>
     @endif
     
 </body>
@@ -59,6 +59,7 @@
 @extends('layouts.app')
 @section('content')
      <!-- Page Content -->
+     <title> Categorías </title>
      <div class="container">
         <div class="card border-0 shadow my-5">
           <div class="card-body p-5">

@@ -19,7 +19,7 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group row">
-                                <label for="email" class="col-sm-4 col-form-label text-md-right">Correo Electronico</label>
+                                <label for="email" class="col-sm-4 col-form-label text-md-right">Correo Electrónico</label>
                                 <div class="col-md-6">
                                     <input type="email" class="form-control " name="email" placeholder="Ingresar email" value="{{ old('email') }}" required>
                                 </div>
@@ -34,8 +34,8 @@
 
                             <div class="form-group row mb-4">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
-                                    <a class="btn btn-link" href="register">{{ __('No tienes una cuenta? Resgistrate.') }}</a>
+                                    <button type="submit" class="btn btn-primary">{{ __('Iniciar sesión') }}</button>
+                                    <a class="btn btn-link" href="register">{{ __('¿No tienes una cuenta? Regístrate.') }}</a>
                                 </div>
                             </div>
                         </form>
