@@ -2,9 +2,8 @@
 @extends('layouts.app')
 @section('content')
     <!-- Page Content -->
-    <title> Agregar evidencia </title>
-    <div class="container">
-        <div class="card border-0 shadow my-5">
+    <div class="container" >
+        <div class="card border-0 shadow my-5" style="background-color:transparent;">
           <div class="card-body p-5">
                 <h1 style="text-align:center">Subir una nueva evidencia</h1>
                 <br><br><br><br>
@@ -41,7 +40,7 @@
                         <p>No hay planes registrados.</p>
                     @endif
                     <br>
-                    <button style="float: right" submit" class="btn btn-primary">Crear evidencia</button>
+                    <button style="float: right" submit" class="btn pretty-btn">Crear evidencia</button>
                   </form>
           </div>
         </div>
