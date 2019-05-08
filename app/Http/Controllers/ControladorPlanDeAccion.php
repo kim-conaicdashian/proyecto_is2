@@ -55,11 +55,11 @@ class ControladorPlanDeAccion extends Controller
             'descripcionPlan'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
             'fecha_termino' => 'required',
         ));
+
         if($credentials){
             $plan = new PlanAccion();
             $idCategoria= Auth::user()->categoria->id;
             $categoria = Categoria::findOrFail($idCategoria);
-
             $plan->nombre = $request->input("nombrePlan");
             $plan->descripcion = $request->input("descripcionPlan");
             $plan->fecha_termino = $request->input("fecha_termino");

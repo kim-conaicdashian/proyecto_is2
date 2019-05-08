@@ -3,43 +3,35 @@
 @section('content')
 <div class="container">
     <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
-        <br>
-        <p style="font-size:12px"><i>Categoría seleccionada:</i></p>
+        <p style="font-size:12px; padding-top:10px;"><i>Categoría seleccionada:</i></p>
         <h1 style="font-family: helvetica">{{$categoria->nombre}}</h1>
-        <div class="row text-center">
-            @if(isset($categoria->academico))
-                <div class="col"><h6 class="panel-title" style="text-align: center; ">Encargado de la categoría: {{$categoria->academico->nombre}} </h6>
-            </div>
-            @else
-                <div class="col"><h6 class="panel-title"><i>No hay ningún académico asignado a esta categoria.</i></h6>
-                </div>
-            @endif
-        </div>
+        
+        @if(isset($categoria->academico))
+            <h6>Encargado de la categoría: <i>{{$categoria->academico->nombre}}</i> </h6>
+        @else
+            <h6 class="panel-title"><i>No hay ningún académico asignado a esta categoria.</i></h6>
+        @endif
+        
         <br>
-        <div class="row text-center">
-                <hr>
-            <div class="col"><h2>Descripción</h2>
-                <p>{{$categoria->descripcion}}</p>
-                <hr>
-            </div>                    
-        </div>
-
-        <div class="container">    
-            @if(!$categoria->recomendaciones->isEmpty())
-                <h1 class="panel-title">Recomendaciones para esta categoría:</h1>
-                <hr>
-                @foreach ($recomendaciones as $recomendacion)
-                    
-                    <h2><a href="/recomendacion/{{$recomendacion->id}}">{{$recomendacion->nombre}}</a></h2>
-                    
-                    
-                    @if($recomendacion->planes)
-                        <div class="container">
-                            <br>
-                            <p style="font-size:12px"><i>Plan de acción:</i></p>
-                            <a href="/plan/{{$recomendacion->planes->id}}"><h4>{{ $recomendacion->planes->nombre }}</h4></a>
-                            
-                            @if(count($recomendacion->planes->evidencias) > 0)
+        
+        <hr>
+        <h2>Descripción</h2>
+        <p>{{$categoria->descripcion}}</p>
+        <hr>
+    
+          
+        @if(!$categoria->recomendaciones->isEmpty())
+            <h1>Recomendaciones para esta categoría:</h1>
+            <hr>
+            @foreach ($recomendaciones as $recomendacion)
+                <h2><a href="/recomendacion/{{$recomendacion->id}}">{{$recomendacion->nombre}}</a></h2>                    
+                @if($recomendacion->planes->count() != 0)
+                    <div class="container">
+                        <br>
+                        <p style="font-size:12px"><i>Planes de acción:</i></p>
+                        @foreach($recomendacion->planes as $plan)
+                            <a href="/plan/{{$plan->id}}"><h4>{{ $plan->nombre }}</h4></a>
+                            @if(count($plan->evidencias) > 0)
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
@@ -48,7 +40,7 @@
                                         <th>Tipo archivo</th>
                                         </tr>
                                     </thead>
-                                    @foreach($recomendacion->planes->evidencias as $evidencia)
+                                    @foreach($plan->evidencias as $evidencia)
                                         <tbody>
                                             <tr>
                                                 <td>{{$evidencia->nombre_archivo}}</td>
@@ -62,79 +54,36 @@
                                 
                             @else
                                 <p style="font-size:12px"><i>No hay evidencias asignadas para este plan de acción.</i></p>
-                                <hr>
-                                @if ($recomendacion->planes()->get()->count() != 0)
-                                    @foreach ($planes as $plan)
-                                        @if ($plan->completado == 1)
-                                            <div style="background: lime;">
-                                        @elseif($now > $plan->fecha_termino)
-                                            <div style="background: yellow;">   
-                                        @else
-                                            <div>
-                                        @endif
-                                            @if ($plan->recomendacion_id == $recomendacion->id)
-                                                <h3> Plan de acción propuesto </h3>
-                                                <table style="width:100%">
-                                                    <tr>
-                                                        <th>Nombre</th>
-                                                        <th>Descripción</th>
-                                                        <th style="width: 12%;">Acciones</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{$plan->nombre}}</td>
-                                                        <td>{{$plan->descripcion}}</td>
-                                                        <td>
-                                                            <div style="float: right">
-                                                                
-                                                                <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
-                                                                {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                                                                {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                                                                <form style="float:left" action="{{ route('plan.destroy',$plan->id) }}" method="POST">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar el plan de acción:  {{ $plan->nombre }}?')" >Eliminar</button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            @endif
-                                        </div>
-                                    @endforeach
-                                   
-                                @else
-                                    <p style="font-weight: bold"> No hay un plan de acción actualmente para esta recomendación. </p>
-                                @endif
-                                <form action="{{ route('plan.create')}}">
-                                    <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                                    <input type='submit' class="btn btn-primary" value='Crear plan de acción' />
-                                </form>
-                            </div>
-                        </div>
-                    @else
-                        <p style="font-size:12px"><i>No hay planes asignados para esta recomendación.</i></p>
+                            @endif
+                        @endforeach
                         <hr>
-                    @endif
-
-                    
-                    
-                @endforeach                
-            @else            
-                <div class="container" style="text:center"><h6><i>No hay recomendaciones asignadas para esta categoría.</i></h6></div>
-            @endif
+                        <form action="{{ route('plan.create')}}">
+                            <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
+                            <input type='submit' class="btn btn-primary" style="float:right" value='Crear plan de acción'/>
+                        </form>
+                        
+                    </div>
+                @else
+                    <p style="font-size:12px"><i>No hay planes asignados para esta recomendación.</i></p>
+                    <hr>
+                @endif
+                <div style="height: 50px"></div>
+                    <p class="lead mb-0"></p>
+                </div>                   
+            @endforeach                
+        @else            
+            <div class="container" style="text:center"><h6><i>No hay recomendaciones asignadas para esta categoría.</i></h6></div>
+        @endif
+        
+    </div>       
+    @if (auth()->user()->privilegio == 1) 
+        <div style="text-align:center">
+            <form action="/recomendacion/create/{{$categoria->id}}">
+                <hr>
+                <input style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
+            </form>
         </div>
-    </div>        
-    <div style="text-align:center">
-        <form action="/recomendacion/create">
-            <hr>
-            <input style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
-        </form>
-    </div>
-    
-    <div style="height: 50px"></div>
-        <p class="lead mb-0"></p>
-    </div>
+    @endif
 </div>
 
-    
 @endsection
