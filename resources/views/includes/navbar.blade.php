@@ -9,7 +9,7 @@
                 <a class="nav-link" href="/">Inicio</a>
             </li>
             @if (auth()->user()->categoria)
-            <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" id="home" href="/categoriaAsignada" disabled="">Mi categoría</a>
                 </li>
                 <li class="nav-item">
@@ -21,19 +21,28 @@
                     <a class="nav-link" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
                 </li>
                 {{--
-                    <li class="nav-item">
-                        <a class="nav-link" href="academicos">Manejo de Academicos</a>
-                    </li>
-                    --}}
+                <li class="nav-item">
+                    <a class="nav-link" href="academicos">Manejo de Academicos</a>
+                </li>
+                --}}
             @endif
+
         </ul>
-        <a class="nav-link" href="#" >
-            {{ auth()->user()->nombre }} 
-        </a>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button class="btn btn-outline-info my-2 my-sm-0">Cerrar sesión</button>
-        </form>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ auth()->user()->nombre }} 
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('academico.editPerfil', auth()->user()->id) }}">Editar Perfil</a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="dropdown-item">Cerrar sesión</button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+        
     </div>
 </div>
 
