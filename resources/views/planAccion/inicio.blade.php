@@ -62,7 +62,7 @@
                             <div class="card-body">
                                 <h3>Descripción: {{$recomendacion->descripcion}}</h3>
                                 <hr>
-                                @if ($recomendacion->plan_accion != NULL)
+                                @if ($recomendacion->plan_accion)
                                     @foreach ($planes as $plan)
                                         @if ($plan->completado == 1)
                                             <div style="background: lime;">

@@ -45,10 +45,7 @@
                     @endif    
                         <h4>{{$recomendacion->nombre}}</h4>
                                 <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver recomendación</a>
-                            <hr>
-
-
-                            
+                            <hr>                         
                         @endforeach
                         
                     @else
