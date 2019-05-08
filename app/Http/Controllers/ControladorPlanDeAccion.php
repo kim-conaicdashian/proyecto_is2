@@ -59,7 +59,7 @@ class ControladorPlanDeAccion extends Controller
             $plan = new PlanAccion();
             $idCategoria= Auth::user()->categoria->id;
             $categoria = Categoria::findOrFail($idCategoria);
-            
+
             $plan->nombre = $request->input("nombrePlan");
             $plan->descripcion = $request->input("descripcionPlan");
             $plan->fecha_termino = $request->input("fecha_termino");
@@ -67,7 +67,7 @@ class ControladorPlanDeAccion extends Controller
             $plan->recomendacion_id = $request->input("rec");
             $plan->save();
             $recomendacion = Recomendacion::findOrFail($request->input("rec"));
-            $recomendacion ->plan_accion = $plan ->id;
+            $recomendacion->planes()->save($plan);
             $recomendacion->save();
             return redirect()->route('categoriaAsignada');
         }else{

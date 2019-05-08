@@ -63,7 +63,53 @@
                             @else
                                 <p style="font-size:12px"><i>No hay evidencias asignadas para este plan de acción.</i></p>
                                 <hr>
-                            @endif                                                                                                
+                                @if ($recomendacion->planes()->get()->count() != 0)
+                                    @foreach ($planes as $plan)
+                                        @if ($plan->completado == 1)
+                                            <div style="background: lime;">
+                                        @elseif($now > $plan->fecha_termino)
+                                            <div style="background: yellow;">   
+                                        @else
+                                            <div>
+                                        @endif
+                                            @if ($plan->recomendacion_id == $recomendacion->id)
+                                                <h3> Plan de acción propuesto </h3>
+                                                <table style="width:100%">
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Descripción</th>
+                                                        <th style="width: 12%;">Acciones</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{$plan->nombre}}</td>
+                                                        <td>{{$plan->descripcion}}</td>
+                                                        <td>
+                                                            <div style="float: right">
+                                                                
+                                                                <a class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar</a>
+                                                                {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
+                                                                {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
+                                                                <form style="float:left" action="{{ route('plan.destroy',$plan->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar el plan de acción:  {{ $plan->nombre }}?')" >Eliminar</button>
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                   
+                                @else
+                                    <p style="font-weight: bold"> No hay un plan de acción actualmente para esta recomendación. </p>
+                                @endif
+                                <form action="{{ route('plan.create')}}">
+                                    <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
+                                    <input type='submit' class="btn btn-primary" value='Crear plan de acción' />
+                                </form>
+                            </div>
                         </div>
                     @else
                         <p style="font-size:12px"><i>No hay planes asignados para esta recomendación.</i></p>

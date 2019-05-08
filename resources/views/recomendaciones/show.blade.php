@@ -27,13 +27,14 @@
                 </div>
 
                 <div class="container">
-                    
-                    @if($plan)
-                        <h2 class="panel-title">Plan de acción para esta categoría:</h2>
-                        <hr>
+                    @if($planes->count() != 0)
+                    <h2 class="panel-title">Plan de acción para esta categoría:</h2>
+                        @foreach($planes as $plan)
+                            <hr>
 
-                        <h4>{{$plan->nombre}}</h4>
-                        <a href="/plan/{{$plan->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver plan de acción</a>                        
+                            <h4>{{$plan->nombre}}</h4>
+                            <a href="/plan/{{$plan->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver plan de acción</a>                        
+                        @endforeach
                     @else                    
                         <div class="panel-heading"><h6 class="panel-title"><i>No hay plan de acción para esta recomendación.</i></h6>
                         </div>
