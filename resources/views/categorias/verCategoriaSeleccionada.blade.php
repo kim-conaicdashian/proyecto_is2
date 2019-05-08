@@ -52,15 +52,7 @@
                         <div class="panel-heading"><h3 class="panel-title">No hay recomendaciones asignadas para esta categoría. </h3>
                         </div>
                     @endif
-                    
                 </div>
-                @if (auth()->user()->privilegio== 1)
-                    <div style="text-align:center">
-                        <form action="{{route('recomendacion.create2',$categoria->id)}}">
-                            <input type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
-                        </form>
-                    </div>
-                @endif
             <div style="height: 100px"></div>
                 <p class="lead mb-0"></p>
             </div>

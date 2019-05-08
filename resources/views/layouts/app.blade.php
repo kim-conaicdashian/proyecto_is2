@@ -9,7 +9,8 @@
 <body>
     <style>
         body {
-            background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+            /* https://source.unsplash.com/twukN12EN7c/1920x1080 */
+            background: url('/green_background.jpg') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             background-size: cover;
@@ -17,7 +18,7 @@
         }
         @media (pointer: coarse) and (hover: none) {
             header {
-                background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+                background: url('/green_background.jpg') black no-repeat center center scroll;
             }
             header video {
                 display: none;
@@ -38,6 +39,12 @@
         }
         .panel-primary{
             width: 50%;
+        }
+
+        .pretty-btn {
+            color: black; 
+            background-color: hsl(360, 100%, 73%, 0.5); 
+            border-color: black;
         }
     </style>
     
