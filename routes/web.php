@@ -35,3 +35,6 @@ Route::resource('academicos','ControladorAcademicos');
 //========================================================================================================================
 Route::get('recomendacion/create/{idCategoria}','ControladorRecomendaciones@create')->name('recomendacion.create2');
 Route::post('recomendacion/create/{idCategoria}','ControladorRecomendaciones@store')->name('recomendacion.store2');
+
+//==============ruta para actualizar si un plan es completado o no=================
+Route::put('plan/{plan}','ControladorPlanDeAccion@planCompletado')->name('plan.completado');
