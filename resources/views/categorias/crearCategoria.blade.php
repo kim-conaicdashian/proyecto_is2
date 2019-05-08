@@ -66,7 +66,7 @@
   <div class="container">
       <div class="card border-0 shadow my-5">
         <div class="card-body p-5">
-            <h1>Crear categoria</h1>
+            <h1>Crear categoría</h1>
           <form method="POST" action='{{route('categorias.store')}}'>
               @csrf
               <div class="form-group" {{ $errors->has('nombreCategoria') ? 'has-error' : ''}}>
@@ -75,7 +75,7 @@
                 {!! $errors->first('nombreCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
               </div>
               <div class="form-group " {{ $errors->has('descripcionCategoria') ? 'has-error' : ''}}>
-                <label for="exampleInputPassword1">Descripcion</label>
+                <label for="exampleInputPassword1">Descripción</label>
                 <textarea rows="4" class='form-control' cols="50" name='descripcionCategoria'></textarea>
                 {!! $errors->first('descripcionCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
               </div>
@@ -97,13 +97,9 @@
                       <p>No hay académicos registrados.</p>
                       <input class='hidden' name='academicoID' value='NULL'>
                   @endif
-              <button type="submit" class="btn btn-primary">Crear categoría</button>
-            </form>
-            
-          <div style="height: 200px"></div>
-          <p class="lead mb-0"></p>
+              <button type="submit" class="btn pretty-btn" style="float:right">Crear categoria</button>
+            </form>                      
         </div>
-      </div>
     </div>
 @endsection
   
