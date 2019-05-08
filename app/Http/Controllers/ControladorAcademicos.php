@@ -110,4 +110,26 @@ class ControladorAcademicos extends Controller
         $academico->delete();
         return redirect()->route('academicos.index');
     }
+
+    public function editPerfil(){
+        $academico_id = auth()->user()->id;
+        $academico = Academico::find($academico_id);
+        return view('academicos.editarPerfil', compact('academico'));
+    }
+
+    public function updatePerfil(Request $request, Academico $academico){
+        //dd(Crypt);
+        $request->validate([
+            'nombre' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:3|confirmed'
+        ]);
+
+        $academico->nombre = $request->input('nombre');
+        if($academico->email != $request->input('email')) $academico->email = $request-> input('email');
+        if($request->password == "knhdl +w-") $academico->password = $academico->password;
+        else $academico->password = bcrypt(request('password'));
+        $academico->save();
+        return redirect()->route('home');
+    }
 }
