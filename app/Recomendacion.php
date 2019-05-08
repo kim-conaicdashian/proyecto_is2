@@ -18,7 +18,7 @@ class Recomendacion extends Model
     }
 
     /**
-     * Relacion 1 a 1 de la tabla recomendaciones con la tabla planes
+     * Relacion 1 a muchos de la tabla recomendaciones con la tabla planes
      */
     public function planes(){
         return $this->hasMany(PlanAccion::class);

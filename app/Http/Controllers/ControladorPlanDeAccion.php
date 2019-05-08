@@ -67,7 +67,7 @@ class ControladorPlanDeAccion extends Controller
             $plan->recomendacion_id = $request->input("rec");
             $plan->save();
             $recomendacion = Recomendacion::findOrFail($request->input("rec"));
-            $recomendacion->planes()->associate($plan);
+            $recomendacion->planes()->save($plan);
             $recomendacion->save();
             return redirect()->route('categoriaAsignada');
         }else{
