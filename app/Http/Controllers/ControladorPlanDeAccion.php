@@ -132,6 +132,15 @@ class ControladorPlanDeAccion extends Controller
             return back()->withInput(request(['nombrePlan']));
         }
     }
+    /**
+     * Funcion que se encarga de actualizar el campo 'completado' en la tabla de planes_de_accion
+     */
+    public function planCompletado(Request $request,$id){
+        $plan = PlanAccion::findOrFail($id);
+        $plan->completado = $request->input('completado');
+        $plan->save();
+        return redirect()->route('categoriaAsignada');
+    }
 
     /**
      * Remove the specified resource from storage.
