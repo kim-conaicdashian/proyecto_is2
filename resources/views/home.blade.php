@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('content')  
     <!-- Page Content -->
+    <title> Inicio </title>
     <div class="container">
         <div class="card border-0 shadow my-5" style="background-color:transparent;">
             <div class="card-body" >
@@ -53,3 +54,4 @@
         </div>
     </div>
 @endsection
+

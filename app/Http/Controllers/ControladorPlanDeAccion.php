@@ -51,23 +51,24 @@ class ControladorPlanDeAccion extends Controller
     public function store(Request $request)
     {
         $credentials=$this->validate($request, array(
-            'nombrePlan' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
-            'descripcionPlan'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
+            'nombrePlan' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/',
+            'descripcionPlan'=> 'required|min:20|regex:/[a-zA-Z][\s\S]*/',
             'fecha_termino' => 'required',
         ));
+
         if($credentials){
             $plan = new PlanAccion();
             $idCategoria= Auth::user()->categoria->id;
             $categoria = Categoria::findOrFail($idCategoria);
-            
             $plan->nombre = $request->input("nombrePlan");
             $plan->descripcion = $request->input("descripcionPlan");
             $plan->fecha_termino = $request->input("fecha_termino");
             $plan->categoria()->associate($categoria);
             $plan->recomendacion_id = $request->input("rec");
+            $plan->criterio = $request->input("criterioHecho");
             $plan->save();
             $recomendacion = Recomendacion::findOrFail($request->input("rec"));
-            $recomendacion ->plan_accion = $plan ->id;
+            $recomendacion->planes()->save($plan);
             $recomendacion->save();
             return redirect()->route('categoriaAsignada');
         }else{
@@ -111,8 +112,8 @@ class ControladorPlanDeAccion extends Controller
     public function update(Request $request, $id)
     {
         $credentials=$this->validate($request, array(
-            'nombrePlan' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
-            'descripcionPlan'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
+            'nombrePlan' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/',
+            'descripcionPlan'=> 'required|min:20|regex:/[a-zA-Z][\s\S]*/',
             'fecha_termino' => 'required',
             'completado' => 'required',
         ));
@@ -131,6 +132,15 @@ class ControladorPlanDeAccion extends Controller
         }else{
             return back()->withInput(request(['nombrePlan']));
         }
+    }
+    /**
+     * Funcion que se encarga de actualizar el campo 'completado' en la tabla de planes_de_accion
+     */
+    public function planCompletado(Request $request,$id){
+        $plan = PlanAccion::findOrFail($id);
+        $plan->completado = $request->input('completado');
+        $plan->save();
+        return redirect()->route('categoriaAsignada');
     }
 
     /**

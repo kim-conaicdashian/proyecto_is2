@@ -31,13 +31,13 @@
           {!! $errors->first('nombreCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
         </div>
         <div class="form-group" {{ $errors->has('descripcionCategoria') ? 'has-error' : ''}}>
-          <label for="exampleInputPassword1">Descripcion</label>
+          <label for="exampleInputPassword1">Descripción</label>
           <textarea rows="4" cols="50"  name='descripcionCategoria'>{{$categoria->descripcion}}</textarea>
           {!! $errors->first('descripcionCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
         </div>
         @if($academicos->count() > 0)
             <div class="panel panel-primary" id="result_panel">
-                <div class="panel-heading"><h3 class="panel-title">Lista de academicos</h3>
+                <div class="panel-heading"><h3 class="panel-title">Lista de académicos</h3>
                 </div>
                 <div class="panel-body">
                     <select class="form-control" name="academicoID" id="card_type">
@@ -50,10 +50,10 @@
             </div>
             
             @else 
-                <p>No hay academicos registrados.</p>
+                <p>No hay académicos registrados.</p>
                 <input class="hidden" value='NULL'>
             @endif
-        <button type="submit" class="btn btn-primary">Crear categoria</button>
+        <button type="submit" class="btn btn-primary">Crear categoría</button>
       </form>
       
       
@@ -63,16 +63,17 @@
 @extends('layouts.app')
 @section('content')
      <!-- Page Content -->
+  <title> Editar {{$categoria->nombre}} </title>
   <div class="container">
     <div class="card border-0 shadow my-5">
       <div class="card-body p-5">
-        <h1 class="font-weight-light">Editar la categoria: {{$categoria->nombre}}</h1>
+        <h1 class="font-weight-light">Editar la categoría: {{$categoria->nombre}}</h1>
         <form method="POST" action="{{ route('categorias.update',$categoria->id)}}">
                 @csrf
                 @method("put")
                 <div class="form-group" {{ $errors->has('nombreCategoria') ? 'has-error' : ''}}>
                   <label for="exampleInputEmail1"><strong>Nombre</strong></label>
-                  <input type="text" class="form-control"  name='nombreCategoria' value="{{$categoria->nombre}}" placeholder="Escriba el nombre para la categoria">
+                  <input type="text" class="form-control"  name='nombreCategoria' value="{{$categoria->nombre}}" placeholder="Escriba el nombre para la categoría">
                   {!! $errors->first('nombreCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
                 </div>
                 <div class="form-group" {{ $errors->has('descripcionCategoria') ? 'has-error' : ''}}>
@@ -107,7 +108,7 @@
                         <p>No hay académicos registrados.</p>
                         <input class="hidden" value='NULL'>
                     @endif
-                <button type="submit" class="btn btn-primary">Editar categoría</button>
+                <button type="submit" class="btn pretty-btn">Editar categoría</button>
               </form>
         <div style="height: 200px"></div>
         

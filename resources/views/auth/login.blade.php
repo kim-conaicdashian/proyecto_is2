@@ -121,7 +121,7 @@
         background-color: #3b5998;
         }
     </style>
-
+    <title> Iniciar sesión </title>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-xl-9 mx-auto">
@@ -156,7 +156,7 @@
                                 <label for="inputPassword">Contraseña</label>
                             </div>
                 
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('Login') }}</button>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('Iniciar sesión') }}</button>
                             <a class="d-block text-center mt-2 small" href="register">{{ __('¿No tienes una cuenta? Regístrate.') }}</a>
                         </form>
                     </div>

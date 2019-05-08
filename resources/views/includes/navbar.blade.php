@@ -21,10 +21,10 @@
                     <a class="nav-link" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
                 </li>
                 {{--
-                <li class="nav-item">
-                    <a class="nav-link" href="academicos">Manejo de Academicos</a>
-                </li>
-                --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/academicos">Manejo de Académicos</a>
+                    </li>
+                    --}}
             @endif
 
         </ul>
