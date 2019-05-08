@@ -46,8 +46,9 @@ class ControladorEvidencias extends Controller
     {
         $evidencia = new Evidencia();
         $verificados = $this->validate($request, array(
-            'nombreEvidencia' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
-            'archivo' => 'required'
+            'nombreEvidencia' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/',
+            'archivo' => 'required',
+            'plan'
         ));
 
         if($verificados)

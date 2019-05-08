@@ -58,6 +58,7 @@ class ControladorRecomendaciones extends Controller
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
             return back()->withInput(request(['nombre']));
         }
+        
     }
 
     /**
