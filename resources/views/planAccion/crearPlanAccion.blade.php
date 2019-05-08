@@ -48,7 +48,14 @@
 
       <input type='hidden' name='rec' value='{{$rec}}'/>
       <hr>
-      <button type="submit" class="btn pretty-btn">Crear plan de acción</button>
+      <div class="form-group">
+        <label for="criterioHecho" style="font-size: 24px;">Criterio de hecho (opcional)</label>
+        <p></p>
+        <i> Puedes agregar o modificar el criterio de hecho después</i>
+        <p></p>
+        <textarea rows="4" cols="50" name='criterioHecho'></textarea>
+      </div>
+      <button type="submit" class="btn pretty-btn" style="margin-bottom:5%">Crear plan de acción</button>
     </form>
 
     <!-- Create the calendar -->

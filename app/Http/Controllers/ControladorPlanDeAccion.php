@@ -65,6 +65,7 @@ class ControladorPlanDeAccion extends Controller
             $plan->fecha_termino = $request->input("fecha_termino");
             $plan->categoria()->associate($categoria);
             $plan->recomendacion_id = $request->input("rec");
+            $plan->criterio = $request->input("criterioHecho");
             $plan->save();
             $recomendacion = Recomendacion::findOrFail($request->input("rec"));
             $recomendacion->planes()->save($plan);
