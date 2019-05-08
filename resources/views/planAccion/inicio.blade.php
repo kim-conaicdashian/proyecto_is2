@@ -30,7 +30,28 @@
                         <br>
                         <p style="font-size:12px"><i>Planes de acción:</i></p>
                         @foreach($recomendacion->planes as $plan)
-                            <a href="/plan/{{$plan->id}}"><h4>{{ $plan->nombre }}</h4></a>
+                            <a href="/plan/{{$plan->id}}" ><h4 >{{ $plan->nombre }}</h4></a>
+                            <form method="POST" action='{{route('plan.completado',$plan->id)}}'>
+                                @csrf
+                                @method('put')
+                                <div class="form-group" >
+                                    <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
+                                    <select name="completado">
+                                        {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
+                                            select
+                                        --}}
+                                        @if ($plan->completado == 0)
+                                            <option value="0" selected>No</option>
+                                            <option value="1">Sí</option>
+                                        @else 
+                                            <option value="0">No</option>
+                                            <option value="1" selected>Sí</option>
+                                        @endif
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-primary">Actualizar plan</button>
+                            </form>
+                            <hr>
                             @if(count($plan->evidencias) > 0)
                                 <table class="table table-hover">
                                     <thead>
