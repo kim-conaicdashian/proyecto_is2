@@ -14,7 +14,7 @@ class ControladorAcademicos extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        $academicos = Academico::orderBy('id')->paginate(10);
+        $academicos = Academico::orderBy('id')->paginate(9);
         //dd($academicos);
         $categorias = Categoria::all();
         return view('academicos.mostrarAcademicos', compact('academicos', 'categorias'));
@@ -40,15 +40,23 @@ class ControladorAcademicos extends Controller
         $request->validate([
             'nombre' => 'required',
             'email'=> 'required|email|unique:academicos,email',
-            'password' => 'required|min:3|confirmed'
+            'password' => 'required|min:3|confirmed',
+            'categoria' => 'required',
         ]);
 
         $academico->nombre = $request ->input('nombre');
         $academico->email = $request-> input('email');
         $academico->password = bcrypt(request('password'));
-
         $academico->remember_token = "_token";
         $academico->save();
+
+        if($request->categoria != 'NULL'){
+            $categoria = Categoria::findOrFail($request->categoria);
+            //$categoria->academico_id = $academico->id;
+            $academico->categoria()->save($categoria);
+            //$categoria->save();
+        }
+        //dd($categoria);
         
         return redirect()->route('academicos.index');
     }
@@ -71,7 +79,8 @@ class ControladorAcademicos extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Academico $academico){
-        return view('academicos.editarAcademico', compact('academico'));
+        $categorias = Categoria::all();
+        return view('academicos.editarAcademico', compact('academico', 'categorias'));
     }
 
     /**
@@ -82,7 +91,7 @@ class ControladorAcademicos extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Academico $academico){
-        dd($request);
+        //dd($request);
         $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
@@ -90,13 +99,21 @@ class ControladorAcademicos extends Controller
         ]);
 
         $academico->nombre = $request->input('nombre');
-        if($academico->email != $request->input('email')){
-            $academico->email = $request-> input('email');
-        }
-        if($academico->password != $request->password){
-            $academico->password = bcrypt(request('password'));
-        }
+        if($academico->email != $request->input('email')) $academico->email = $request-> input('email');
+        if($request->password == "knhdl +w-") $academico->password = $academico->password;
+        else $academico->password = bcrypt(request('password'));
         $academico->save();
+        
+        $categoria_antigua = Categoria::where('academico_id', $academico->id)->get()->last();
+        $categoria_antigua = Categoria::findOrFail($categoria_antigua)->last();
+        $categoria_antigua->academico_id = NULL;
+        //dd($categoria_antigua);
+        $categoria_antigua->save();
+        $categoria = Categoria::findOrFail($request->categoria);
+
+        //$academico->categoria()->dissociate();
+        $academico->categoria()->save($categoria);
+
         return redirect()->route('academicos.index');
     }
 
