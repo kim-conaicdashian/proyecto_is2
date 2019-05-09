@@ -58,13 +58,20 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+    .center-column {
+        display: block;
+        margin: auto;
+    }
+</style>
      <!-- Page Content -->
-<div class="container">
+<div class="card border-0 shadow my-5" style="background-color:transparent;">
     <div class="container">
         <h1>Listado de categorías</h1>
         <br>               
         @if($categorias->count() > 0)
-            <table class="table table-hover" style="background-color: white" >
+            <table class="table table-bordered table-hover" style="background-color: white">
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
@@ -76,21 +83,24 @@
                     <td><a href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>
                     <td style="height:10px;">{{$categoria->descripcion}}</td>
                     <td>
-                        <div style="float: right">
-                            <a class="btn btn-info btn-md" href="/categorias/{{$categoria->id}}/edit">
-                                <span class="fa fa-edit"></span>
-                                Editar
-                            </a> 
-                            <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-md" 
-                                            onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')"
-                                            style="position: relative;right: 10px;">
-                                            <span class="fa fa-trash"></span>
-                                            Eliminar
-                                </button>
-                            </form>
+                        <div class="container">
+                            <br>
+                            <div class="row">                                
+                            
+                                <div class="col-lg-6 text-center">
+                                    <form action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')" >
+                                                    Borrar <span class="fa fa-trash"></span>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="col-lg-6 text-center">
+                                    <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
+                                </div>
                         </div>
                     </td>
                 </tr>
