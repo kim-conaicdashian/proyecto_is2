@@ -35,16 +35,13 @@
             <input id="my-input-a" name="fecha_termino"><br>
             {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
-            <select name="completado">
-                <option value="0">No</option>
-                <option value="1">Sí</option>
-            </select>
-        </div>
+        
         <hr>
-        <button type="submit" class="btn btn-primary">Editar plan de acción</button>
-    </form>
+        <button type="submit" class="btn btn-info">
+            <span class="fa fa-edit"></span>
+          Editar plan de acción
+        </button>
+    </form> <br><br><br><br>
 
      <!-- Create the calendar -->
      <script type="text/javascript">

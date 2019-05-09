@@ -77,12 +77,17 @@
                     <td style="height:10px;">{{$categoria->descripcion}}</td>
                     <td>
                         <div style="float: right">
-                            <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar</a> 
+                            <a class="btn btn-info btn-md" href="/categorias/{{$categoria->id}}/edit">
+                                <span class="fa fa-edit"></span>
+                                Editar
+                            </a> 
                             <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" 
-                                            onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')" >
+                                <button type="submit" class="btn btn-danger btn-md" 
+                                            onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')"
+                                            style="position: relative;right: 10px;">
+                                            <span class="fa fa-trash"></span>
                                             Eliminar
                                 </button>
                             </form>
@@ -98,7 +103,8 @@
         
         <br>
         <form action="/categorias/create">
-            <input style="float: right" class="btn pretty-btn" type="submit" value="Crear categoría" />
+            {{-- <button type="submit" style="float: right; background-color:grey" class="btn pretty-btn"  type="submit" value="">Crear categoría</button> --}}
+            <input style="float: right; background-color:grey; color:white" class="btn pretty-btn"  type="submit" value="Crear categoría" />
         </form><br>     
         <div style="height: 20px"></div>
             <p class="lead mb-0"></p>

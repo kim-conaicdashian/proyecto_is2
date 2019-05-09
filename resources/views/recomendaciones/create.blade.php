@@ -16,7 +16,7 @@
             <hr>
             <textarea rows="4" cols="50" name='descripcion' style="margin-bottom:20px;"></textarea>
             <hr>    
-            <button type="submit" style="float:right" class="btn pretty-btn">Agregar recomendación</button>
+            <button type="submit" style="background-color: grey; border-color: black; color:white; float:right" class="btn pretty-btn">Agregar recomendación</button>
     </form>
 </div>
 @endsection
