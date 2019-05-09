@@ -29,7 +29,19 @@
                 </div>
 
                 <div class="container">
-                    
+                    <form action="{{ route('plan.destroy', $plan->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" style="color: black" class="btn btn-danger btn-sm btn-block" 
+                        onclick="return confirm('¿Está seguro de borrar este plan?')" >
+                        <span class="fa fa-trash"></span>
+                            Eliminar
+                        </button>
+                    </form>
+                    <a style="float:right; border-color: black" class="btn btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
+                        <span class="fa fa-edit"></span>
+                        Editar
+                    </a>                        
                     @if(!$plan->evidencias->isEmpty())
                         <h2>Evidencias para este plan:</h2>
                         <hr>

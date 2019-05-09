@@ -48,9 +48,8 @@ class ControladorCategorias extends Controller
     {
         $categoria = new Categoria();
         $credentials=$this->validate($request, array(
-            'nombreCategoria' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/'.$categoria->id,
-            'descripcionCategoria'=> 'required|min:20|regex:/([a-zA-Z]+\w*+$)+/',
-            
+            'nombreCategoria' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/'.$categoria->id,
+            'descripcionCategoria'=> 'required|min:20|regex:/[a-zA-Z][\s\S]*/', 
         ));
         
         
@@ -125,8 +124,8 @@ class ControladorCategorias extends Controller
     {
         
         $credentials=$this->validate($request, array(
-            'nombreCategoria' => 'required|min:5|max:100|regex:/([a-zA-Z]+\w*+$)+/',
-            'descripcionCategoria'=> 'required|min:10|regex:/([a-zA-Z]+\w*+$)+/',
+            'nombreCategoria' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/',
+            'descripcionCategoria'=> 'required|min:10|regex:/[a-zA-Z][\s\S]*/',
             
         ));
         // dd($request->academicoID);

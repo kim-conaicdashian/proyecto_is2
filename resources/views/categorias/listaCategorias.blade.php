@@ -101,7 +101,6 @@
                                 <div class="col-lg-6 text-center">
                                     <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
                                 </div>
-                            
                         </div>
                     </td>
                 </tr>
@@ -114,7 +113,8 @@
         
         <br>
         <form action="/categorias/create">
-            <input style="float: right" class="btn pretty-btn" type="submit" value="Crear categoría" />
+            {{-- <button type="submit" style="float: right; background-color:grey" class="btn pretty-btn"  type="submit" value="">Crear categoría</button> --}}
+            <input style="float: right; background-color:grey; color:white" class="btn pretty-btn"  type="submit" value="Crear categoría" />
         </form><br>     
         <div style="height: 20px"></div>
             <p class="lead mb-0"></p>

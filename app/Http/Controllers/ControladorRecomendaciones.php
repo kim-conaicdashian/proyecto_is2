@@ -58,6 +58,7 @@ class ControladorRecomendaciones extends Controller
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
             return back()->withInput(request(['nombre']));
         }
+        
     }
 
     /**
@@ -70,8 +71,8 @@ class ControladorRecomendaciones extends Controller
     {
         $recomendacion = Recomendacion::findOrFail($id);
         $categoria = $recomendacion->categoria;
-        $plan = $recomendacion->planes;
-        return view('recomendaciones.show', compact('recomendacion', 'plan', 'categoria'));
+        $planes = PlanAccion::where('recomendacion_id', $recomendacion->id)->get();
+        return view('recomendaciones.show', compact('recomendacion', 'planes', 'categoria'));
     }
 
     /**

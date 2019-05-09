@@ -5,9 +5,9 @@
             <div class="card-body p-5">
                 <h1>Recomendación: {{$recomendacion->nombre}}</h1>
                 <div class="panel panel-primary" id="result_panel">
-                    @php
+                    {{-- @php
                         dd(isset($recomendacion->categoria->academico));
-                    @endphp
+                    @endphp --}}
                     {{-- @if(isset($categoria->academico)) --}}
                     <div class="panel-heading"><h3 class="panel-title">Académicos asociado a esta recomendación : {{$recomendacion->categoria->academico->nombre}} </h3>
                     </div>

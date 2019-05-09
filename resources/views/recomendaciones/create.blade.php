@@ -5,8 +5,8 @@
 <div class="container">
     <title> Agregar recomendación </title>
     <br>
-    <p style="font-size:12px; text-align:center"><i>Plan de acción:</i></p>
-    <h1 style="text-align:center;margin-top:20px;"> {{auth()->user()->categoria->nombre}} </h1>
+    <p style="font-size:12px; text-align:center"><i>Recomendación para:</i></p>
+    <h1 style="text-align:center;margin-top:20px;"> {{$categoria->nombre}} </h1>
     <hr>
     <form method="POST" action='{{route('recomendacion.store2',$categoria->id)}}'>
         @csrf
@@ -16,7 +16,7 @@
             <hr>
             <textarea rows="4" cols="50" name='descripcion' style="margin-bottom:20px;"></textarea>
             <hr>    
-            <button type="submit" style="float:right" class="btn pretty-btn">Agregar recomendación</button>
+            <button type="submit" style="background-color: grey; border-color: black; color:white; float:right" class="btn pretty-btn">Agregar recomendación</button>
     </form>
 </div>
 @endsection
