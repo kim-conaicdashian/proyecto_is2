@@ -33,7 +33,7 @@
                             <hr>
 
                             <h4>{{$plan->nombre}}</h4>
-                            <a href="/plan/{{$plan->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver plan de acción</a>                        
+                            <a href="/plan/{{$plan->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver plan de acción</a>                        
                         @endforeach
                     @else                    
                         <div class="panel-heading"><h6 class="panel-title"><i>No hay plan de acción para esta recomendación.</i></h6>
@@ -45,7 +45,7 @@
                                 <form action="{{ route('plan.create')}}">
                                     <hr>
                                     <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                                    <input style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar plan de acción" />
+                                    <input style="background-color: grey; border-color: black; color:white;" type="submit" class="btn btn-primary btn-lg" value="Agregar plan de acción" />
                                 </form>
                             </div>
                         @endif

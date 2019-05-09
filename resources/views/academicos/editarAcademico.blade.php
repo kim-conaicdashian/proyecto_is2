@@ -11,7 +11,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
+            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
             <div class="col-md-6">
                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{$academico->email}}">
                 {!! $errors->first('email', '<span style="color:red;">:message</span>') !!}
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorias') }}</label>
+            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorías') }}</label>
             <div class="col-md-6">
                 <select class="form-control" name="categoria" id="card_type">
                     @foreach ($categorias as $categoria)
@@ -45,7 +45,7 @@
 
         <div class="form-group row mb-4">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-success">{{ __('Editar') }}</button>
+                <button type="submit" class="btn btn-info" style="float:right">{{ __('Editar') }}</button>
             </div>
         </div>
     </form>

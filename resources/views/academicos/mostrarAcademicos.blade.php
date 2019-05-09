@@ -20,13 +20,13 @@
                     <td>{{$academico->nombre}}</td>
                     <td>{{$academico->email}}</td>
                     <td style="width: 77px;">
-                        <a type="button" class="btn btn-info btn-sm" href="{{ route('academicos.edit', $academico->id) }}">Editar</a>
+                        <a type="button" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">Editar</a>
                     </td>
                     <td style="width: 90px;">
                         <form style="margin: 0px;" action="{{ route('academicos.destroy',$academico->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Quiere borrar al usuario {{ $academico->nombre }}?')" >Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-md" onclick="return confirm('Quiere borrar al usuario {{ $academico->nombre }}?')" >Eliminar</button>
                         </form>
                     </td>
                 </tr>
@@ -35,7 +35,7 @@
     </table>
     {{ $academicos->links() }}
     <div class="box-footer">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarAcademicoModal">Agregar academico</button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#agregarAcademicoModal">Agregar academico</button>
     </div>
 
 
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
                                 {!! $errors->first('email', '<span style="color:red;">:message</span>') !!}
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorias') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorías') }}</label>
                             <div class="col-md-6">
                                 <select class="form-control" name="categoria" id="card_type">
                                     @foreach ($categorias as $categoria)
@@ -95,7 +95,7 @@
 
                         <div class="form-group row mb-4">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">{{ __('Regístrate') }}</button>
+                                <button type="submit" class="btn btn-secondary">{{ __('Regístrate') }}</button>
                             </div>
                         </div>
                     </form>

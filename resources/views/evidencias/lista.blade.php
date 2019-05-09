@@ -33,11 +33,11 @@
                                 <form action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" style="color: black" class="btn btn-danger btn-sm btn-block" onclick="return confirm('¿Está seguro de borrar la evidencia?')" >Eliminar</button>
+                                    <button type="submit" style="color: white" class="btn btn-danger btn-sm btn-block" onclick="return confirm('¿Está seguro de borrar la evidencia?')" >Eliminar</button>
                                 </form>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a style="float:right; border-color: black" class="btn btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">Editar</a>
+                                <a style="float:right; border-color: black" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">Editar</a>
                                 
                             </div>
                         </div>
@@ -47,7 +47,7 @@
 
         @endforeach
         </div>
-        <a href="evidencias/create" class="btn" style="float:right; color:black; border-color: black; background-color: hsl(360, 100%, 73%, 0.5)">Crear nueva evidencia</a>
+        <a href="evidencias/create" class="btn" style="float:right; color:white; border-color: black; background-color:grey">Crear nueva evidencia</a>
     @else
         <br>
         <div class="row">
@@ -55,7 +55,7 @@
                 <h4>No hay evidencias registradas.</h4>
             </div>
             <div class="col-lg-6 col-md-6">
-                <a href="evidencias/create" class="btn" style="float:right; color:black; background-color: #C76A71; border-color: #C76A71">Crear nueva evidencia</a>
+                <a href="evidencias/create" class="btn" style="float:right; color:white; background-color: grey; border-color: black">Crear nueva evidencia</a>
             </div>
         </div>
     

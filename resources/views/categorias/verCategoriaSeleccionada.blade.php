@@ -30,19 +30,24 @@
                     @if (auth()->user()->privilegio==1)
                     <div class="row">
                         <div class="col-lg-4 col-md-4">
-                            <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
+                            
+                        </div>
+
+                        <div class="col-lg-4 col-md-4">
+                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style=" background-color: grey; border-color: black; color:white;">Ver recomendación</a>
+                        </div>
+
+                        <div class="col-lg-2 col-md-2">
+                            <a class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
+                            <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST" style="float: right;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-md" 
+                                    onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')"
+                                    style="position: relative;left: 10px;">
+                                    Eliminar
+                                </button>
                             </form>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver recomendación</a>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <a class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
                             {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
                             {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
                         </div>
@@ -60,7 +65,7 @@
             @if (auth()->user()->privilegio == 1) 
                 <div style="text-align:center">
                     <form action="/recomendacion/create/{{$categoria->id}}">
-                        <input style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
+                        <input style="color: white; background-color: grey; border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
                     </form>
                 </div>
             @endif

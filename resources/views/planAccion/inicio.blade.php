@@ -49,7 +49,7 @@
                                         @endif
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-primary">Actualizar plan</button>
+                                <button type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
                             </form>
                             <hr>
                             @if(count($plan->evidencias) > 0)
@@ -80,7 +80,7 @@
                         <hr>
                         <form action="{{ route('plan.create')}}">
                             <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                            <input type='submit' class="btn btn-primary" style="float:right" value='Crear plan de acción'/>
+                            <input type='submit' class="btn btn-secondary" style="float:right" value='Crear plan de acción'/>
                         </form>
                         
                     </div>
@@ -101,7 +101,7 @@
         <div style="text-align:center">
             <form action="/recomendacion/create/{{$categoria->id}}">
                 <hr>
-                <input style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
+                <input style="background-color: grey; border-color: black; color:white;" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
             </form>
         </div>
     @endif

@@ -108,7 +108,7 @@
                         <p>No hay académicos registrados.</p>
                         <input class="hidden" value='NULL'>
                     @endif
-                <button type="submit" class="btn pretty-btn">Editar categoría</button>
+                <button type="submit" style="background-color: grey; border-color: black; color:white; position:relative;top:10px" class="btn pretty-btn">Editar categoría</button>
               </form>
         <div style="height: 200px"></div>
         

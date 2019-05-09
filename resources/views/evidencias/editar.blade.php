@@ -53,7 +53,7 @@
                             <p>No hay planes registrados.</p>
                         @endif
                         <br>
-                        <button style="float: right" type="submit" class="btn btn-primary">Editar evidencia</button>
+                        <button style="float: right" type="submit" class="btn btn-secondary">Editar evidencia</button>
                       </form>
               </div>
             </div>
