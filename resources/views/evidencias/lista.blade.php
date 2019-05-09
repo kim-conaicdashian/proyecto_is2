@@ -11,6 +11,10 @@
         margin: auto;
         
     }
+    .center-embed {
+        display: block;
+        margin: auto;
+    }
 </style>
 <div class="container" >
     <title> Evidencias </title>
@@ -23,7 +27,13 @@
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card h-100" style="background-color: hsl(360, 100%, 73%, 0.5);">
                     
-                    <img class="center-cropped" style="align: middle;" src="{{$evidencia->archivo_bin}}" alt="image">
+                    @if($evidencia->tipo_archivo == "pdf")
+                        <embed class="center-embed" src="archivos/pdf_preview.png" width="80px" height="80px" />
+                    @else
+                        <embed class="center-embed" src="{{$evidencia->archivo_bin}}" width="80px" height="80px" />
+                    @endif
+                    {{-- <img class="center-cropped" style="align: middle;" src="{{$evidencia->archivo_bin}}" alt="image"> --}}
+                    
                     <div class="card-body">
                         <h6 class="card-title">
                             <a href="evidencias/{{$evidencia->id}}"><p style="text-align: center; color:black;">{{$evidencia->nombre_archivo}}</p></a>
