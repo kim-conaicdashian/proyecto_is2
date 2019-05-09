@@ -20,13 +20,19 @@
                     <td>{{$academico->nombre}}</td>
                     <td>{{$academico->email}}</td>
                     <td style="width: 77px;">
-                        <a type="button" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">Editar</a>
+                        <a type="button" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">
+                                <span class="fa fa-edit"></span>
+                            Editar
+                        </a>
                     </td>
                     <td style="width: 90px;">
                         <form style="margin: 0px;" action="{{ route('academicos.destroy',$academico->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-md" onclick="return confirm('Quiere borrar al usuario {{ $academico->nombre }}?')" >Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-md" onclick="return confirm('Quiere borrar al usuario {{ $academico->nombre }}?')" >
+                                    <span class="fa fa-trash"></span>
+                                Eliminar
+                            </button>
                         </form>
                     </td>
                 </tr>

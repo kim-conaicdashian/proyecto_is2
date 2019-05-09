@@ -37,7 +37,10 @@
         </div>
         
         <hr>
-        <button type="submit" class="btn btn-secondary">Editar plan de acción</button>
+        <button type="submit" class="btn btn-info">
+            <span class="fa fa-edit"></span>
+          Editar plan de acción
+        </button>
     </form> <br><br><br><br>
 
      <!-- Create the calendar -->

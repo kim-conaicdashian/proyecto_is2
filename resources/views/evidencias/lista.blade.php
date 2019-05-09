@@ -33,11 +33,18 @@
                                 <form action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" style="color: white" class="btn btn-danger btn-sm btn-block" onclick="return confirm('¿Está seguro de borrar la evidencia?')" >Eliminar</button>
+                                    <button type="submit" style="color: white" class="btn btn-danger btn-sm btn-block" 
+                                        onclick="return confirm('¿Está seguro de borrar la evidencia?')" >
+                                        <span class="fa fa-trash"></span>
+                                        Eliminar
+                                    </button>
                                 </form>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a style="float:right; border-color: black" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">Editar</a>
+                                <a style="float:right; border-color: black" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
+                                    <span class="fa fa-edit"></span>
+                                    Editar
+                                </a>
                                 
                             </div>
                         </div>

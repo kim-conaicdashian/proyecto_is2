@@ -20,7 +20,10 @@
             <textarea rows="4" cols="50" name='descripcionRec'>{{$recomendacion->descripcion}}</textarea>
             {!! $errors->first('descripcionRec','<span class="help-block" style="color:red;">:message</span>')!!}
             <hr>
-            <button type="submit" class="btn btn-secondary " style="float:right">Editar recomendación</button>
+            <button type="submit" class="btn btn-info " style="float:right">
+                <span class="fa fa-edit"></span>
+                Editar recomendación
+            </button>
         </form>
     </div>
 @endsection

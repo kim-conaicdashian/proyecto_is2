@@ -34,17 +34,21 @@
                         </div>
 
                         <div class="col-lg-4 col-md-4">
-                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style=" background-color: grey; border-color: black; color:white;">Ver recomendación</a>
+                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver recomendación</a>
                         </div>
 
                         <div class="col-lg-2 col-md-2">
-                            <a class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit">Editar</a>
+                            <a class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit" style="float:left">
+                                <span class="fa fa-edit"></span> 
+                                Editar
+                            </a>
                             <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST" style="float: right;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-md" 
                                     onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')"
-                                    style="position: relative;left: 10px;">
+                                    style="position: relative;left: 44px;bottom: 38px;">
+                                    <span class="fa fa-trash"></span>
                                     Eliminar
                                 </button>
                             </form>
