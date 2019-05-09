@@ -21,14 +21,25 @@
         <div class="form-group row">
             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
             <div class="col-md-6">
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{$academico->password}}">
+                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="knhdl +w-">
             </div>
         </div>
 
         <div class="form-group row">
             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
             <div class="col-md-6">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{$academico->password}}">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="knhdl +w-">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorias') }}</label>
+            <div class="col-md-6">
+                <select class="form-control" name="categoria" id="card_type">
+                    @foreach ($categorias as $categoria)
+                        <option  value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
 

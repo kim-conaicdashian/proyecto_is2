@@ -84,7 +84,7 @@
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorias') }}</label>
                             <div class="col-md-6">
-                                <select class="form-control" name="academicoID" id="card_type">
+                                <select class="form-control" name="categoria" id="card_type">
                                     @foreach ($categorias as $categoria)
                                         <option  value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                                     @endforeach
