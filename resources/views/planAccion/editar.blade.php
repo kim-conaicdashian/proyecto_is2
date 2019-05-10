@@ -34,6 +34,27 @@
             <h4 style="color:white">Fecha escogida</h4>
             <input id="my-input-a" name="fecha_termino"><br>
             {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
+            <div class="form-group" >
+              <br>
+              <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
+              <select name="completado">
+                  {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
+                      select
+                  --}}
+                  @if ($plan->completado == 0)
+                      <option value="0" selected>No</option>
+                      <option value="1">Sí</option>
+                  @else 
+                      <option value="0">No</option>
+                      <option value="1" selected>Sí</option>
+                  @endif
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="criterioHecho" style="font-size: 24px;">Criterio de hecho (opcional)</label>
+            <p></p>
+            <textarea rows="4" cols="50" name='criterioHecho'>{{$plan->criterio}}</textarea>
+          </div>
         </div>
         
         <hr>
