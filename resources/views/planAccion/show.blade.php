@@ -10,6 +10,7 @@
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
                         <h1 style="font-family: helvetica">{{$plan->nombre}}</h1>
+                        <br>
                     </div>
                     @if(auth()->user()->privilegio == 1)
                         <div class="col-lg-3">
@@ -17,6 +18,7 @@
                                 <span class="fa fa-download"></span> 
                                 Generar reporte
                             </a>
+                            <br>
                         </div>
                     @endif
                 </div>
@@ -26,9 +28,12 @@
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Encargado de la categoría: {{$plan->categoria->academico->nombre}} </i></h6></div>
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Fecha de término: {{$plan->fecha_termino}} </i></h6></div>
                     </div>
+                    <br>
                     @else
+
                         <div class="col"><h6 class="panel-title"><i>No hay ningún académico asignado a esta categoría.</i></h6>
                         </div>
+
                     @endif
                 </div>
                 <br>
@@ -37,15 +42,22 @@
                     <div class="col">
                         <h2>Descripción</h2>
                         <p>{{$plan->descripcion}}</p>
+                        <br>
                         <hr>
+                        <br>
                         <h2> Criterio de hecho </h2>
+                        <br>
                         @if($plan->criterio == NULL)
                             <i> Aún no hay un criterio de hecho para este plan de acción. Edite el plan de acción para agregar uno. </i>
+                            <br>
                         @else
                             <p> {{$plan->criterio}}</p>
+                            <br>
+                            <hr>
                         @endif
-                    </div>                    
+                    </div>               
                 </div>
+                <br>
 
                 <div class="container">
                     @if($plan->categoria->id == auth()->user()->categoria->id)
@@ -58,11 +70,12 @@
                                 Eliminar
                             </button>
                         </form>
-                        <a style="float:right; border-color: black" class="btn btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
+                        <a style="float:right; color:white !important; border-color: black" class="btn btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
                             <span class="fa fa-edit"></span>
                             Editar
                         </a>                  
                     @endif
+                    <br><br><br>
                     <form method="POST" action='{{route('plan.completado',$plan->id)}}'>
                         @csrf
                         @method('put')
@@ -83,18 +96,20 @@
                         </div>
                         <button type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
                     </form>
-                    <hr>    
+                    <hr>    <br><br>
                     @if(!$plan->evidencias->isEmpty())
                         <h2>Evidencias para este plan:</h2>
-                        <hr>
+                        <br><br>
                         @foreach ($evidencias as $evidencia)
                             <h4>{{$evidencia->nombre_archivo}}</h4>
+                            <br>
                             <p><i>Archivo asociado:</i> {{$evidencia->archivo_bin}}</p>
-                                <a href="/evidencias/{{$evidencia->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver evidencia</a>
-                            <br><br>                            
+                                <a href="/evidencias/{{$evidencia->id}}" class="btn" style="color: white !important; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver evidencia</a>
+                            <br><br>  <br>                          
                         @endforeach                                                
                         
-                    @else                    
+                    @else   
+                        <br><br>                 
                         <div class="panel-heading"><h6 class="panel-title"><i>No hay evidencias para este plan de acción.</i></h6>
                         </div>
                     @endif

@@ -20,7 +20,7 @@
                     <td>{{$academico->nombre}}</td>
                     <td>{{$academico->email}}</td>
                     <td style="width: 77px;">
-                        <a type="button" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">
+                        <a type="button" style="color:white !important;" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">
                                 <span class="fa fa-edit"></span>
                             Editar
                         </a>
