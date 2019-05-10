@@ -24,7 +24,7 @@
                                         <h2 style="color:black">{{$categorias[$i]->nombre}}</h2>
                                     </h4>
                                     <p class="card-text" style="text-align: center;">{{$categorias[$i]->descripcion}}</p>
-                                    <a href="categorias/{{$categorias[$i]->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver más</a>
+                                    <a href="categorias/{{$categorias[$i]->id}}" class="btn" style="color: white!important; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver más</a>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                             <h4 style="color:black">{{$categorias[$i]->nombre}}</h4>
                                         </h4>
                                         <p class="card-text" style="text-align: center;">{{$categorias[$i]->descripcion}}</p>                                        
-                                        <a href="categorias/{{$categorias[$i]->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver más</a>
+                                        <a href="categorias/{{$categorias[$i]->id}}" class="btn" style="color: white !important; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver más</a>
                                     </div>
                                 </div>
                             </div>                                          

@@ -28,13 +28,14 @@
         
         <hr>
         <h2>Descripción</h2>
-        <p>{{$categoria->descripcion}}</p>
-        <hr>
+        <p>{{$categoria->descripcion}}</p><br> <br>
+        <hr> 
     
           
         @if(!$categoria->recomendaciones->isEmpty())
             <h1>Recomendaciones para esta categoría:</h1>
-            <hr>
+            <br>
+            <hr><br>
             @foreach ($recomendaciones as $recomendacion)
                 <h2><a href="/recomendacion/{{$recomendacion->id}}">{{$recomendacion->nombre}}</a></h2>                    
                 @if($recomendacion->planes->count() != 0)
@@ -62,6 +63,7 @@
                             </form>
                             <hr>
                             @if(count($plan->evidencias) > 0)
+                            <br>
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
@@ -83,6 +85,7 @@
                                 <hr>
                                 
                             @else
+                            <br>
                                 <p style="font-size:12px"><i>No hay evidencias asignadas para este plan de acción.</i></p>
                             @endif
                         @endforeach

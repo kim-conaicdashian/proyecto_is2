@@ -41,7 +41,7 @@
                     @endif
                     {!! $errors->first('plan','<span class="help-block" style="color:red;">:message</span>')!!}
                     <br>
-                    <button style="float: right; background-color: grey; border-color: black; color:white;" type="submit" class="btn pretty-btn">Crear evidencia</button>
+                    <button style="float: right; background-color: grey; border-color: black; color:white !important;" type="submit" class="btn pretty-btn">Crear evidencia</button>
                   </form>
           </div>
         </div>
