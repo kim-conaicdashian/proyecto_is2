@@ -28,13 +28,27 @@
         <div class="form-group" {{ $errors->has('fecha_termino') ? 'has-error' : ''}}>
             <!-- My calendar element -->
             <h2>Fecha de término</h2>
-            <div id="my-calendar" class="jsCalendar" data-language="es"></div>
+            <div id="my-calendar" class="jsCalendar" data-month-format="month YYYY" data-language="es"></div>
 
             <!-- Outputs -->
             <h4 style="color:white">Fecha escogida</h4>
-            <input id="my-input-a" name="fecha_termino"><br>
+            <input id="my-input-a" name="fecha_termino" value="{{$plan->fecha_termino}}"><br>
             {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
         </div>
+
+        <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
+            <select name="completado">
+                {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
+                    select
+                --}}
+                @if ($plan->completado == 0)
+                    <option value="0" selected>No</option>
+                    <option value="1">Sí</option>
+                @else 
+                    <option value="0">No</option>
+                    <option value="1" selected>Sí</option>
+                @endif
+            </select>
         
         <hr>
         <button type="submit" class="btn btn-info">
