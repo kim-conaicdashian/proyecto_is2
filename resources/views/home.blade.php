@@ -15,34 +15,35 @@
 
                     {{-- Hacemos un for loop para designar que sólo la primera carta sea del tamaño de dos columnas --}}
                     <div class="row">
-                        @for($i = 0 ; $i < count($categorias) ;  $i++)
-                            @if($i == 0)
+                        @if ($academico->categoria)
                             <div class="col-lg-12 col-md-12" style="padding-bottom: 10px">
                                 <div class="card h-100 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
                                     <div class="card-body">
                                     <h4 class="card-title" style="text-align: center; opacity:1;">
-                                        <h2 style="color:black">{{$categorias[$i]->nombre}}</h2>
+                                        <h2 style="color:black">{{$academico->categoria->nombre}}</h2>
                                     </h4>
-                                    <p class="card-text" style="text-align: center;">{{$categorias[$i]->descripcion}}</p>
-                                    <a href="categorias/{{$categorias[$i]->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver más</a>
+                                    <p class="card-text" style="text-align: center;">{{$academico->categoria->descripcion}}</p>
+                                    <a href="categorias/{{$academico->categoria->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver más</a>
                                     </div>
                                 </div>
                             </div>
+                        @endif
+                        @foreach ($categorias as $categoria)
                             
-                            @else
-                            <div class="col-lg-6 col-md-6" style="padding-bottom: 10px">
-                                <div class="card h-100 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="text-align: center; opacity:1;">
-                                            <h4 style="color:black">{{$categorias[$i]->nombre}}</h4>
-                                        </h4>
-                                        <p class="card-text" style="text-align: center;">{{$categorias[$i]->descripcion}}</p>                                        
-                                        <a href="categorias/{{$categorias[$i]->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver más</a>
+                            @if(!$academico->categoria || $academico->categoria->id != $categoria->id)
+                                <div class="col-lg-6 col-md-6" style="padding-bottom: 10px">
+                                    <div class="card h-100 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
+                                        <div class="card-body">
+                                            <h4 class="card-title" style="text-align: center; opacity:1;">
+                                                <h4 style="color:black">{{$categoria->nombre}}</h4>
+                                            </h4>
+                                            <p class="card-text" style="text-align: center;">{{$categoria->descripcion}}</p>                                        
+                                            <a href="categorias/{{$categoria->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver más</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>                                          
+                                </div> 
                             @endif
-                        @endfor
+                        @endforeach
                         
                     </div>
                     <!-- /.row -->
