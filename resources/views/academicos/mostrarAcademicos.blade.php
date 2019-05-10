@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <title>Lista de academicos</title>
     <br>
     <h2>Lista academicos</h2>
     

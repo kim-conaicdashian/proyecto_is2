@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    <title>Categoría asignada</title>
     <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
         <p style="font-size:12px; padding-top:10px;"><i>Categoría seleccionada:</i></p>
         <div class="row">
@@ -108,7 +109,7 @@
             <div class="container" style="text:center"><h6><i>No hay recomendaciones asignadas para esta categoría.</i></h6></div>
         @endif
         
-    </div>       
+    </div> 
     @if (auth()->user()->privilegio == 1) 
         <div style="text-align:center">
             <form action="/recomendacion/create/{{$categoria->id}}">

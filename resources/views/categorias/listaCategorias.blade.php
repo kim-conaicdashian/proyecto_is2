@@ -65,6 +65,7 @@
         margin: auto;
     }
 </style>
+<title>Listado de categorías</title>
      <!-- Page Content -->
 <div class="card border-0 shadow my-5" style="background-color:transparent;">
     <div class="container">

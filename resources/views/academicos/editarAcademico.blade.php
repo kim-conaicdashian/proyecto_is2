@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<title>Editar-{{$academico->nombre}}</title>
     <form method= "POST" action="{{ route('academicos.update', $academico->id) }}">
         @csrf
         @method('PUT')
