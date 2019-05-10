@@ -16,15 +16,6 @@
                     <a class="nav-link" id="evidencias" href="/evidencias" disabled="">Subir Evidencias</a>
                 </li>
             @endif
-            @if (auth()->user()->privilegio == 1)
-                <li class="nav-item">
-                    <a class="nav-link" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/academicos">Manejo de Académicos</a>
-                </li>
-            @endif
-
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
@@ -33,6 +24,14 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('academico.editPerfil', auth()->user()->id) }}">Editar Perfil</a>
+                    @if (auth()->user()->privilegio == 1)
+
+                            <a class="dropdown-item" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
+
+
+                            <a class="dropdown-item" href="/academicos">Manejo de Académicos</a>
+
+                    @endif
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button class="dropdown-item">Cerrar sesión</button>

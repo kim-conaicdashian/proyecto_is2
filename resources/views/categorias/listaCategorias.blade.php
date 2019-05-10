@@ -64,18 +64,19 @@
         <h1>Listado de categorías</h1>
         <br>               
         @if($categorias->count() > 0)
-            <table class="table table-hover" style="background-color: white" >
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
-                
+            <table class="table table-hover"  >
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="min-width: 1%;">Nombre</th>
+                        <th>Descripción</th>
+                        <th style="width: 14%;">Acciones</th>
+                    </tr>
+                </thead>
             @foreach ($categorias as $categoria)
                 <tr>
                     <td><a href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>
                     <td style="height:10px;">{{$categoria->descripcion}}</td>
-                    <td>
+                    <td style="text-align: center;">
                         <div style="float: right">
                             <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar</a> 
                             <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
