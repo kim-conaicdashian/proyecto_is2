@@ -112,7 +112,7 @@ class ControladorRecomendaciones extends Controller
             Session::flash('message_editar','Se ha editado la recomendación con éxito.');
             return redirect()->route('categorias.show', [$idCategoria]);
         }else{
-            return back()->withInput(request(['nombreCategoria']));
+            return back()->withInput(request(['nombreRec']));
         }
     }
 
