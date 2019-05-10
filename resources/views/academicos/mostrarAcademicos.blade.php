@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <title>Lista de academicos</title>
     <br>
     <h2>Lista academicos</h2>
     
@@ -19,8 +20,11 @@
                     <th>{{$academico->id}}</th>
                     <td>{{$academico->nombre}}</td>
                     <td>{{$academico->email}}</td>
-                    <td>
-                        <a type="button" class="btn btn-info btn-sm" href="{{ route('academicos.edit', $academico->id) }}">Editar</a>
+                    <td style="width: 77px;">
+                        <a type="button" style="color:white !important;" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">
+                                <span class="fa fa-edit"></span>
+                            Editar
+                        </a>
                     </td>
                     <td>
                         <form style="margin: 0px;" action="{{ route('academicos.destroy',$academico->id) }}" method="POST">

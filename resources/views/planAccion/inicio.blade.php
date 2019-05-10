@@ -2,6 +2,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    <title>Categoría asignada</title>
     <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
         <p style="font-size:12px; padding-top:10px;"><i>Categoría seleccionada:</i></p>
         <div class="row">
@@ -28,13 +29,14 @@
         
         <hr>
         <h2>Descripción</h2>
-        <p>{{$categoria->descripcion}}</p>
-        <hr>
+        <p>{{$categoria->descripcion}}</p><br> <br>
+        <hr> 
     
           
         @if(!$categoria->recomendaciones->isEmpty())
             <h1>Recomendaciones para esta categoría:</h1>
-            <hr>
+            <br>
+            <hr><br>
             @foreach ($recomendaciones as $recomendacion)
                 <h2><a href="/recomendacion/{{$recomendacion->id}}">{{$recomendacion->nombre}}</a></h2>                    
                 @if($recomendacion->planes->count() != 0)
@@ -47,24 +49,22 @@
                                 @csrf
                                 @method('put')
                                 <div class="form-group" >
-                                    <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
-                                    <select name="completado">
-                                        {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
-                                            select
-                                        --}}
-                                        @if ($plan->completado == 0)
-                                            <option value="0" selected>No</option>
-                                            <option value="1">Sí</option>
-                                        @else 
-                                            <option value="0">No</option>
-                                            <option value="1" selected>Sí</option>
-                                        @endif
-                                    </select>
+                                    {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
+                                         la etiqueta
+                                    --}}
+                                    @if ($plan->completado == 0)
+                                        <label for="exampleInputPassword1" style="font-size: 24px;">Plan en progreso</label>
+                
+                                    @else 
+                                        <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado <span style="color:#00A800;" class="fa fa-check"></span></label>
+                
+                                    @endif
+                                    
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
                             </form>
                             <hr>
                             @if(count($plan->evidencias) > 0)
+                            <br>
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
@@ -86,6 +86,7 @@
                                 <hr>
                                 
                             @else
+                            <br>
                                 <p style="font-size:12px"><i>No hay evidencias asignadas para este plan de acción.</i></p>
                             @endif
                         @endforeach
@@ -108,7 +109,7 @@
             <div class="container" style="text:center"><h6><i>No hay recomendaciones asignadas para esta categoría.</i></h6></div>
         @endif
         
-    </div>       
+    </div> 
     @if (auth()->user()->privilegio == 1) 
         <div style="text-align:center">
             <form action="/recomendacion/create/{{$categoria->id}}">

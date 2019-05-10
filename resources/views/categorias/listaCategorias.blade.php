@@ -65,6 +65,7 @@
         margin: auto;
     }
 </style>
+<title>Listado de categorías</title>
      <!-- Page Content -->
 <div class="card border-0 shadow my-5" style="background-color:transparent;">
     <div class="container">
@@ -83,17 +84,25 @@
                 <tr>
                     <td><a href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>
                     <td style="height:10px;">{{$categoria->descripcion}}</td>
-                    <td style="text-align: center;">
-                        <div style="float: right">
-                            <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar</a> 
-                            <form style="float:left" action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" 
-                                            onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')" >
-                                            Eliminar
-                                </button>
-                            </form>
+                    <td>
+                        <div class="container">
+                            <br>
+                            <div class="row">                                
+                            
+                                <div class="col-lg-6 text-center">
+                                    <form action="{{ route('categorias.destroy',$categoria->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Quiere borrar la categoria: {{ $categoria->nombre }}?')" >
+                                                    Borrar <span class="fa fa-trash"></span>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="col-lg-6 text-center">
+                                    <a style="color:white !important;" class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
+                                </div>
                         </div>
                     </td>
                 </tr>

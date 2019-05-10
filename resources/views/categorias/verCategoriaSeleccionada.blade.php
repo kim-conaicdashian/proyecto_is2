@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    <title>{{$categoria->nombre}}</title>
     <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
     
         <br>
@@ -12,7 +13,7 @@
             </div>
             @if(auth()->user()->privilegio == 1)
                 <div class="col-lg-3">
-                    <a class="btn btn-success btn-md" href="#">
+                    <a style="color:white !important;" class="btn btn-success btn-md" href="#">
                         <span class="fa fa-download"></span> 
                         Generar reporte
                     </a>
@@ -43,13 +44,13 @@
                     @if (auth()->user()->privilegio==1)
                     <div class="row">
                         <div class="col-lg-4 col-md-3">
-                            <a class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit" style="">
+                            <a  class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit" style="color:white !important;">
                                 <span class="fa fa-edit"></span> 
                                 Editar
                             </a>
                         </div>
                         <div class="col-lg-4 col-md-3">
-                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver recomendación</a>
+                            <a  href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white !important;">Ver recomendación</a>
                         </div>
                         <div class="col-lg-4 col-md-3">
                             <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST" style="">
