@@ -28,9 +28,16 @@
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
-            table-layout:fixed;
+            /*table-layout:fixed;*/
             overflow: auto;
+
+
+            
         }
+        th{
+            text-align: center;
+        }
+
         .list-group{
             max-height: 300px;
             margin-bottom: 10px;

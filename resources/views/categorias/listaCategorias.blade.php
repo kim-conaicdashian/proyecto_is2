@@ -65,19 +65,21 @@
         margin: auto;
     }
 </style>
+<title>Listado de categorías</title>
      <!-- Page Content -->
 <div class="card border-0 shadow my-5" style="background-color:transparent;">
     <div class="container">
         <h1>Listado de categorías</h1>
         <br>               
         @if($categorias->count() > 0)
-            <table class="table table-bordered table-hover" style="background-color: white">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
-                
+            <table class="table table-hover"  >
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="min-width: 1%;">Nombre</th>
+                        <th>Descripción</th>
+                        <th style="width: 14%;">Acciones</th>
+                    </tr>
+                </thead>
             @foreach ($categorias as $categoria)
                 <tr>
                     <td><a href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>
@@ -99,7 +101,7 @@
                                 </div>
 
                                 <div class="col-lg-6 text-center">
-                                    <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
+                                    <a style="color:white !important;" class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
                                 </div>
                         </div>
                     </td>

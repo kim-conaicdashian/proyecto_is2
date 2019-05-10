@@ -1,16 +1,17 @@
 @extends('layouts.app')
 @section('content')
+    <title>Lista de academicos</title>
     <br>
     <h2>Lista academicos</h2>
     
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">ID#</th>
+                <th scope="col" style="min-width: 1%;">ID#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
+                <th scope="col" style="min-width: 1%;">Editar</th>
+                <th scope="col" style="min-width: 1%;">Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -20,12 +21,12 @@
                     <td>{{$academico->nombre}}</td>
                     <td>{{$academico->email}}</td>
                     <td style="width: 77px;">
-                        <a type="button" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">
+                        <a type="button" style="color:white !important;" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">
                                 <span class="fa fa-edit"></span>
                             Editar
                         </a>
                     </td>
-                    <td style="width: 90px;">
+                    <td>
                         <form style="margin: 0px;" action="{{ route('academicos.destroy',$academico->id) }}" method="POST">
                             @csrf
                             @method('DELETE')

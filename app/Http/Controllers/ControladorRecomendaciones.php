@@ -53,7 +53,7 @@ class ControladorRecomendaciones extends Controller
             $recomendacion->categoria()->associate($categoria);
             $recomendacion->save();
             Session::flash('message_crear','Se ha creado una recomendación con éxito.');
-            return  redirect('/categorias');
+            return redirect()->route('categorias.show', [$idCategoria]);
         }else{
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
             return back()->withInput(request(['nombre']));
@@ -105,13 +105,14 @@ class ControladorRecomendaciones extends Controller
         ));
         if($credentials){
             $recomendacion = Recomendacion::findOrFail($id);
+            $idCategoria= $recomendacion->categoria->id;
             $recomendacion ->nombre= $request->input('nombreRec');
             $recomendacion ->descripcion= $request->input('descripcionRec');
             $recomendacion->save();
             Session::flash('message_editar','Se ha editado la recomendación con éxito.');
-            return redirect('categorias');
+            return redirect()->route('categorias.show', [$idCategoria]);
         }else{
-            return back()->withInput(request(['nombreCategoria']));
+            return back()->withInput(request(['nombreRec']));
         }
     }
 
@@ -126,6 +127,6 @@ class ControladorRecomendaciones extends Controller
       $recomendacion= Recomendacion::findOrFail($id);
       $recomendacion-> delete();
       Session::flash('message_borrar','Se ha eliminado la recomendación con éxito.');
-      return redirect()->route('categoriaAsignada');
+      return redirect()->back();
     }
 }

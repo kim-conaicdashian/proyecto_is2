@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container background-style">
+  <title>{{$recomendacion->nombre}}</title>
         <div class="card border-0 shadow my-5">
             <div class="card-body p-5">
                 <h1>Recomendación: {{$recomendacion->nombre}}</h1>

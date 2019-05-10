@@ -52,6 +52,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <a style="float:right;" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
+                                <a style="float:right; color:white !important; border-color: black" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
                                     <span class="fa fa-edit"></span>
                                     Editar
                                 </a>
@@ -64,7 +65,7 @@
 
         @endforeach
         </div>
-        <a href="evidencias/create" class="btn" style="color:white; float:right; background: linear-gradient(to bottom right, #000000 1%, #999966 101%);">Crear nueva evidencia</a>
+        <a href="evidencias/create" class="btn" style="float:right; color:white !important; border-color: black; background: linear-gradient(to bottom right, #000000 1%, #999966 101%);">Crear nueva evidencia</a>
     @else
         <br>
         <div class="row">
@@ -72,7 +73,7 @@
                 <h4>No hay evidencias registradas.</h4>
             </div>
             <div class="col-lg-6 col-md-6">
-                <a href="evidencias/create" class="btn" style="float:right; color:white; background-color: grey; border-color: black">Crear nueva evidencia</a>
+                <a href="evidencias/create" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
             </div>
         </div>
     

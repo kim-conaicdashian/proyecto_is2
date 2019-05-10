@@ -13,7 +13,7 @@
                     </div>
                     @if(auth()->user()->privilegio == 1)
                         <div class="col-lg-3">
-                            <a class="btn btn-success btn-md" href="#">
+                            <a class="btn btn-success btn-md" href="#" style="color:white !important;">
                                 <span class="fa fa-download"></span> 
                                 Generar reporte
                             </a>
@@ -21,7 +21,8 @@
                     @endif
                 </div>
                 <div class="row text-center">
-                    @if($categoria)
+                    {{-- @if($categoria) --}}
+                    @if(isset($categoria->academico))
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Pertenece a la categoría: {{$categoria->nombre}} </i></h6></div>
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Encargado de la categoría: {{$categoria->academico->nombre}} </i></h6>
                     </div>
@@ -46,7 +47,7 @@
                             <hr>
 
                             <h4>{{$plan->nombre}}</h4>
-                            <a href="/plan/{{$plan->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver plan de acción</a>                        
+                            <a href="/plan/{{$plan->id}}" class="btn" style="background-color: grey; border-color: black; color:white !important;">Ver plan de acción</a>                        
                         @endforeach
                     @else                    
                         <div class="panel-heading"><h6 class="panel-title"><i>No hay plan de acción para esta recomendación.</i></h6>

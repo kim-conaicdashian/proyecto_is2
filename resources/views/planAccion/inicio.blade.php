@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
-<title></title>
 <div class="container background-style">
     <div class=" text-center" style="background-color: transparent">
+    <title>Categoría asignada</title>
         <p style="font-size:12px; padding-top:10px;"><i>Categoría seleccionada:</i></p>
         <div class="row">
             <div class="col-lg-3"></div>
@@ -29,13 +29,14 @@
         
         <hr>
         <h2>Descripción</h2>
-        <p>{{$categoria->descripcion}}</p>
-        <hr>
+        <p>{{$categoria->descripcion}}</p><br> <br>
+        <hr> 
     
         
         @if(!$categoria->recomendaciones->isEmpty())
             <h1>Recomendaciones para esta categoría:</h1>
-            <hr>
+            <br>
+            <hr><br>
             @foreach ($recomendaciones as $recomendacion)
             <div class="card-body">
             
@@ -55,26 +56,24 @@
                             <form method="POST" action='{{route('plan.completado',$plan->id)}}'>
                                 @csrf
                                 @method('put')
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
-                                    <select name="completado">
-                                        {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
-                                            select
-                                        --}}
-                                        @if ($plan->completado == 0)
-                                            <option value="0" selected>No</option>
-                                            <option value="1">Sí</option>
-                                        @else 
-                                            <option value="0">No</option>
-                                            <option value="1" selected>Sí</option>
-                                        @endif
-                                    </select>
+                                <div class="form-group" >
+                                    {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
+                                         la etiqueta
+                                    --}}
+                                    @if ($plan->completado == 0)
+                                        <label for="exampleInputPassword1" style="font-size: 24px;">Plan en progreso</label>
+                
+                                    @else 
+                                        <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado <span style="color:#00A800;" class="fa fa-check"></span></label>
+                
+                                    @endif                                    
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
                             </form>
                             <br>
                             @if(count($plan->evidencias) > 0)
                                 <table class="table table-bordered table-hover">
+                            <br>
+                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                         <th>Evidencias</th>
@@ -95,6 +94,7 @@
                                 
                                 
                             @else
+                            <br>
                                 <p style="font-size:12px"><i>No hay evidencias asignadas para este plan de acción.</i></p>
                             @endif
                             
