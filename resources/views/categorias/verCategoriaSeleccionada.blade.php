@@ -49,7 +49,7 @@
                             </a>
                         </div>
                         <div class="col-lg-4 col-md-3">
-                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver recomendación</a>
+                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white !important;">Ver recomendación</a>
                         </div>
                         <div class="col-lg-4 col-md-3">
                             <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST" style="">
