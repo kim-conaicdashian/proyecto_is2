@@ -47,21 +47,18 @@
                                 @csrf
                                 @method('put')
                                 <div class="form-group" >
-                                    <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
-                                    <select name="completado">
-                                        {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
-                                            select
-                                        --}}
-                                        @if ($plan->completado == 0)
-                                            <option value="0" selected>No</option>
-                                            <option value="1">Sí</option>
-                                        @else 
-                                            <option value="0">No</option>
-                                            <option value="1" selected>Sí</option>
-                                        @endif
-                                    </select>
+                                    {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
+                                         la etiqueta
+                                    --}}
+                                    @if ($plan->completado == 0)
+                                        <label for="exampleInputPassword1" style="font-size: 24px;">Plan en progreso</label>
+                
+                                    @else 
+                                        <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado <span style="color:#00A800;" class="fa fa-check"></span></label>
+                
+                                    @endif
+                                    
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
                             </form>
                             <hr>
                             @if(count($plan->evidencias) > 0)
