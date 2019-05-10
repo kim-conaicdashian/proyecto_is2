@@ -29,7 +29,7 @@
       
       <!-- My calendar element -->
       <h2>Fecha de término</h2>
-      <div id="my-calendar" class="jsCalendar" data-language="es"></div>
+      <div id="my-calendar" class="jsCalendar" data-month-format="month YYYY" data-language="es"></div>
 
       <!-- Outputs -->
       <h4 style="color:white">Fecha escogida</h4>
