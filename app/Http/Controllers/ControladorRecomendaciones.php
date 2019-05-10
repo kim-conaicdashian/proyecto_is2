@@ -42,7 +42,7 @@ class ControladorRecomendaciones extends Controller
     {
         //
         $credentials=$this->validate($request, array(
-            'nombre' => 'required|min:5|max:100',
+            'nombre' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/',
             'descripcion'=> 'required|min:10',
         ));
         if($credentials){
@@ -99,7 +99,7 @@ class ControladorRecomendaciones extends Controller
     {
         //
         $credentials=$this->validate($request, array(
-            'nombreRec' => 'required|min:5|max:100',
+            'nombreRec' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/',
             'descripcionRec'=> 'required|min:10',
 
         ));

@@ -34,7 +34,10 @@
 
         <div class="form-group row mb-4">
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-success">{{ __('Editar') }}</button>
+                <button type="submit" class="btn btn-info" style="float:right">
+                        <span class="fa fa-edit"></span>
+                    {{ __('Editar') }}
+                </button>
             </div>
         </div>
     </form>

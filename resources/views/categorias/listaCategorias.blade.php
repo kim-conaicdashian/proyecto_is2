@@ -58,8 +58,15 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+    .center-column {
+        display: block;
+        margin: auto;
+    }
+</style>
      <!-- Page Content -->
-<div class="container">
+<div class="card border-0 shadow my-5" style="background-color:transparent;">
     <div class="container">
         <h1>Listado de categorías</h1>
         <br>               
@@ -99,7 +106,8 @@
         
         <br>
         <form action="/categorias/create">
-            <input style="float: right" class="btn pretty-btn" type="submit" value="Crear categoría" />
+            {{-- <button type="submit" style="float: right; background-color:grey" class="btn pretty-btn"  type="submit" value="">Crear categoría</button> --}}
+            <input style="float: right; background-color:grey; color:white" class="btn pretty-btn"  type="submit" value="Crear categoría" />
         </form><br>     
         <div style="height: 20px"></div>
             <p class="lead mb-0"></p>
