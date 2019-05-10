@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="container">
+    <div class="container background-style">
         <title>Editar la recomendación {{$recomendacion->nombre}}  </title>
         <h1 style="text-align:center;margin-top:20px;"> Editar la recomendación: {{$recomendacion->nombre}} </h1>
         <hr>

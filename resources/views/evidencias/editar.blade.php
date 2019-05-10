@@ -3,9 +3,9 @@
 @section('content')
     <!-- Page Content -->
     <title> Editar evidencia </title>
-    <div class="container">
-            <div class="card border-0 shadow my-5">
-              <div class="card-body p-5">
+    <div class="container background-style">
+            <div class="" style="background-color: transparent">
+              <div class="">
                     <h1 style="text-align:center">Editar evidencia</h1>
                     <br><br><br><br>
                     <form method="POST" action='{{route('evidencias.update', $evidencia->id)}}' enctype="multipart/form-data">

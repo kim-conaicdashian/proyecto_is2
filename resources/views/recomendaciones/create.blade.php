@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
+<div class="container background-style">
     <title> Agregar recomendación </title>
     <br>
     <p style="font-size:12px; text-align:center"><i>Recomendación para:</i></p>

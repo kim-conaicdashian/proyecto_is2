@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
+    <div class="card border-0 shadow my-5 text-center background-style">
     
         <br>
         <p style="font-size:12px"><i>Categoría seleccionada:</i></p>

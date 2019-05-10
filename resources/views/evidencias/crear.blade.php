@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('content')
     <!-- Page Content -->
-    <div class="container" >
+    <div class="container background-style" >
         <div class="card border-0 shadow my-5" style="background-color:transparent;">
           <div class="card-body p-5">
                 <h1 style="text-align:center">Subir una nueva evidencia</h1>

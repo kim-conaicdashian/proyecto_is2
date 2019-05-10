@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
-<div class="container">
-    <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
+<title></title>
+<div class="container background-style">
+    <div class=" text-center" style="background-color: transparent">
         <p style="font-size:12px; padding-top:10px;"><i>Categoría seleccionada:</i></p>
         <div class="row">
             <div class="col-lg-3"></div>
@@ -17,11 +18,11 @@
                     </a>
                 </div>
             @endif
-        </div>        
+        </div> {{-- Fin row principal --}}   
         @if(isset($categoria->academico))
             <h6>Encargado de la categoría: <i>{{$categoria->academico->nombre}}</i> </h6>
         @else
-            <h6 class="panel-title"><i>No hay ningún académico asignado a esta categoria.</i></h6>
+            <h6><i>No hay ningún académico asignado a esta categoria.</i></h6>
         @endif
         
         <br>
@@ -31,12 +32,20 @@
         <p>{{$categoria->descripcion}}</p>
         <hr>
     
-          
+        
         @if(!$categoria->recomendaciones->isEmpty())
             <h1>Recomendaciones para esta categoría:</h1>
             <hr>
             @foreach ($recomendaciones as $recomendacion)
-                <h2><a href="/recomendacion/{{$recomendacion->id}}">{{$recomendacion->nombre}}</a></h2>                    
+            <div class="card-body">
+            
+                <h2><a href="/recomendacion/{{$recomendacion->id}}">{{$recomendacion->nombre}}</a></h2>
+                <div class="form-group">
+                    <form action="{{ route('plan.create')}}">
+                        <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
+                        <input type='submit' class="btn btn-secondary" value='Agregar plan de acción'/>
+                    </form>
+                </div>
                 @if($recomendacion->planes->count() != 0)
                     <div class="container">
                         <br>
@@ -46,7 +55,7 @@
                             <form method="POST" action='{{route('plan.completado',$plan->id)}}'>
                                 @csrf
                                 @method('put')
-                                <div class="form-group" >
+                                <div class="form-group">
                                     <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
                                     <select name="completado">
                                         {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
@@ -63,9 +72,9 @@
                                 </div>
                                 <button type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
                             </form>
-                            <hr>
+                            <br>
                             @if(count($plan->evidencias) > 0)
-                                <table class="table table-hover">
+                                <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                         <th>Evidencias</th>
@@ -83,32 +92,33 @@
                                         </tbody>
                                     @endforeach                                
                                 </table>
-                                <hr>
+                                
                                 
                             @else
                                 <p style="font-size:12px"><i>No hay evidencias asignadas para este plan de acción.</i></p>
                             @endif
+                            
                         @endforeach
-                        <hr>
-                        <form action="{{ route('plan.create')}}">
-                            <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                            <input type='submit' class="btn btn-secondary" style="float:right" value='Crear plan de acción'/>
-                        </form>
                         
                     </div>
+                    
                 @else
                     <p style="font-size:12px"><i>No hay planes asignados para esta recomendación.</i></p>
-                    <hr>
-                @endif
-                <div style="height: 50px"></div>
-                    <p class="lead mb-0"></p>
-                </div>                   
+                @endif 
+                <hr>
+            </div>
+            
             @endforeach                
         @else            
-            <div class="container" style="text:center"><h6><i>No hay recomendaciones asignadas para esta categoría.</i></h6></div>
+            <h6><i>No hay recomendaciones asignadas para esta categoría.</i></h6> 
         @endif
         
-    </div>       
+    </div>
+
+    
+    <div style="height: 50px"></div>
+        <p class="lead mb-0"></p>
+    </div>   
     @if (auth()->user()->privilegio == 1) 
         <div style="text-align:center">
             <form action="/recomendacion/create/{{$categoria->id}}">
@@ -117,6 +127,5 @@
             </form>
         </div>
     @endif
-</div>
-
+</div> {{-- Fin container principal --}}
 @endsection

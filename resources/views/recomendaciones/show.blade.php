@@ -2,7 +2,7 @@
 @section('content')
     <title> {{$recomendacion->nombre}} </title>
     <div class="container">
-        <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
+        <div class="card border-0 shadow my-5 text-center background-style">
             <div class="card h-100 text-center" style="background-color:transparent;">
                 <br>
                 <p style="font-size:12px"><i>Recomendación seleccionada:</i></p>
