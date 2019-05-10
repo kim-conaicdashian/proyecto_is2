@@ -47,7 +47,7 @@
                             <hr>
 
                             <h4>{{$plan->nombre}}</h4>
-                            <a href="/plan/{{$plan->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver plan de acción</a>                        
+                            <a href="/plan/{{$plan->id}}" class="btn" style="background-color: grey; border-color: black; color:white !important;">Ver plan de acción</a>                        
                         @endforeach
                     @else                    
                         <div class="panel-heading"><h6 class="panel-title"><i>No hay plan de acción para esta recomendación.</i></h6>

@@ -99,7 +99,7 @@
                                 </div>
 
                                 <div class="col-lg-6 text-center">
-                                    <a class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
+                                    <a style="color:white !important;" class="btn btn-info btn-sm" href="/categorias/{{$categoria->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
                                 </div>
                         </div>
                     </td>
