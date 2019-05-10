@@ -4,8 +4,20 @@
 <div class="container">
     <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
         <p style="font-size:12px; padding-top:10px;"><i>Categoría seleccionada:</i></p>
-        <h1 style="font-family: helvetica">{{$categoria->nombre}}</h1>
-        
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <h1 style="font-family: helvetica">{{$categoria->nombre}}</h1>
+            </div>
+            @if(auth()->user()->privilegio == 1)
+                <div class="col-lg-3">
+                    <a class="btn btn-success btn-md" href="#">
+                        <span class="fa fa-download"></span> 
+                        Generar reporte
+                    </a>
+                </div>
+            @endif
+        </div>        
         @if(isset($categoria->academico))
             <h6>Encargado de la categoría: <i>{{$categoria->academico->nombre}}</i> </h6>
         @else

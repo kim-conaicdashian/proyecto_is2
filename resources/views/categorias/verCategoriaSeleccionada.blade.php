@@ -5,7 +5,20 @@
     
         <br>
         <p style="font-size:12px"><i>Categoría seleccionada:</i></p>
-        <h1 style="font-family: helvetica">{{$categoria->nombre}}</h1>
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <h1 style="font-family: helvetica">{{$categoria->nombre}}</h1>
+            </div>
+            @if(auth()->user()->privilegio == 1)
+                <div class="col-lg-3">
+                    <a class="btn btn-success btn-md" href="#">
+                        <span class="fa fa-download"></span> 
+                        Generar reporte
+                    </a>
+                </div>
+            @endif
+        </div>
         <div class="container">
             @if(isset($categoria->academico))
                 <h3>Académico encargado de esta categoría: {{$categoria->academico->nombre}}</h3>                
@@ -29,25 +42,22 @@
                     
                     @if (auth()->user()->privilegio==1)
                     <div class="row">
-                        <div class="col-lg-4 col-md-4">
-                            
-                        </div>
-
-                        <div class="col-lg-4 col-md-4">
-                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver recomendación</a>
-                        </div>
-
-                        <div class="col-lg-2 col-md-2">
-                            <a class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit" style="float:left">
+                        <div class="col-lg-4 col-md-3">
+                            <a class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit" style="">
                                 <span class="fa fa-edit"></span> 
                                 Editar
                             </a>
-                            <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST" style="float: right;">
+                        </div>
+                        <div class="col-lg-4 col-md-3">
+                            <a href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver recomendación</a>
+                        </div>
+                        <div class="col-lg-4 col-md-3">
+                            <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST" style="">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-md" 
                                     onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')"
-                                    style="position: relative;left: 44px;bottom: 38px;">
+                                    >
                                     <span class="fa fa-trash"></span>
                                     Eliminar
                                 </button>
@@ -67,10 +77,14 @@
                 </div>
             @endif
             @if (auth()->user()->privilegio == 1) 
-                <div style="text-align:center">
-                    <form action="/recomendacion/create/{{$categoria->id}}">
-                        <input style="color: white; background-color: grey; border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
-                    </form>
+                <div class="row">
+                    <div class="col-lg-4 col-md-3">        
+                    </div>
+                    <div style="text-align:center" class="col-lg-4 col-md-3">
+                        <form action="/recomendacion/create/{{$categoria->id}}">
+                            <input style="color: white; background-color: grey; border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
+                        </form>
+                    </div>
                 </div>
             @endif
         </div>

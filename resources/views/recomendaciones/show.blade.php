@@ -6,7 +6,20 @@
             <div class="card h-100 text-center" style="background-color:transparent;">
                 <br>
                 <p style="font-size:12px"><i>Recomendación seleccionada:</i></p>
-                <h1 style="font-family: helvetica">{{$recomendacion->nombre}}</h1>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <h1 style="font-family: helvetica">{{$recomendacion->nombre}}</h1>
+                    </div>
+                    @if(auth()->user()->privilegio == 1)
+                        <div class="col-lg-3">
+                            <a class="btn btn-success btn-md" href="#">
+                                <span class="fa fa-download"></span> 
+                                Generar reporte
+                            </a>
+                        </div>
+                    @endif
+                </div>
                 <div class="row text-center">
                     @if($categoria)
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Pertenece a la categoría: {{$categoria->nombre}} </i></h6></div>

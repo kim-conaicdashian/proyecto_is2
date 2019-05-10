@@ -6,7 +6,20 @@
             <div class="card h-100 text-center" style="background-color:transparent;">
                 <br>
                 <p style="font-size:12px"><i>Plan de acción seleccionado:</i></p>
-                <h1 style="font-family: helvetica">{{$plan->nombre}}</h1>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <h1 style="font-family: helvetica">{{$plan->nombre}}</h1>
+                    </div>
+                    @if(auth()->user()->privilegio == 1)
+                        <div class="col-lg-3">
+                            <a class="btn btn-success btn-md" href="#">
+                                <span class="fa fa-download"></span> 
+                                Generar reporte
+                            </a>
+                        </div>
+                    @endif
+                </div>
                 <div class="row text-center">
                     @if($plan->categoria)
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Pertenece a la categoría: {{$plan->categoria->nombre}} </i></h6></div>
@@ -25,6 +38,12 @@
                         <h2>Descripción</h2>
                         <p>{{$plan->descripcion}}</p>
                         <hr>
+                        <h2> Criterio de hecho </h2>
+                        @if($plan->criterio == NULL)
+                            <i> Aún no hay un criterio de hecho para este plan de acción. Edite el plan de acción para agregar uno. </i>
+                        @else
+                            <p> {{$plan->criterio}}</p>
+                        @endif
                     </div>                    
                 </div>
 
@@ -43,7 +62,28 @@
                             <span class="fa fa-edit"></span>
                             Editar
                         </a>                  
-                    @endif      
+                    @endif
+                    <form method="POST" action='{{route('plan.completado',$plan->id)}}'>
+                        @csrf
+                        @method('put')
+                        <div class="form-group" >
+                            <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
+                            <select name="completado">
+                                {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
+                                    select
+                                --}}
+                                @if ($plan->completado == 0)
+                                    <option value="0" selected>No</option>
+                                    <option value="1">Sí</option>
+                                @else 
+                                    <option value="0">No</option>
+                                    <option value="1" selected>Sí</option>
+                                @endif
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
+                    </form>
+                    <hr>    
                     @if(!$plan->evidencias->isEmpty())
                         <h2>Evidencias para este plan:</h2>
                         <hr>
