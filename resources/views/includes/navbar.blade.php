@@ -24,7 +24,6 @@
                     <a style="color:black !important;" class="nav-link" href="/academicos">Manejo de Académicos</a>
                 </li>
             @endif
-
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
@@ -32,7 +31,15 @@
                     {{ auth()->user()->nombre }} 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" style = "color:black !important;"href="{{ route('academico.editPerfil', auth()->user()->id) }}">Editar Perfil</a>
+                    <a class="dropdown-item" style = "color:black !important;" href="{{ route('academico.editPerfil', auth()->user()->id) }}">Editar Perfil</a>
+                    @if (auth()->user()->privilegio == 1)
+
+                            <a class="dropdown-item" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
+
+
+                            <a class="dropdown-item" href="/academicos">Manejo de Académicos</a>
+
+                    @endif
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button class="dropdown-item">Cerrar sesión</button>

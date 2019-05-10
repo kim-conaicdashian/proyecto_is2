@@ -72,13 +72,14 @@
         <h1>Listado de categorías</h1>
         <br>               
         @if($categorias->count() > 0)
-            <table class="table table-bordered table-hover" style="background-color: white">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
-                </tr>
-                
+            <table class="table table-hover"  >
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="min-width: 1%;">Nombre</th>
+                        <th>Descripción</th>
+                        <th style="width: 14%;">Acciones</th>
+                    </tr>
+                </thead>
             @foreach ($categorias as $categoria)
                 <tr>
                     <td><a href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>

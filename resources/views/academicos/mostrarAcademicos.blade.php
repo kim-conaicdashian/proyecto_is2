@@ -7,11 +7,11 @@
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">ID#</th>
+                <th scope="col" style="min-width: 1%;">ID#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
+                <th scope="col" style="min-width: 1%;">Editar</th>
+                <th scope="col" style="min-width: 1%;">Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                             Editar
                         </a>
                     </td>
-                    <td style="width: 90px;">
+                    <td>
                         <form style="margin: 0px;" action="{{ route('academicos.destroy',$academico->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
