@@ -97,7 +97,7 @@
                       <p>No hay académicos registrados.</p>
                       <input class='hidden' name='academicoID' value='NULL'>
                   @endif
-              <button type="submit" class="btn pretty-btn" style="float:right">Crear categoria</button>
+              <button type="submit" class="btn pretty-btn" style="float: right; background-color:grey; color:white">Crear categoria</button>
             </form>                      
         </div>
     </div>

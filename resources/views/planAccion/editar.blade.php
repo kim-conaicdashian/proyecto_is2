@@ -11,7 +11,7 @@
     <title> Editar plan de acción </title>
     <h2 style="text-align:center;margin-top:20px;"> {{$plan->nombre}} </h2>
     <hr>
-    <form method="POST" action='{{route('plan.update',$plan->id)}}'>
+    <form method="POST" action="{{route('plan.update',$plan->id)}}">
         @csrf
         @method("put")
         <div class="form-group" {{ $errors->has('nombrePlan') ? 'has-error' : ''}}>
@@ -28,23 +28,39 @@
         <div class="form-group" {{ $errors->has('fecha_termino') ? 'has-error' : ''}}>
             <!-- My calendar element -->
             <h2>Fecha de término</h2>
-            <div id="my-calendar" class="jsCalendar" data-language="es"></div>
+            <div id="my-calendar" class="jsCalendar" data-month-format="month YYYY" data-language="es"></div>
 
             <!-- Outputs -->
             <h4 style="color:white">Fecha escogida</h4>
-            <input id="my-input-a" name="fecha_termino"><br>
+            <input id="my-input-a" name="fecha_termino" value="{{$plan->fecha_termino}}"><br>
             {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
+          <div class="form-group">
+            <label for="criterioHecho" style="font-size: 24px;" name="criterioHecho">Criterio de hecho (opcional)</label>
+            <p></p>
+            <textarea rows="4" cols="50" name='criterioHecho'>{{$plan->criterio}}</textarea>
+          </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
+
+        <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
             <select name="completado">
-                <option value="0">No</option>
-                <option value="1">Sí</option>
+                {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
+                    select
+                --}}
+                @if ($plan->completado == 0)
+                    <option value="0" selected>No</option>
+                    <option value="1">Sí</option>
+                @else 
+                    <option value="0">No</option>
+                    <option value="1" selected>Sí</option>
+                @endif
             </select>
-        </div>
+        
         <hr>
-        <button type="submit" class="btn btn-primary">Editar plan de acción</button>
-    </form>
+        <button type="submit" class="btn btn-info">
+            <span class="fa fa-edit"></span>
+          Editar plan de acción
+        </button>
+    </form> <br><br><br><br>
 
      <!-- Create the calendar -->
      <script type="text/javascript">

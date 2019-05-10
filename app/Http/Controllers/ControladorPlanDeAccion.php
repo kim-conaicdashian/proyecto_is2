@@ -126,6 +126,7 @@ class ControladorPlanDeAccion extends Controller
             $plan->descripcion = $request->input("descripcionPlan");
             $plan->fecha_termino = $request->input("fecha_termino");
             $plan->completado = $request->input("completado");
+            $plan->criterio = $request->input("criterioHecho");
             $plan->categoria()->associate($categoria);
             $plan->save();
             return redirect()->route('categoriaAsignada');
@@ -138,6 +139,12 @@ class ControladorPlanDeAccion extends Controller
      */
     public function planCompletado(Request $request,$id){
         $plan = PlanAccion::findOrFail($id);
+        if(count($request->input()) > 3){
+            $plan->nombre = $request->input("nombrePlan");
+            $plan->descripcion = $request->input("descripcionPlan");
+            $plan->fecha_termino = $request->input("fecha_termino");
+            $plan->criterio = $request->input("criterioHecho");
+        }
         $plan->completado = $request->input('completado');
         $plan->save();
         return redirect()->route('categoriaAsignada');

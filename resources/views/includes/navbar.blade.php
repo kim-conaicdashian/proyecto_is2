@@ -42,8 +42,3 @@
         
     </div>
 </div>
-
-<script>
-
-
-</script>

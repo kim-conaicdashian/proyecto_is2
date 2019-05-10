@@ -6,7 +6,20 @@
             <div class="card h-100 text-center" style="background-color:transparent;">
                 <br>
                 <p style="font-size:12px"><i>Recomendación seleccionada:</i></p>
-                <h1 style="font-family: helvetica">{{$recomendacion->nombre}}</h1>
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <h1 style="font-family: helvetica">{{$recomendacion->nombre}}</h1>
+                    </div>
+                    @if(auth()->user()->privilegio == 1)
+                        <div class="col-lg-3">
+                            <a class="btn btn-success btn-md" href="#">
+                                <span class="fa fa-download"></span> 
+                                Generar reporte
+                            </a>
+                        </div>
+                    @endif
+                </div>
                 <div class="row text-center">
                     @if($categoria)
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Pertenece a la categoría: {{$categoria->nombre}} </i></h6></div>
@@ -33,7 +46,7 @@
                             <hr>
 
                             <h4>{{$plan->nombre}}</h4>
-                            <a href="/plan/{{$plan->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver plan de acción</a>                        
+                            <a href="/plan/{{$plan->id}}" class="btn" style="background-color: grey; border-color: black; color:white;">Ver plan de acción</a>                        
                         @endforeach
                     @else                    
                         <div class="panel-heading"><h6 class="panel-title"><i>No hay plan de acción para esta recomendación.</i></h6>
@@ -45,7 +58,7 @@
                                 <form action="{{ route('plan.create')}}">
                                     <hr>
                                     <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                                    <input style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar plan de acción" />
+                                    <input style="background-color: grey; border-color: black; color:white;" type="submit" class="btn btn-primary btn-lg" value="Agregar plan de acción" />
                                 </form>
                             </div>
                         @endif

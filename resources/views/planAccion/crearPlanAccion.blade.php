@@ -29,7 +29,7 @@
       
       <!-- My calendar element -->
       <h2>Fecha de término</h2>
-      <div id="my-calendar" class="jsCalendar" data-language="es"></div>
+      <div id="my-calendar" class="jsCalendar" data-month-format="month YYYY" data-language="es"></div>
 
       <!-- Outputs -->
       <h4 style="color:white">Fecha escogida</h4>
@@ -55,8 +55,8 @@
         <p></p>
         <textarea rows="4" cols="50" name='criterioHecho'></textarea>
       </div>
-      <button type="submit" class="btn pretty-btn" style="margin-bottom:5%">Crear plan de acción</button>
-    </form>
+      <button type="submit" class="btn pretty-btn" style="background-color: grey; border-color: black; color:white;">Crear plan de acción</button>
+    </form> <br><br><br><br>
 
     <!-- Create the calendar -->
     <script type="text/javascript">
