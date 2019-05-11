@@ -37,8 +37,15 @@
             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorías') }}</label>
             <div class="col-md-6">
                 <select class="form-control" name="categoria" id="card_type">
+                    @if (!$academico->categoria)
+                        <option value="NULL">Sin asignar aun</option>
+                    @else
+                        <option value="{{$academico->categoria->id}}">{{$academico->categoria->nombre}}</option>
+                    @endif
                     @foreach ($categorias as $categoria)
-                        <option  value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                        @if ($categoria->academico_id == null)
+                            <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>

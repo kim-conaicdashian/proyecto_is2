@@ -91,29 +91,43 @@ class ControladorAcademicos extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Academico $academico){
-        //dd($request);
+        
         $request->validate([
             'nombre' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:3|confirmed'
+            'password' => 'required|min:3|confirmed',
+            'categoria' => 'required',
         ]);
+
+        
 
         $academico->nombre = $request->input('nombre');
         if($academico->email != $request->input('email')) $academico->email = $request-> input('email');
         if($request->password == "knhdl +w-") $academico->password = $academico->password;
         else $academico->password = bcrypt(request('password'));
         $academico->save();
+
+        if($request->categoria == "NULL") return redirect()->route('academicos.index');
         
         $categoria_antigua = Categoria::where('academico_id', $academico->id)->get()->last();
+        if(!$categoria_antigua){
+            $categoria = Categoria::findOrFail($request->categoria);
+
+            $academico->categoria()->save($categoria);
+            
+            return redirect()->route('academicos.index');
+        }
         $categoria_antigua = Categoria::findOrFail($categoria_antigua)->last();
+        
         $categoria_antigua->academico_id = NULL;
-        //dd($categoria_antigua);
         $categoria_antigua->save();
+        
         $categoria = Categoria::findOrFail($request->categoria);
 
         //$academico->categoria()->dissociate();
         $academico->categoria()->save($categoria);
-
+        
+        
         return redirect()->route('academicos.index');
     }
 
@@ -124,6 +138,12 @@ class ControladorAcademicos extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Academico $academico){
+        $categoria_antigua = Categoria::where('academico_id', $academico->id)->get()->last();
+        $categoria_antigua = Categoria::findOrFail($categoria_antigua)->last();
+        $categoria_antigua->academico_id = "NULL";
+        //dd($categoria_antigua);
+        $categoria_antigua->save();
+        dd($categoria_antigua);
         $academico->delete();
         return redirect()->route('academicos.index');
     }
