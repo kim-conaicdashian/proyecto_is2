@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <title>Lista de academicos</title>
-    <br>
-    <h2>Lista academicos</h2>
+    <div  class="container background-style shadow border-0 my-5">
+    <h2 class="text-center">Lista academicos</h2>
     
     <table class="table table-hover">
         <thead class="thead-dark">
@@ -42,9 +42,11 @@
     </table>
     {{ $academicos->links() }}
     <div class="box-footer">
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#agregarAcademicoModal">Agregar academico</button>
+        <button type="button" class="btn btn-secondary" style="margin-bottom:1%;float:right;" data-toggle="modal" data-target="#agregarAcademicoModal">Agregar academico</button>
     </div>
-
+    <br>
+    <br>
+    </div>
 
     {{--Modal para Registrar a un usuario--}}
     <div class="modal fade" id="agregarAcademicoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

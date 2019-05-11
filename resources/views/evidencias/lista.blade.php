@@ -51,7 +51,6 @@
                                 </form>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a style="float:right;" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
                                 <a style="float:right; color:white !important; border-color: black" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
                                     <span class="fa fa-edit"></span>
                                     Editar

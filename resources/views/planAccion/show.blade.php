@@ -12,6 +12,7 @@
         font-size: 20px;
     }
 </style>
+    <title> {{$plan->nombre}} </title>
     <div class="container">
         <div class="card border-0 shadow my-5 text-center background-style">
             <div class="card h-100 text-center" style="background-color:transparent;">
@@ -24,7 +25,7 @@
                     </div>
                     @if(auth()->user()->privilegio == 1)
                         <div class="col-lg-3">
-                            <a class="btn btn-success btn-md" href="#">
+                            <a style="color:white !important;" class="btn btn-success btn-md" href="#">
                                 <span class="fa fa-download"></span> 
                                 Generar reporte
                             </a>
@@ -76,7 +77,7 @@
                                             </button>
                                 </div>
                                 <div class="col-lg-3 col-centered">
-                                            <a class="btn btn-info btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
+                                            <a style="color:white !important;" class="btn btn-info btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
                                                 <span class="fa fa-edit styling-btn"></span>
                                                 Editar
                                             </a>

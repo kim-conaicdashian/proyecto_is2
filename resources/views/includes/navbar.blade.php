@@ -16,14 +16,6 @@
                     <a style="color:black !important;" class="nav-link" id="evidencias" href="/evidencias" disabled="">Subir Evidencias</a>
                 </li>
             @endif
-            @if (auth()->user()->privilegio == 1)
-                <li class="nav-item">
-                    <a style="color:black !important;" class="nav-link" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color:black !important;" class="nav-link" href="/academicos">Manejo de Académicos</a>
-                </li>
-            @endif
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
@@ -34,10 +26,8 @@
                     <a class="dropdown-item" style = "color:black !important;" href="{{ route('academico.editPerfil', auth()->user()->id) }}">Editar Perfil</a>
                     @if (auth()->user()->privilegio == 1)
 
-                            <a class="dropdown-item" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
-
-
-                            <a class="dropdown-item" href="/academicos">Manejo de Académicos</a>
+                            <a style="color:black !important;" class="dropdown-item" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
+                            <a style="color:black !important;" class="dropdown-item" href="/academicos">Manejo de Académicos</a>
 
                     @endif
                     <form action="{{ route('logout') }}" method="POST">

@@ -67,9 +67,9 @@
 </style>
 <title>Listado de categorías</title>
      <!-- Page Content -->
-<div class="card border-0 shadow my-5" style="background-color:transparent;">
+<div class="card border-0 shadow my-5 background-style">
     <div class="container">
-        <h1>Listado de categorías</h1>
+        <h1 class="text-center">Listado de categorías</h1>
         <br>               
         @if($categorias->count() > 0)
             <table class="table table-hover"  >
@@ -82,7 +82,7 @@
                 </thead>
             @foreach ($categorias as $categoria)
                 <tr>
-                    <td><a href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>
+                    <td><a style="color:black !important;" href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>
                     <td style="height:10px;">{{$categoria->descripcion}}</td>
                     <td>
                         <div class="container">

@@ -39,18 +39,20 @@
                 <hr>
                 @foreach ($recomendaciones as $recomendacion)  
                     <h4>{{$recomendacion->nombre}}</h4>
-                    
-                    @if (auth()->user()->privilegio==1)
+
                     <div class="row">
-                        <div class="col-lg-4 col-md-3">
+                    <div class="col-lg-4 col-md-3">
+                    @if (auth()->user()->privilegio==1)                                            
                             <a  class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit" style="color:white !important;">
                                 <span class="fa fa-edit"></span> 
                                 Editar
-                            </a>
-                        </div>
+                            </a>                    
+                    @endif
+                    </div>
                         <div class="col-lg-4 col-md-3">
                             <a  href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white !important;">Ver recomendación</a>
                         </div>
+                    @if (auth()->user()->privilegio==1)    
                         <div class="col-lg-4 col-md-3">
                             <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST" style="">
                                 @csrf
@@ -64,10 +66,9 @@
                             </form>
                             {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
                             {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
-                        </div>
-                    </div>
+                        </div>                    
                     @endif
-                    
+                    </div>
 
                     <hr>
                 @endforeach
