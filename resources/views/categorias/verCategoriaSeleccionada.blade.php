@@ -42,27 +42,34 @@
 
                     <div class="row">
                     <div class="col-lg-4 col-md-3">
+                        <br>
                     @if (auth()->user()->privilegio==1)                                            
                             <a  class="btn btn-info btn-md" href="/recomendacion/{{$recomendacion->id}}/edit" style="color:white !important;">
                                 <span class="fa fa-edit"></span> 
                                 Editar
-                            </a>                    
+                            </a>
+                            <br><br>                
                     @endif
                     </div>
                         <div class="col-lg-4 col-md-3">
+                                <br>
                             <a  href="/recomendacion/{{$recomendacion->id}}" class="btn" style="background-color: grey; border-color: black; color:white !important;">Ver recomendación</a>
+                            <br>
                         </div>
+
                     @if (auth()->user()->privilegio==1)    
                         <div class="col-lg-4 col-md-3">
                             <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST" style="">
                                 @csrf
                                 @method('DELETE')
+                                <br>
                                 <button type="submit" class="btn btn-danger btn-md" 
                                     onclick="return confirm('¿Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')"
                                     >
                                     <span class="fa fa-trash"></span>
                                     Eliminar
                                 </button>
+                                <br>
                             </form>
                             {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
                             {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
@@ -82,7 +89,7 @@
                     <div class="col-lg-4 col-md-3">        
                     </div>
                     <div style="text-align:center" class="col-lg-4 col-md-3">
-                        <form action="/recomendacion/create/{{$categoria->id}}">
+                        <form action="/recomendacion/create/{{$categoria->id}}" style="position:relative; top:50%;">
                             <input style="color: white; background-color: grey; border-color: black" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
                         </form>
                     </div>

@@ -11,7 +11,7 @@
     <style>
         body {
             /* https://source.unsplash.com/twukN12EN7c/1920x1080 */
-            background: url('/archivos/lcc_bg.jpeg') no-repeat center center fixed;
+            background: url('/imagenes/lcc_bg.jpeg') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             background-size: cover;

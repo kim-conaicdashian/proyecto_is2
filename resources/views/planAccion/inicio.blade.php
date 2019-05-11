@@ -36,14 +36,14 @@
         @if(!$categoria->recomendaciones->isEmpty())
             <h1>Recomendaciones para esta categoría:</h1>
             <br>
-            <hr><br>
+            <br>
             @foreach ($recomendaciones as $recomendacion)
             <div class="card-body">
             
                 <h2><a href="/recomendacion/{{$recomendacion->id}}">{{$recomendacion->nombre}}</a></h2>
                 <div class="form-group">
                     <form action="{{ route('plan.create')}}">
-                        <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
+                        <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/><br>
                         <input type='submit' class="btn btn-secondary" value='Agregar plan de acción'/>
                     </form>
                 </div>
@@ -112,20 +112,25 @@
         @else            
             <h6><i>No hay recomendaciones asignadas para esta categoría.</i></h6> 
         @endif
-        
-    </div>
-
-    
-    <div style="height: 50px"></div>
-        <p class="lead mb-0"></p>
-    </div>   
-    @if (auth()->user()->privilegio == 1) 
+        {{-- checa si el usuario que ve esta vista es el super usuario --}}
+        @if (auth()->user()->privilegio == 1) 
         <div style="text-align:center">
             <form action="/recomendacion/create/{{$categoria->id}}">
-                <hr>
-                <input style="background-color: grey; border-color: black; color:white;" type="submit" class="btn btn-primary btn-lg" value="Agregar recomendación" />
+                
+                <input style="background-color: grey; border-color: black; color:white; position:relative;top:50%;" 
+                    type="submit" class="btn btn-primary btn-lg" 
+                    value="Agregar recomendación" />
             </form>
         </div>
-    @endif
+        @endif
+        
+    </div>
+    <div style="height: 50px"></div>
+        <p class="lead mb-0"></p>
+    </div>
+    
 </div> {{-- Fin container principal --}}
+<div style="height: 50px"></div>
+        <p class="lead mb-0"></p>
+</div>
 @endsection
