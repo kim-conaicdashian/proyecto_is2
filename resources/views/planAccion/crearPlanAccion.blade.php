@@ -8,7 +8,7 @@
 <script type="text/javascript" src="/calendarJS/source/jsCalendar.js"></script>
 <script type="text/javascript" src="/calendarJS/source/jsCalendar.lang.es.js"></script>
 
-<div class="container">
+<div class="container background-style">
   <title> Agregar plan de acción </title>
   <h2 style="margin-top:20px;"> Agregar plan de acción </h2>
   <form method="POST" action="{{route('plan.store')}}">
@@ -32,7 +32,7 @@
       <div id="my-calendar" class="jsCalendar" data-month-format="month YYYY" data-language="es"></div>
 
       <!-- Outputs -->
-      <h4 style="color:white">Fecha escogida</h4>
+      <h4>Fecha escogida</h4>
       <input id="my-input-a" name="fecha_termino"><br>
       {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
       
@@ -70,7 +70,7 @@
 
       // When the user clicks on a date
       calendar.onDateClick(function(event, date){
-        print_date.value = jsCalendar.tools.dateToString(date, 'DAY, DD MONTH YYYY', 'es');
+        print_date.value = jsCalendar.tools.dateToString(date, 'DD MONTH YYYY', 'es');
         console.log(calendar._elements);
       });
 

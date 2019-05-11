@@ -1,8 +1,19 @@
+<!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
-    <title> {{$plan->nombre}} </title>
+<style>
+    .col-centered{
+        float: none;
+        margin: 0 auto;
+    }
+    .styling-btn {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 20px;
+    }
+</style>
     <div class="container">
-        <div class="card border-0 shadow my-5 text-center" style="background-color: hsl(360, 100%, 73%, 0.5);">
+        <div class="card border-0 shadow my-5 text-center background-style">
             <div class="card h-100 text-center" style="background-color:transparent;">
                 <br>
                 <p style="font-size:12px"><i>Plan de acción seleccionado:</i></p>
@@ -47,22 +58,36 @@
                     </div>                    
                 </div>
 
+                <br>
                 <div class="container">
                     @if($plan->categoria->id == auth()->user()->categoria->id)
-                        <form action="{{ route('plan.destroy', $plan->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" style="color: black" class="btn btn-danger btn-sm btn-block" 
-                            onclick="return confirm('¿Está seguro de borrar este plan?')" >
-                            <span class="fa fa-trash"></span>
-                                Eliminar
-                            </button>
-                        </form>
-                        <a style="float:right; border-color: black" class="btn btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
-                            <span class="fa fa-edit"></span>
-                            Editar
-                        </a>                  
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 col-centered">
+                                </div>
+                                <div class="col-lg-3 col-centered">
+                                    <form action="{{ route('plan.destroy', $plan->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button style="background: linear-gradient(to bottom right, #800000 1%, #cc0000 100%);" type="submit" style="color: black" class="btn btn-danger btn-sm btn-block" 
+                                            onclick="return confirm('¿Está seguro de borrar este plan?')" >
+                                            <span class="fa fa-trash styling-btn"></span>
+                                                Eliminar
+                                            </button>
+                                </div>
+                                <div class="col-lg-3 col-centered">
+                                            <a class="btn btn-info btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
+                                                <span class="fa fa-edit styling-btn"></span>
+                                                Editar
+                                            </a>
+                                    </form>
+                                </div>
+                                <div class="col-lg-3 col-centered">
+                                </div>
+                            </div>
+                        </div>
                     @endif
+                    <br>
                     <form method="POST" action='{{route('plan.completado',$plan->id)}}'>
                         @csrf
                         @method('put')
@@ -81,7 +106,7 @@
                                 @endif
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
+                        <button style="background: linear-gradient(to bottom right, #000000 1%, #999966 101%);" type="submit" class="btn btn-sm btn-secondary">Actualizar plan</button>
                     </form>
                     <hr>    
                     @if(!$plan->evidencias->isEmpty())
@@ -90,20 +115,19 @@
                         @foreach ($evidencias as $evidencia)
                             <h4>{{$evidencia->nombre_archivo}}</h4>
                             <p><i>Archivo asociado:</i> {{$evidencia->archivo_bin}}</p>
-                                <a href="/evidencias/{{$evidencia->id}}" class="btn" style="color: black; background-color: hsl(360, 100%, 73%, 0.5); border-color: black">Ver evidencia</a>
+                                <a href="/evidencias/{{$evidencia->id}}" class="btn" style="background: linear-gradient(to bottom right, #339933 1%, #33cc33 101%);">Ver evidencia</a>
                             <br><br>                            
                         @endforeach                                                
-                        
+
                     @else                    
                         <div class="panel-heading"><h6 class="panel-title"><i>No hay evidencias para este plan de acción.</i></h6>
                         </div>
                     @endif
-                    
-                </div>
-                    
 
-            <div style="height: 100px"></div>
-                <p class="lead mb-0"></p>
+                </div>
+                <div style="height: 100px"></div>
+                    <p class="lead mb-0"></p>
+                </div>
             </div>
         </div>
     </div>

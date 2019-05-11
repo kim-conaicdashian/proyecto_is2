@@ -16,16 +16,16 @@
         margin: auto;
     }
 </style>
-<div class="container" >
+<div class="container background-style" >
     <title> Evidencias </title>
-    <h1 class="my-4" style="text-align: center">Lista de evidencias</h1>
+    <h1 class="my-4" style="text-align: center; padding-top: 10px">Lista de evidencias</h1>
     
     @if($evidencias->count() > 0)
         <div class="row" >
         @foreach($evidencias as $evidencia)
             
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100" style="background-color: hsl(360, 100%, 73%, 0.5);">
+                <div class="card h-100" style="background-color: transparent">
                     
                     @if($evidencia->tipo_archivo == "pdf")
                         <embed class="center-embed" src="archivos/pdf_preview.png" width="80px" height="80px" />
@@ -43,7 +43,7 @@
                                 <form action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" style="color: white" class="btn btn-danger btn-sm btn-block" 
+                                    <button type="submit" style="background: linear-gradient(to bottom right, #800000 1%, #cc0000 100%);" class="btn btn-danger btn-sm btn-block" 
                                         onclick="return confirm('¿Está seguro de borrar la evidencia?')" >
                                         <span class="fa fa-trash"></span>
                                         Eliminar
@@ -51,7 +51,8 @@
                                 </form>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a style="float:right; border-color: black" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
+                                <a style="float:right;" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
+                                <a style="float:right; color:white !important; border-color: black" class="btn btn-info btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
                                     <span class="fa fa-edit"></span>
                                     Editar
                                 </a>
@@ -64,7 +65,7 @@
 
         @endforeach
         </div>
-        <a href="evidencias/create" class="btn" style="float:right; color:white; border-color: black; background-color:grey">Crear nueva evidencia</a>
+        <a href="evidencias/create" class="btn" style="float:right; color:white !important; border-color: black; background: linear-gradient(to bottom right, #000000 1%, #999966 101%);">Crear nueva evidencia</a>
     @else
         <br>
         <div class="row">
@@ -72,7 +73,7 @@
                 <h4>No hay evidencias registradas.</h4>
             </div>
             <div class="col-lg-6 col-md-6">
-                <a href="evidencias/create" class="btn" style="float:right; color:white; background-color: grey; border-color: black">Crear nueva evidencia</a>
+                <a href="evidencias/create" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
             </div>
         </div>
     

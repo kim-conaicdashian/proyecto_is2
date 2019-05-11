@@ -2,6 +2,8 @@
 @extends('layouts.app')
 @section('content')
     <!-- Page Content -->
+    <div class="container background-style" >
+    <title>Crear evidencia</title>
     <div class="container" >
         <div class="card border-0 shadow my-5" style="background-color:transparent;">
           <div class="card-body p-5">
@@ -41,7 +43,7 @@
                     @endif
                     {!! $errors->first('plan','<span class="help-block" style="color:red;">:message</span>')!!}
                     <br>
-                    <button style="float: right; background-color: grey; border-color: black; color:white;" type="submit" class="btn pretty-btn">Crear evidencia</button>
+                    <button style="float: right; background-color: grey; border-color: black; color:white !important;" type="submit" class="btn pretty-btn">Crear evidencia</button>
                   </form>
           </div>
         </div>

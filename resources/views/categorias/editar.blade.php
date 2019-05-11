@@ -64,7 +64,7 @@
 @section('content')
      <!-- Page Content -->
   <title> Editar {{$categoria->nombre}} </title>
-  <div class="container">
+  <div class="container background-style">
     <div class="card border-0 shadow my-5">
       <div class="card-body p-5">
         <h1 class="font-weight-light">Editar la categoría: {{$categoria->nombre}}</h1>

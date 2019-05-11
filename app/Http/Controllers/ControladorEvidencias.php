@@ -46,7 +46,7 @@ class ControladorEvidencias extends Controller
     {
         $evidencia = new Evidencia();
         $verificados = $this->validate($request, array(
-            'nombreEvidencia' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/',
+            'nombreEvidencia' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',
             'archivo' => 'required',
             'plan'
         ));
@@ -116,7 +116,7 @@ class ControladorEvidencias extends Controller
     {   
         $evidencia = Evidencia::findOrFail($id);
         $verificados = $this->validate($request, array(
-            'nombreEvidencia' => 'required|min:5|max:100|regex:/[a-zA-Z][\s\S]*/',
+            'nombreEvidencia' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',
         ));
         
         $archivo = request()->file('archivo');

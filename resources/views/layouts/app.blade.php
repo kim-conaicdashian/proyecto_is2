@@ -11,7 +11,7 @@
     <style>
         body {
             /* https://source.unsplash.com/twukN12EN7c/1920x1080 */
-            background: url('/green_background.jpg') no-repeat center center fixed;
+            background: url('/archivos/lcc_bg.jpeg') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             background-size: cover;
@@ -19,7 +19,7 @@
         }
         @media (pointer: coarse) and (hover: none) {
             header {
-                background: url('/green_background.jpg') black no-repeat center center scroll;
+                background: url('/archivos/lcc_bg.jpeg') black no-repeat center center scroll;
             }
             header video {
                 display: none;
@@ -54,6 +54,11 @@
             background-color: hsl(360, 100%, 73%, 0.5); 
             border-color: black;
         }
+
+        .background-style {
+            background-color:hsl(192, 100%, 75%,0.8);
+        }
+        
     </style>
     
     <!-- Navigation --> 
@@ -85,6 +90,5 @@
             })
         });
     </script>
-
 </body>
 </html>
