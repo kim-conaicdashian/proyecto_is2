@@ -8,6 +8,7 @@ use App\PlanAccion;
 use App\Categoria;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
+use PDF;
 
 
 class ControladorEvidencias extends Controller

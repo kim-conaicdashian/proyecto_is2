@@ -7,6 +7,9 @@ use App\PlanAccion;
 use Illuminate\Support\Facades\Auth;
 use App\Categoria;
 use App\Recomendacion;
+use PDF;
+use PDFMerger;
+
 
 class ControladorPlanDeAccion extends Controller
 {
@@ -149,6 +152,25 @@ class ControladorPlanDeAccion extends Controller
         $plan->completado = $request->input('completado');
         $plan->save();
         return redirect()->route('categoriaAsignada');
+    }
+
+    public function planReporte($id){
+        $plan = PlanAccion::findOrFail($id);
+        $merger = \PDFMerger::init();
+
+        $pdf = PDF::loadView('planAccion/reporte', ['plan'=>$plan]);
+        $output = $pdf->output();
+        file_put_contents($plan->nombre, $output);
+        $merger->addPathToPDF( $plan->nombre , 'all', 'P');
+        foreach($plan->evidencias as $evidencia){
+            if($evidencia->tipo_archivo == "pdf"){
+                $merger->addPathToPDF(ltrim($evidencia->archivo_bin, $evidencia->archivo_bin[0]));
+            }
+        }
+        $merger->merge();
+        $merger->save("mergedpdf.pdf");
+        $archivo = "/mergedpdf.pdf";
+        return view('planAccion.verReporte', compact('archivo', 'plan'));
     }
 
     /**

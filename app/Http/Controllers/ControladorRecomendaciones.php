@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Categoria;
 use Session;
 use App\PlanAccion;
+use PDF;
+
 
 class ControladorRecomendaciones extends Controller
 {

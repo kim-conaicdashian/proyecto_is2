@@ -60,12 +60,6 @@
         }
         
     </style>
-    
-    <!-- Navigation --> 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
-        @include('includes.navbar')
-    </nav>
-
     <div class="container">
         @yield('content')
     </div>

@@ -39,4 +39,6 @@ Route::post('recomendacion/create/{idCategoria}','ControladorRecomendaciones@sto
 Route::get('editarPerfil/{academico}/edit', 'ControladorAcademicos@editPerfil')->name('academico.editPerfil')->middleware('auth');
 Route::put('updatePerfil/{academico}', 'ControladorAcademicos@updatePerfil')->name('academico.updatePerfil')->middleware('auth');
 //==============ruta para actualizar si un plan es completado o no=================
-Route::put('plan/{plan}','ControladorPlanDeAccion@planCompletado')->name('plan.completado');
+Route::put('plan/{plan}','ControladorPlanDeAccion@planCompletado')->name('plan.completado')->middleware('auth');
+//========================================================================================================================
+Route::get('plan/{plan}/reporte', 'ControladorPlanDeAccion@planReporte')->name('plan.reporte')->middleware('auth');

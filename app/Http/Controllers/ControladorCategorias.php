@@ -7,6 +7,8 @@ use App\Categoria;
 use App\Academico;
 use App\Rules\Categoria as AppCategoria;
 use App\Recomendacion;
+use PDF;
+
 
 class ControladorCategorias extends Controller
 {

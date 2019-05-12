@@ -25,7 +25,7 @@
                     </div>
                     @if(auth()->user()->privilegio == 1)
                         <div class="col-lg-3">
-                            <a style="color:white !important;" class="btn btn-success btn-md" href="#">
+                            <a style="color:white !important;" class="btn btn-success btn-md" href="{{ route('plan.reporte', $plan->id) }}">
                                 <span class="fa fa-download"></span> 
                                 Generar reporte
                             </a>
@@ -58,35 +58,35 @@
                         @endif
                     </div>                    
                 </div>
-
-                <br>
                 <div class="container">
-                    @if($plan->categoria->id == auth()->user()->categoria->id)
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-3 col-centered">
-                                </div>
-                                <div class="col-lg-3 col-centered">
-                                    <form action="{{ route('plan.destroy', $plan->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                            <button style="background: linear-gradient(to bottom right, #800000 1%, #cc0000 100%);" type="submit" style="color: black" class="btn btn-danger btn-sm btn-block" 
-                                            onclick="return confirm('¿Está seguro de borrar este plan?')" >
-                                            <span class="fa fa-trash styling-btn"></span>
-                                                Eliminar
-                                            </button>
-                                </div>
-                                <div class="col-lg-3 col-centered">
-                                            <a style="color:white !important;" class="btn btn-info btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
-                                                <span class="fa fa-edit styling-btn"></span>
-                                                Editar
-                                            </a>
-                                    </form>
-                                </div>
-                                <div class="col-lg-3 col-centered">
+                    @if(auth()->user()->categoria)
+                        @if($plan->categoria->id == auth()->user()->categoria->id)
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-3 col-centered">
+                                    </div>
+                                    <div class="col-lg-3 col-centered">
+                                        <form action="{{ route('plan.destroy', $plan->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button style="background: linear-gradient(to bottom right, #800000 1%, #cc0000 100%);" type="submit" style="color: black" class="btn btn-danger btn-sm btn-block" 
+                                                onclick="return confirm('¿Está seguro de borrar este plan?')" >
+                                                <span class="fa fa-trash styling-btn"></span>
+                                                    Eliminar
+                                                </button>
+                                    </div>
+                                    <div class="col-lg-3 col-centered">
+                                                <a style="color:white !important;" class="btn btn-info btn-sm btn-block" href="/plan/{{$plan->id}}/edit">
+                                                    <span class="fa fa-edit styling-btn"></span>
+                                                    Editar
+                                                </a>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-3 col-centered">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
                     <br>
                     <form method="POST" action='{{route('plan.completado',$plan->id)}}'>
