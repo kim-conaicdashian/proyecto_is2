@@ -138,8 +138,7 @@ class ControladorEvidencias extends Controller
         $archivo = request()->file('archivo');
         
         $evidencia->nombre_archivo = $request->input('nombreEvidencia');
-
-        // el tercer parámetro indica a qué sistema de archivos se subirá. En este caso, es a public_path()
+        
         if($request->hasFile('archivo'))
         {
             $nombreArchivo = $archivo->getClientOriginalName();
@@ -149,22 +148,31 @@ class ControladorEvidencias extends Controller
         }
         
         $plan = PlanAccion::findOrFail($request->input('plan'));
-        
+        //dd($id);
+        //dd($plan->evidencias[1]->id);
         $estaEnPlanes = false;
-        for( $i = 0; $i < count($evidencia->planes) ; $i++ )
-        {
-            if($plan->id == $evidencia->planes[$i]->id)
+        
+        // primero checamos si hay un plan asignado
+        if(count($evidencia->planes) > 0){
+            for( $i = 0; $i < count($evidencia->planes) ; $i++ )
             {
-                $estaEnPlanes = true;
-                break;
+                if($plan->id == $evidencia->planes[$i]->id)
+                {
+                    $estaEnPlanes = true;
+                    break;
+                }
+            }
+            if(!$estaEnPlanes)
+            {            
+                // primero usamos detach para desasociar con el viejo plan            
+                $evidencia->planes()->detach($evidencia->planes[0]->id);
+                $evidencia->planes()->attach($plan);    
             }
         }
-
-        if(!$estaEnPlanes)
-        {
+        else {            
             $evidencia->planes()->attach($plan);
         }
-
+            
         $evidencia->save();                                                                                                                
 
         return redirect()->route('evidencias.index');
@@ -179,6 +187,9 @@ class ControladorEvidencias extends Controller
     public function destroy($id)
     {
         $evidencia = Evidencia::findOrFail($id);
+                
+        $evidencia->planes()->detach($evidencia->planes[0]->id);
+
         $evidencia->delete();
         return redirect()->route('evidencias.index');
     }
