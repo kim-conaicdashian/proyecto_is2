@@ -5,7 +5,7 @@
     <title> Editar evidencia </title>
     <div class="container background-style">
             <div class="" style="background-color: transparent">
-              <div class="">
+                <div class="card-body p-5">
                     <h1 style="text-align:center">Editar evidencia</h1>
                     <br><br><br><br>
                     <form method="POST" action='{{route('evidencias.update', $evidencia->id)}}' enctype="multipart/form-data">
@@ -57,8 +57,8 @@
                             <span class="fa fa-edit"></span>
                             Editar evidencia
                         </button>
-                      </form>
-              </div>
+                    </form>
+                </div>
             </div>
           </div>
 @endsection
