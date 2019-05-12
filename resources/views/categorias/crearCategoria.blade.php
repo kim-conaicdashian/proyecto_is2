@@ -63,8 +63,8 @@
 @section('content')
       <!-- Page Content -->
     <title> Crear categoría </title>
-  <div class="container background-style">
-      <div class="card border-0 shadow my-5">
+  <div class="container ">
+      <div class="card border-0 shadow my-5 background-style">
         <div class="card-body p-5">
             <h1>Crear categoría</h1>
           <form method="POST" action='{{route('categorias.store')}}'>
