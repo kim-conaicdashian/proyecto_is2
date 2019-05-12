@@ -20,7 +20,6 @@ class ControladorEvidencias extends Controller
      */
     public function index()
     {
-
         $evidencias = Evidencia::all();
         return view('evidencias.lista', compact('evidencias'));
     }
@@ -33,7 +32,15 @@ class ControladorEvidencias extends Controller
     public function create()
     {
 
-        $planes = PlanAccion::all();
+        $planesTodos = PlanAccion::all();
+        $planes = array();
+        for( $i = 0 ; $i < count($planesTodos) ; $i++ )
+        {
+            if(auth()->user()->id == $planesTodos[$i]->categoria->academico_id){
+                array_push($planes, $planesTodos[$i]);
+            }
+        }
+        
         return view('evidencias.crear', compact('planes'));
     }
 
@@ -48,7 +55,7 @@ class ControladorEvidencias extends Controller
         $evidencia = new Evidencia();
         $verificados = $this->validate($request, array(
             'nombreEvidencia' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',
-            'archivo' => 'required',
+            'archivo' => 'required | mimes:pdf,jpg,jpeg,png,bmp,tiff | max:4096',
             'plan'
         ));
 
@@ -102,7 +109,15 @@ class ControladorEvidencias extends Controller
     {
 
         $evidencia= Evidencia::findOrFail($id);
-        $planes= PlanAccion::all();
+
+        $planesTodos = PlanAccion::all();
+        $planes = array();
+        for( $i = 0 ; $i < count($planesTodos) ; $i++ )
+        {
+            if(auth()->user()->id == $planesTodos[$i]->categoria->academico_id){
+                array_push($planes, $planesTodos[$i]);
+            }
+        }
         return view('evidencias.editar', compact('evidencia','planes'));
     }
 

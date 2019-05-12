@@ -26,7 +26,7 @@
                     <br><br>
 
                     <h4>Asignar a un plan de acción</h4>
-                    @if($planes->count() > 0)
+                    @if(count($planes) > 0)
                         <div class="panel panel-primary" id="result_panel">
                             <div class="panel-heading"></div>
                             
