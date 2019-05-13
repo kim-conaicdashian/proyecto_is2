@@ -15,6 +15,9 @@ class Administrador
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(auth()->user()->privilegio == 1){
+            return $next($request);
+        }
+        return redirect('/');
     }
 }

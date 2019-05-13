@@ -6,6 +6,7 @@ use Closure;
 use Auth;
 use Session;
 use App\Categoria;
+use App\Academico;
 
 class PermisoUsuario
 {
@@ -18,13 +19,16 @@ class PermisoUsuario
      */
     public function handle($request, Closure $next){
         $academico_id = auth()->user()->id;
-        $academico_categoria_id = Categoria::where('academico_id', $academico_id)->get();
-        //dd($academico_categoria_id);
-        if(sizeof($academico_categoria_id) == 0 || auth()->user()->privilegio == 1){
+        $admin = Academico::find($academico_id);
+        $academico_categoria_id = Categoria::where('academico_id', $academico_id)->get()->last();
+        //dd($admin->privilegio);
+        if(!$academico_categoria_id && $admin->privilegio != 1  ){
+            //dd("1");
             Auth::logout();
-            Session::flash('message','No se te ha asignado una categoria. Por favor comunicate con el Cordinador');
+            Session::flash('message','No se te ha asignado una categoria. Por favor comunicate con el Coordinador');
             return redirect('login');
         }
+
         return $next($request);
     }
 }

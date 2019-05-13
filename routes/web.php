@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'vistasController@home')->name('home')->middleware('auth');
+Route::get('/', 'vistasController@home')->name('home')->middleware('permiso');
 
 Route::get('login', 'Auth\LoginController@show')->name('login')->middleware('guest');
 Route::post('login', 'Auth\LoginController@login');
@@ -20,20 +20,20 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::resource('register', 'Auth\RegisterController')->middleware('guest');
 
 //======================================RUTAS PARA EL CRUD DE CATEGORIAS========================================================
-Route::resource('categorias','ControladorCategorias')->middleware('auth');
+Route::resource('categorias','ControladorCategorias')->middleware('admin');
 //======================================RUTAS PARA EL CRUD DE PLAN DE ACCION========================================================
 Route::resource('plan','ControladorPlanDeAccion')->middleware('auth');
 //==============================================================================================================================
 Route::get('categoriaAsignada','ControladorPlanDeAccion@listaPlanes')->name('categoriaAsignada')->middleware('auth');
 //==============================================================================================================================
-Route::resource('recomendacion','ControladorRecomendaciones')->middleware('auth');
+Route::resource('recomendacion','ControladorRecomendaciones')->middleware('admin');
 //==============================================================================================================================
 Route::resource('evidencias','ControladorEvidencias')->middleware('auth');
 //===============================================================================================================================
-Route::resource('academicos','ControladorAcademicos')->middleware('auth');
+Route::resource('academicos','ControladorAcademicos')->middleware('admin');
 
 //========================================================================================================================
-Route::get('recomendacion/create/{idCategoria}','ControladorRecomendaciones@create')->name('recomendacion.create2')->middleware('auth');
+Route::get('recomendacion/create/{idCategoria}','ControladorRecomendaciones@create')->name('recomendacion.create2')->middleware('admin');
 Route::post('recomendacion/create/{idCategoria}','ControladorRecomendaciones@store')->name('recomendacion.store2');
 
 Route::get('editarPerfil/{academico}/edit', 'ControladorAcademicos@editPerfil')->name('academico.editPerfil')->middleware('auth');
