@@ -32,7 +32,7 @@
 
             <!-- Outputs -->
             <h4>Fecha escogida</h4>
-            <input id="my-input-a" name="fecha_termino" value="{{$plan->fecha_termino}}"><br>
+            <input id="my-input-a" name="fecha_termino" value="{{$plan->fecha_termino}}" required><br>
             {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
           <div class="form-group">
             <label for="criterioHecho" style="font-size: 24px;" name="criterioHecho">Criterio de hecho (opcional)</label>
