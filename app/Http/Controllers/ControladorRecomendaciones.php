@@ -118,6 +118,34 @@ class ControladorRecomendaciones extends Controller
         }
     }
 
+    public function recomendacionReporte($id){
+        $recomendacion = Recomendacion::findOrFail($id);
+        $merger = \PDFMerger::init();
+
+        $planesCompletados = PlanAccion::where('completado', 1)->where('recomendacion_id', $recomendacion->id)->get();
+        $planesProgreso = PlanAccion::where('completado', 0)->where('recomendacion_id', $recomendacion->id)->get();
+
+        $pdf = PDF::loadView('recomendaciones/reporte', ['recomendacion'=>$recomendacion, 'planesCompletados'=>$planesCompletados, 'planesProgreso'=>$planesProgreso]);
+        $output = $pdf->output();
+        file_put_contents($recomendacion->nombre, $output);
+        $merger->addPathToPDF( $recomendacion->nombre , 'all', 'P');
+        foreach($recomendacion->planes as $plan){
+            $pdf = PDF::loadView('planAccion/reporte', ['plan'=>$plan]);
+            $output = $pdf->output();
+            file_put_contents($plan->nombre, $output);
+            $merger->addPathToPDF( $plan->nombre , 'all', 'P');
+            foreach($plan->evidencias as $evidencia){
+                if($evidencia->tipo_archivo == "pdf"){
+                    $merger->addPathToPDF(ltrim($evidencia->archivo_bin, $evidencia->archivo_bin[0]));
+                }
+            }
+        }
+        $merger->merge();
+        $merger->save("mergedpdf.pdf");
+        $archivo = "/mergedpdf.pdf";
+        return view('recomendaciones.verReporte', compact('archivo', 'recomendacion'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *

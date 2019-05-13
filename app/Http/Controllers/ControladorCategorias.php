@@ -8,6 +8,7 @@ use App\Academico;
 use App\Rules\Categoria as AppCategoria;
 use App\Recomendacion;
 use PDF;
+use App\PlanAccion;
 
 
 class ControladorCategorias extends Controller
@@ -150,6 +151,38 @@ class ControladorCategorias extends Controller
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
             return back()->withInput(request(['nombreCategoria']));
         }
+    }
+
+    public function categoriaReporte($id){
+        $categoria = Categoria::findOrFail($id);
+        $merger = \PDFMerger::init();
+        $pdf = PDF::loadView('categorias/reporte', ['categoria'=>$categoria]);
+        $output = $pdf->output();
+        file_put_contents($categoria->nombre, $output);
+        $merger->addPathToPDF($categoria->nombre, 'all', 'P');
+        foreach($categoria->recomendaciones as $recomendacion){
+            $planesCompletados = PlanAccion::where('completado', 1)->where('recomendacion_id', $recomendacion->id)->get();
+            $planesProgreso = PlanAccion::where('completado', 0)->where('recomendacion_id', $recomendacion->id)->get();
+            $pdf = PDF::loadView('recomendaciones/reporte', ['recomendacion'=>$recomendacion, 'planesCompletados'=>$planesCompletados, 'planesProgreso'=>$planesProgreso]);
+            $output = $pdf->output();
+            file_put_contents($recomendacion->nombre, $output);
+            $merger->addPathToPDF( $recomendacion->nombre , 'all', 'P');
+            foreach($recomendacion->planes as $plan){
+                $pdf = PDF::loadView('planAccion/reporte', ['plan'=>$plan]);
+                $output = $pdf->output();
+                file_put_contents($plan->nombre, $output);
+                $merger->addPathToPDF( $plan->nombre , 'all', 'P');
+                foreach($plan->evidencias as $evidencia){
+                    if($evidencia->tipo_archivo == "pdf"){
+                        $merger->addPathToPDF(ltrim($evidencia->archivo_bin, $evidencia->archivo_bin[0]));
+                    }
+                }
+            }
+        }
+        $merger->merge();
+        $merger->save("mergedpdf.pdf");
+        $archivo = "/mergedpdf.pdf";
+        return view('categorias.verReporte', compact('archivo', 'categoria'));
     }
 
     /**
