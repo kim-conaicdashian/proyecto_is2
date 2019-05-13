@@ -31,6 +31,7 @@
         /* Link to your background image using in the property below! */
         background: scroll center url('/Imagenes/logo_lcc.jpg');
         background-size: contain;
+        background-repeat: no-repeat;
         }
 
         .card-signin .card-body {

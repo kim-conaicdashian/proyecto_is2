@@ -56,7 +56,7 @@ class ControladorEvidencias extends Controller
         $verificados = $this->validate($request, array(
             'nombreEvidencia' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',
             'archivo' => 'required | mimes:pdf,jpg,jpeg,png,bmp,tiff | max:30000',
-            'plan'
+            'plan' => 'required'
         ));
 
         if($verificados)

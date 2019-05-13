@@ -23,7 +23,7 @@
             @if(isset($categoria->academico))
                 <h3>Académico encargado de esta categoría: {{$categoria->academico->nombre}}</h3>                
             @else
-                <h6><i>No hay ningún académico asignado a esta categoria.</i></h6>
+                <h6><i>No hay ningún académico asignado a esta categoría.</i></h6>
             @endif
         </div>
         <br>

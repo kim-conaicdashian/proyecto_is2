@@ -86,7 +86,7 @@
                     <div class="panel panel-primary" id="result_panel">
                         {{-- checo si existe un academico con isset($var), esto regresa un booleano --}}
                         @if(isset($academicoAsignado))
-                          <div class="panel-heading"><h3 class="panel-title">Académico asignado a esta categoria: {{$academicoAsignado->nombre}}</h3>
+                          <div class="panel-heading"><h3 class="panel-title">Académico asignado a esta categoría: {{$academicoAsignado->nombre}}</h3>
                         @else
                         <div class="panel-heading"><h3 class="panel-title">Esta categoría por el momento no tiene ningún académico asignado.</h3>
                         @endif
