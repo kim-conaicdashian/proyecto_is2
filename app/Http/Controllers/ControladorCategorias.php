@@ -13,6 +13,10 @@ use App\PlanAccion;
 
 class ControladorCategorias extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin',['except'=>'show' ]);
+    }
     
     /**
      * Funcion que se encarga de desplegar 5 categorias y despues paginarlas en la vista listaCategorias.
