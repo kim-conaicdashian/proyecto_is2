@@ -20,7 +20,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::resource('register', 'Auth\RegisterController')->middleware('guest');
 
 //======================================RUTAS PARA EL CRUD DE CATEGORIAS========================================================
-Route::resource('categorias','ControladorCategorias')->middleware('admin');
+Route::resource('categorias','ControladorCategorias');
 //======================================RUTAS PARA EL CRUD DE PLAN DE ACCION========================================================
 Route::resource('plan','ControladorPlanDeAccion')->middleware('auth');
 //==============================================================================================================================
