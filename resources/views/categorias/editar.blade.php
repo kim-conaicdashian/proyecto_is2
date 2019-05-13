@@ -82,7 +82,7 @@
                   {!! $errors->first('descripcionCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
                 </div>
                
-                @if($academicos->count() > 0)
+                @if($academicoSinCategoria->count() > 0)
                     <div class="panel panel-primary" id="result_panel">
                         {{-- checo si existe un academico con isset($var), esto regresa un booleano --}}
                         @if(isset($academicoAsignado))
@@ -97,7 +97,7 @@
                         <div class="panel-body">
                             <select class="form-control" name="academicoID" id="card_type">
                                 <option id="card_id"  value="NULL">Sin asignar</option>
-                                @foreach ($academicos as $academico)
+                                @foreach ($academicoSinCategoria as $academico)
                                   <option id="card_id"  value="{{$academico->id}}">{{$academico->nombre}}</option>
                                 @endforeach
                             </select>
@@ -105,8 +105,8 @@
                     </div>
                     
                     @else 
-                        <p>No hay académicos registrados.</p>
-                        <input class="hidden" value='NULL'>
+                      <p><i>No hay académicos registrados para asignar a esta categoría </i>.</p>
+                        <input type="hidden" value='NULL'>
                     @endif
                 <button type="submit" style=" border-color: black; color:white; position:relative;top:10px"
                    class="btn btn-info ">
