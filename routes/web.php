@@ -42,3 +42,10 @@ Route::put('updatePerfil/{academico}', 'ControladorAcademicos@updatePerfil')->na
 Route::put('plan/{plan}','ControladorPlanDeAccion@planCompletado')->name('plan.completado')->middleware('auth');
 //========================================================================================================================
 Route::get('plan/{plan}/reporte', 'ControladorPlanDeAccion@planReporte')->name('plan.reporte')->middleware('auth');
+//========================================================================================================================
+Route::get('recomendacion/{recomendacion}/reporte', 'ControladorRecomendaciones@recomendacionReporte')->name('recomendacion.reporte')->middleware('auth');
+//========================================================================================================================
+Route::get('categoria/{categoria}/reporte', 'ControladorCategorias@categoriaReporte')->name('categoria.reporte')->middleware('auth');
+//========================================================================================================================
+
+

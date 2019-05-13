@@ -13,7 +13,7 @@
                     </div>
                     @if(auth()->user()->privilegio == 1)
                         <div class="col-lg-3">
-                            <a class="btn btn-success btn-md" href="#" style="color:white !important;">
+                            <a class="btn btn-success btn-md" href="{{ route('recomendacion.reporte', $recomendacion->id) }}" style="color:white !important;">
                                 <span class="fa fa-download"></span> 
                                 Generar reporte
                             </a>
