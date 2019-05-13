@@ -26,7 +26,7 @@ class ControladorCategorias extends Controller
     public function index()
     {
         //con la funcion with() encuentro las categorias relacionadas con la tabla academico.
-        $categorias = Categoria::with('academico')->paginate(5); 
+        $categorias = Categoria::with('academico')->paginate(20); 
         //regreso la vista con la variable como arreglo
         return view('categorias.listaCategorias')->with(['categorias'=>$categorias]);
     }
@@ -38,8 +38,12 @@ class ControladorCategorias extends Controller
      */
     public function create()
     {
-        $academicos = Academico::all();
-        return view('categorias.crearCategoria',compact('academicos'));
+        $academicos= Academico::all();
+        // dd($academicos);
+        // $academicoConCategoria = Academico::has('categoria')->get();
+        $academicoSinCategoria = Academico::doesnthave('categoria')->get();
+        
+        return view('categorias.crearCategoria',compact('academicoSinCategoria'));
     }
 
     /**
@@ -108,15 +112,15 @@ class ControladorCategorias extends Controller
     public function edit($id)
     {
         $categoria= Categoria::findOrFail($id);
-        $academicos= Academico::all();
+        $academicoSinCategoria = Academico::doesnthave('categoria')->get();
         //checa si la categoria tiene un academico o no
         if($categoria->academico == null){
-            return view('categorias.editar',compact('categoria','academicos'));
+            return view('categorias.editar',compact('categoria','academicoSinCategoria'));
         }else {
             $academicoID= $categoria->academico->id;
             $academicoAsignado= Academico::findOrFail($academicoID); //academico de la categoria a editar
              // $academicos= Academico::all();
-            return view('categorias.editar',compact('categoria','academicos','academicoAsignado'));
+            return view('categorias.editar',compact('categoria','academicoSinCategoria','academicoAsignado'));
         }
     }
 
