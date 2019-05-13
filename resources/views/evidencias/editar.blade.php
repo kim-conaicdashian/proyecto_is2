@@ -20,7 +20,7 @@
                         <div class="form-group">                            
                             <h4>Cambiar archivo de la evidencia</h4>
                             <input class="btn" type="file" name="archivo">
-
+                            {!! $errors->first('archivo','<span class="help-block" style="color:red;">:message</span>')!!}
                             <br><br>
                             <h6>Archivo actual:</h6>
                             <p>{{$evidencia->archivo_bin}}</p>
