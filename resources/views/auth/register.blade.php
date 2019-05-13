@@ -26,10 +26,10 @@
         }
 
         .card-signin .card-img-left {
-        width: 45%;
+        
         /* Link to your background image using in the property below! */
-        background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-        background-size: cover;
+        background: scroll center url('/Imagenes/logo_lcc.jpg');
+        background-size: 100%;
         }
 
         .card-signin .card-body {
@@ -117,7 +117,7 @@
             <div class="col-lg-10 col-xl-9 mx-auto">
                 <div class="card card-signin flex-row my-5">
                     <div class="card-img-left d-none d-md-flex">
-                        <!-- Background image for card set in CSS! -->
+                        
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ __('Regístrate') }}</h5>

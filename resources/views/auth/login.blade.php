@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 @extends('auth.layouts.app')
+
 @section('content')
     <style>
         :root {
@@ -28,8 +29,8 @@
         .card-signin .card-img-left {
         width: 45%;
         /* Link to your background image using in the property below! */
-        background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-        background-size: cover;
+        background: scroll center url('/Imagenes/logo_lcc.jpg');
+        background-size: contain;
         }
 
         .card-signin .card-body {
@@ -119,6 +120,10 @@
         .btn-facebook {
         color: white;
         background-color: #3b5998;
+        }
+
+        .background-style {
+            background-color:hsl(192, 100%, 75%,0.8);
         }
     </style>
     <title> Iniciar sesión </title>
