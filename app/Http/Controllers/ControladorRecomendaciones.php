@@ -161,6 +161,7 @@ class ControladorRecomendaciones extends Controller
     public function destroy($id)
     {
       $recomendacion= Recomendacion::findOrFail($id);
+      $recomendacion->planes()->delete(); 
       $recomendacion-> delete();
       Session::flash('message_borrar','Se ha eliminado la recomendación con éxito.');
       return redirect()->back();
