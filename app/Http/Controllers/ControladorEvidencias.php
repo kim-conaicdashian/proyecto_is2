@@ -202,6 +202,7 @@ class ControladorEvidencias extends Controller
     public function destroy($id)
     {
         $evidencia = Evidencia::findOrFail($id);
+        
         if(count($evidencia->planes) > 0){
             $evidencia->planes()->detach($evidencia->planes[0]->id);
         }
