@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <title>{{$categoria->nombre}}</title>    
+    {{-- <title>{{$categoria->nombre}}</title>    
     <div class="card border-0 shadow my-5 text-center background-style">
         <br>
         <p style="font-size:12px"><i>Categoría seleccionada:</i></p>
@@ -71,8 +71,6 @@
                                 </button>
                                 <br>
                             </form>
-                            {{-- <a class="btn btn-info btn-sm" href="/categorias/create/{{$categoria->id}}">Agregar publicacion.</a> --}}
-                            {{-- <a class="btn btn-info btn-sm" href="{{route('categorias.show',$categoria->id)}}">Produccion academica</a> --}}
                         </div>                    
                     @endif
                     </div>
@@ -99,6 +97,97 @@
         <div style="height: 100px"></div>
             <p class="lead mb-0"></p>
         </div>
+    </div> --}}
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12">
+            <h1>Categoría: {{$categoria->nombre}}</h1>
+        </div>
     </div>
+    <hr>
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12">
+            <h3>Descripción</h3>
+            <p>{{$categoria->descripcion}}</p>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="recomendaciones-tab" data-toggle="tab" href="#recomendaciones" role="tab" aria-controls="recomendaciones" aria-selected="true">Recomendaciones</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="planes-tab" data-toggle="tab" href="#planes" role="tab" aria-controls="planes" aria-selected="false">Planes de acción</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="recomendaciones" role="tabpanel" aria-labelledby="recomendaciones-tab">
+            @if(count($categoria->recomendaciones) > 0)
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                        <th>Recomendación</th>
+                        <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($categoria->recomendaciones as $recomendacion)
+                            <tr>
+                                <td>{{$recomendacion->nombre}}</td>
+                                <td>{{$recomendacion->descripcion}}</td>
+                            <tr>        
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p>No hay recomendaciones para esta categoría.</p>
+            @endif
+        </div>
+        <div class="tab-pane fade" id="planes" role="tabpanel" aria-labelledby="planes-tab">
+            @if(count($planes) > 0)
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                        <th>Plan de acción</th>
+                        <th>Pertenece a la recomendación</th>                        
+                        <th>Completado</th>
+                        <th>Fecha de término</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($planes as $plan)                                                        
+                            <tr>
+                                <td>{{$plan->recomendacion->nombre}}</td>
+                                <td>{{$plan->nombre}}</td>
+                                @if($plan->completado == 0)                            
+                                    <td>En proceso</td>
+                                @else
+                                    <td>Completado</td>
+                                @endif
+                                <td>{{$plan->fecha_termino}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p>No hay planes para esta categoría.</p>
+            @endif
+    
+        </div>
+    </div>
+    
+    <hr>
+
+    @if (auth()->user()->privilegio == 1) 
+        <div class="row">
+            <div class="col-lg-4 col-md-3">        
+            </div>
+            <div style="text-align:center" class="col-lg-4 col-md-3">
+                <form action="/recomendacion/create/{{$categoria->id}}" style="position:relative; top:50%;">
+                    <input type="submit" class="btn btn-primary" value="Agregar recomendación" />
+                </form>
+            </div>
+        </div>
+    @endif
+
 </div>
 @endsection
