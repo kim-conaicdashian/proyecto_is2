@@ -17,8 +17,10 @@ class vistasController extends Controller{
         //$categoria_academico = Categoria::where('academico_id', $academico_id)->get();
         //dd($categoria->nombre);
         // dd($categoria_academico->academico->nombre);
-        if(auth()->user()->privilegio == 0) return view('home', compact('academico','categorias'));
-        else return view('panelAdministrador.inicioAdministrador', compact('academico','categorias'));
+        return view('home', compact('academico','categorias'));
     }
 
+    public function panelAdmin(){
+        return view('panelAdministrador.inicioAdministrador');
+    }
 }
