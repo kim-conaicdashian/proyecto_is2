@@ -23,4 +23,8 @@ class vistasController extends Controller{
     public function panelAdmin(){
         return view('panelAdministrador.inicioAdministrador');
     }
+
+    public function recomendacionesAdmin(){
+        return view('panelAdministrador.recomendacionesAdministrador');
+    }
 }

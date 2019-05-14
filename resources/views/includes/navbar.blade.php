@@ -26,7 +26,7 @@
                     <a class="dropdown-item" style = "color:black !important;" href="{{ route('academico.editPerfil', auth()->user()->id) }}">Editar Perfil</a>
                     @if (auth()->user()->privilegio == 1)
 
-                            <a style="color:black !important;" class="dropdown-item" id="categorias" href="/panelAdminsitrador" disabled="">Panel</a>
+                            <a style="color:black !important;" class="dropdown-item" id="categorias" href="/panelAdministrador" disabled="">Panel</a>
                             <a style="color:black !important;" class="dropdown-item" href="/academicos">Manejo de Académicos</a>
 
                     @endif

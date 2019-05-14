@@ -47,6 +47,6 @@ Route::get('recomendacion/{recomendacion}/reporte', 'ControladorRecomendaciones@
 //========================================================================================================================
 Route::get('categoria/{categoria}/reporte', 'ControladorCategorias@categoriaReporte')->name('categoria.reporte')->middleware('auth');
 //========================================================================================================================
-Route::get('panelAdminsitrador', 'vistasController@panelAdmin')->name('admin.home');
-
+Route::get('panelAdministrador', 'vistasController@panelAdmin')->name('admin.home');
+Route::get('recomendacionesAdministrador', 'vistasController@recomendacionesAdmin')->name('admin.recomendaciones');
 
