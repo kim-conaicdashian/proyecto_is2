@@ -48,16 +48,16 @@
 
 
     <!-- Sidebar -->
-    <div class="navbar-default sidebar" role="navigation">
+    <div style="margin-top: 1px;" class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
 
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
                         <div class="input-group custom-search-form">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-xs btn-block" type="button">
+                                    <a href="/recomendacionesAdministrador" style="background-color:#286090 !important;" class="btn btn-primary btn-xs btn-block" type="button">
                                         Recomendaciones
-                                    </button>
+                                    </a>
                                 </span>
                             
                         </div> 
@@ -65,9 +65,9 @@
                         <div class="input-group custom-search-form">
     
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-xs btn-block" type="button">
+                                    <a href="panelAdministrador" style="background-color:#286090 !important;" class="btn btn-primary btn-xs btn-block" type="button">
                                         Planes de acción
-                                    </button>
+                                    </a>
                                 </span>
                         </div>
                 </li>
@@ -79,7 +79,7 @@
                     </li>
                     @foreach ($categorias as $categoria)
                         <li>
-                            <a href="{{route('categorias.show',$categoria->id)}}" class="active"><i class="fa fa-dashboard fa-fw"></i> {{$categoria->nombre}}</a>
+                            <a href="{{route('categorias.show',$categoria->id)}}" class="active"><i class="fa fa fa-book fa-fw"></i> {{$categoria->nombre}}</a>
                         </li>
                     @endforeach
                 @else

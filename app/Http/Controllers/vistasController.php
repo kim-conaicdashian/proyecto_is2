@@ -32,6 +32,7 @@ class vistasController extends Controller{
 
     public function recomendacionesAdmin(){
         $recomendaciones = Recomendacion::orderBy('categoria_id')->get();
-        return view('panelAdministrador.recomendacionesAdministrador',compact('recomendaciones'));
+        $categorias = Categoria::all();
+        return view('panelAdministrador.recomendacionesAdministrador',compact('recomendaciones','categorias'));
     }
 }
