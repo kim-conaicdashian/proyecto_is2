@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\Academico;
+use App\Recomendacion;
+use App\PlanAccion;
 
 class vistasController extends Controller{
 
@@ -21,7 +23,10 @@ class vistasController extends Controller{
     }
 
     public function panelAdmin(){
-        return view('panelAdministrador.inicioAdministrador');
+        $categorias = Categoria::all();
+        $recomendaciones = Recomendacion::all();
+        $planes = PlanAccion::all();
+        return view('panelAdministrador.inicioAdministrador',compact('categorias','recomendaciones','planes'));
     }
 
     public function recomendacionesAdmin(){
