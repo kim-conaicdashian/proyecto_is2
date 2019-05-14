@@ -26,17 +26,20 @@
                         <th>Completado</th>
                         <th>Generar reporte del plan</th>
                     </tr>
-                    @foreach ($categorias as $categoria)
+                    @foreach ($planes as $plan)
                         <tr>
-                            <td>{{$categoria->nombre}}</td>
+                            <td>
+                                {{$plan->recomendacion->categoria->nombre}}
+                            </td>
+
                             @foreach ($recomendaciones as $recomendacion)
                                 <td>{{$recomendacion->nombre}}</td>
                             @endforeach
                             
-                            @foreach ($planes as $plan)
-                                <td><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
-                                <td>{{$plan->fecha_termino}}</td>
-                            @endforeach
+                            
+                            <td><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
+                            <td>{{$plan->fecha_termino}}</td>
+                            
                             @if ($plan->completdo== 1)
                                 <td>
                                     <p style="text-align:center">Sí</p>
@@ -49,7 +52,7 @@
                             
                             <td>
                                 <div class="col-lg-3 center-block" style="position: relative;text-align:center;left: 30%;">
-                                    <a style="color:white !important;" class="btn btn-success btn-sm" href="{{ route('categoria.reporte', $categoria->id) }}">
+                                    <a style="color:white !important;" class="btn btn-success btn-sm" href="{{ route('categoria.reporte', $plan->recomendacion->categoria->id) }}">
                                         <span class="fa fa-download"></span> 
                                         
                                     </a>

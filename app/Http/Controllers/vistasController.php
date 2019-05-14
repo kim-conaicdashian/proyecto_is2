@@ -24,6 +24,7 @@ class vistasController extends Controller{
 
     public function panelAdmin(){
         $categorias = Categoria::all();
+        
         $recomendaciones = Recomendacion::all();
         $planes = PlanAccion::all();
         return view('panelAdministrador.inicioAdministrador',compact('categorias','recomendaciones','planes'));
