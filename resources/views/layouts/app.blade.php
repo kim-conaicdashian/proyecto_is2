@@ -72,23 +72,5 @@
     <script type="text/javascript" src="/js/bootstrap.js"></script>
     <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="/js/bootstrap.bundle.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var URLactual = window.location.href;
-            if(URLactual == "http://proyecto_is2.test/categorias/categorias"){
-                window.location="http://proyecto_is2.test/categorias";
-            }
-            console.log(URLactual);
-        });
-        $(document).ready(function(){
-            $("#categorias").change(function(){
-                if(URLactual == "http://proyecto_is2.test/categorias" || URLactual == "http://proyecto_is2.test/categorias/create" || URLactual == "http://proyecto_is2.test/categorias/edit") {
-                $("#categorias").prop("disabled", true);
-                }else{
-                $("#categorias").prop("disabled", false);
-                }
-            })
-        });
-    </script>
 </body>
 </html>
