@@ -55,8 +55,8 @@ class ControladorEvidencias extends Controller
         $evidencia = new Evidencia();
         $verificados = $this->validate($request, array(
             'nombreEvidencia' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',
-            'archivo' => 'required | mimes:pdf,jpg,jpeg,png,bmp,tiff | max:4096',
-            'plan'
+            'archivo' => 'required | mimes:pdf,jpg,jpeg,png,bmp,tiff | max:30000',
+            'plan' => 'required'
         ));
 
         if($verificados)
@@ -131,11 +131,26 @@ class ControladorEvidencias extends Controller
     public function update(Request $request, $id)
     {   
         $evidencia = Evidencia::findOrFail($id);
-        $verificados = $this->validate($request, array(
-            'nombreEvidencia' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',
-        ));
+
+        //dd($request->file('archivo'));
+        if($request->file('archivo'))
+        {
+            
+            $verificados = $this->validate($request, array(
+                'nombreEvidencia' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',
+                'archivo' => 'required | mimes:pdf,jpg,jpeg,png,bmp,tiff | max:30000'
+            ));
+        }
+        else {
+
+            $verificados = $this->validate($request, array(
+                'nombreEvidencia' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',                
+                
+            ));
+        }
         
         $archivo = request()->file('archivo');
+        
         
         $evidencia->nombre_archivo = $request->input('nombreEvidencia');
         
@@ -187,9 +202,10 @@ class ControladorEvidencias extends Controller
     public function destroy($id)
     {
         $evidencia = Evidencia::findOrFail($id);
-                
-        $evidencia->planes()->detach($evidencia->planes[0]->id);
-
+        if(count($evidencia->planes) > 0){
+            $evidencia->planes()->detach($evidencia->planes[0]->id);
+        }
+        
         $evidencia->delete();
         return redirect()->route('evidencias.index');
     }

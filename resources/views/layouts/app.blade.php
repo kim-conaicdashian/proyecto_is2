@@ -11,7 +11,8 @@
     <style>
         body {
             /* https://source.unsplash.com/twukN12EN7c/1920x1080 */
-            background: url('/Imagenes/lcc_bg.jpeg') no-repeat center center fixed;
+            /* background: url('/Imagenes/lcc_bg.jpeg') no-repeat center center fixed; */
+            background: linear-gradient(to right, #00E633, #33AEFF);
             -webkit-background-size: cover;
             -moz-background-size: cover;
             background-size: cover;

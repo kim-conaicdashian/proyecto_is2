@@ -182,7 +182,10 @@ class ControladorPlanDeAccion extends Controller
     public function destroy($id)
     {
         $plan= PlanAccion::findOrFail($id);
+        $plan->evidencias()->detach();
+
         $plan->delete();
         return redirect()->route('categoriaAsignada');
     }
 }
+ 

@@ -25,7 +25,7 @@ class PermisoUsuario
         if(!$academico_categoria_id && $admin->privilegio != 1  ){
             //dd("1");
             Auth::logout();
-            Session::flash('message','No se te ha asignado una categoria. Por favor comunicate con el Coordinador');
+            Session::flash('message','No se te ha asignado una categoría. Por favor comunícate con el coordinador');
             return redirect('login');
         }
 

@@ -13,6 +13,12 @@ use PDF;
 
 class ControladorRecomendaciones extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin',['except'=>'show' ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -155,6 +161,7 @@ class ControladorRecomendaciones extends Controller
     public function destroy($id)
     {
       $recomendacion= Recomendacion::findOrFail($id);
+      $recomendacion->planes()->delete(); 
       $recomendacion-> delete();
       Session::flash('message_borrar','Se ha eliminado la recomendación con éxito.');
       return redirect()->back();

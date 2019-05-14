@@ -80,24 +80,27 @@
                 {!! $errors->first('descripcionCategoria','<span class="help-block" style="color:red;">:message</span>')!!}
               </div>
               
-              @if($academicos->count() > 0)
+              @if($academicoSinCategoria->count() > 0)
                   <div class="panel panel-primary" id="result_panel">
                       <div class="panel-heading"><h3 class="panel-title">Lista de académicos</h3>
                       </div>
                       <div class="panel-body">
                           <select class="form-control" name="academicoID" id="card_type">
                               <option id="card_id"  value="NULL">Sin asignar</option>
-                              @foreach ($academicos as $academico)
+                              @foreach ($academicoSinCategoria as $academico)
                                   <option id="card_id"  value="{{$academico->id}}">{{$academico->nombre}}</option>
                               @endforeach
                           </select>
                       </div>
                   </div>
                   @else 
-                      <p>No hay académicos registrados.</p>
-                      <input class='hidden' name='academicoID' value='NULL'>
+                  @php
+                      
+                  @endphp
+                      <p><i>No hay académicos registrados para asignar a esta categoría </i>.</p>
+                      <input type='hidden' name='academicoID' value='NULL'>
                   @endif
-              <button type="submit" class="btn pretty-btn" style="float: right; background-color:grey; color:white">Crear categoria</button>
+              <button type="submit" class="btn pretty-btn" style="float: right; background-color:grey; color:white">Crear categoría</button>
             </form>                      
         </div>
     </div>

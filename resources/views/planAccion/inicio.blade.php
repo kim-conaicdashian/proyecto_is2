@@ -12,7 +12,7 @@
             </div>
             @if(auth()->user()->privilegio == 1)
                 <div class="col-lg-3">
-                    <a style="color:white !important;" class="btn btn-success btn-md" href="#">
+                    <a style="color:white !important;" class="btn btn-success btn-md" href="{{ route('categoria.reporte', $categoria->id) }}">
                         <span class="fa fa-download"></span> 
                         Generar reporte
                     </a>
@@ -22,7 +22,7 @@
         @if(isset($categoria->academico))
             <h6>Encargado de la categoría: <i>{{$categoria->academico->nombre}}</i> </h6>
         @else
-            <h6><i>No hay ningún académico asignado a esta categoria.</i></h6>
+            <h6><i>No hay ningún académico asignado a esta categoría.</i></h6>
         @endif
         
         <br>

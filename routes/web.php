@@ -26,7 +26,7 @@ Route::resource('plan','ControladorPlanDeAccion')->middleware('auth');
 //==============================================================================================================================
 Route::get('categoriaAsignada','ControladorPlanDeAccion@listaPlanes')->name('categoriaAsignada')->middleware('auth');
 //==============================================================================================================================
-Route::resource('recomendacion','ControladorRecomendaciones')->middleware('admin');
+Route::resource('recomendacion','ControladorRecomendaciones');
 //==============================================================================================================================
 Route::resource('evidencias','ControladorEvidencias')->middleware('auth');
 //===============================================================================================================================

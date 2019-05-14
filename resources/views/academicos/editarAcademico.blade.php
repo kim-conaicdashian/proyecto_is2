@@ -41,7 +41,7 @@
                     <div class="col-md-6">
                         <select class="form-control" name="categoria" id="card_type">
                             @if (!$academico->categoria)
-                                <option value="NULL">Sin asignar aun</option>
+                                <option value="NULL">Sin asignar aún</option>
                             @else
                                 <option value="{{$academico->categoria->id}}">{{$academico->categoria->nombre}}</option>
                             @endif
