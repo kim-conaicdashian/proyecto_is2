@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\Academico;
+use App\Recomendacion;
 
 class vistasController extends Controller{
 
@@ -25,6 +26,7 @@ class vistasController extends Controller{
     }
 
     public function recomendacionesAdmin(){
-        return view('panelAdministrador.recomendacionesAdministrador');
+        $recomendaciones = Recomendacion::orderBy('categoria_id')->get();
+        return view('panelAdministrador.recomendacionesAdministrador',compact('recomendaciones'));
     }
 }

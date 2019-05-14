@@ -1,4 +1,5 @@
-<a style="color:white;" class="navbar-brand" href="/">KIM CONAICdashian</a>
+<div class="container">
+    <a style="color:white;" class="navbar-brand" href="/">KIM CONAICdashian</a>
 
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -22,42 +23,28 @@
 
     <!-- Top Navigation: Right Menu -->
     <ul class="nav navbar-right navbar-top-links">
-        <li class="dropdown navbar-inverse">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
-            <ul class="dropdown-menu dropdown-alerts">
-                <li>
-                    <a href="#">
-                        <div>
-                            <i class="fa fa-comment fa-fw"></i> New Comment
-                            <span class="pull-right text-muted small">4 minutes ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <a class="text-center" href="#">
-                        <strong>See All Alerts</strong>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </li>
-            </ul>
-        </li>
+
+
+
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
+            <a style="color:white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ auth()->user()->nombre }} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
+                <a class="dropdown-item" style = "color:black !important;" href="{{ route('academico.editPerfil', auth()->user()->id) }}">Editar Perfil</a>
+                @if (auth()->user()->privilegio == 1)
+                    <a style="color:black !important;" class="dropdown-item" id="categorias" href="/panelAdministrador" disabled="">Panel de Categorías</a>
+                    <a style="color:black !important;" class="dropdown-item" href="/academicos">Manejo de Académicos</a>
+                @endif
                 <li class="divider"></li>
-                <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="dropdown-item">Cerrar sesión</button>
+                </form>
             </ul>
         </li>
     </ul>
-
+</div>
 
 
     <!-- Sidebar -->
@@ -98,3 +85,4 @@
 
         </div>
     </div>
+
