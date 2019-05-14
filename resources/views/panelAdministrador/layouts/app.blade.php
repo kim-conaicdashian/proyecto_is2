@@ -8,6 +8,40 @@
         <meta name="author" content="">
 
         <title>Panel Administrador</title>
+        <style>
+            .dropdown-item {
+                display: block;
+                width: 100%;
+                padding: 0.25rem 1.5rem;
+                clear: both;
+                font-weight: 400;
+                color: #212529;
+                text-align: inherit;
+                white-space: nowrap;
+                background-color: transparent;
+                border: 0;
+            }
+
+            .dropdown-item:hover, .dropdown-item:focus {
+                color: #16181b;
+                text-decoration: none;
+                background-color: #f8f9fa;
+            }
+
+            .dropdown-item.active, .dropdown-item:active {
+                color: #fff;
+                text-decoration: none;
+                
+            }
+
+            .dropdown-item.disabled, .dropdown-item:disabled {
+                color: #6c757d;
+                pointer-events: none;
+                background-color: transparent;
+            }
+        </style>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Bootstrap Core CSS -->
         <link href="/css/estilosAdmin/bootstrap.min.css" rel="stylesheet">
