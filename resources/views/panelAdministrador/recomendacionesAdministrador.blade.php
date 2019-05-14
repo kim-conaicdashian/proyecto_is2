@@ -25,7 +25,9 @@
                                 @foreach ($recomendaciones as $recomendacion)
                                     <tr>
                                         <td>{{$recomendacion->categoria->nombre}}</td>
-                                        <td>{{$recomendacion->nombre}}</td>
+                                        <td>
+                                            <a  href="/recomendacion/{{$recomendacion->id}}" >{{$recomendacion->nombre}}</a>
+                                        </td>
                                         <td>
                                             <div class="col-lg-6 text-center">
                                                 <form action="{{ route('categorias.destroy',$recomendacion->id) }}" method="POST">
