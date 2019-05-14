@@ -23,6 +23,7 @@
                         <th>Recomendación</th>
                         <th>Plan de acción</th>
                         <th>Fecha de término</th>
+                        <th>Completado</th>
                         <th>Generar reporte del plan</th>
                     </tr>
                     @foreach ($categorias as $categoria)
@@ -33,15 +34,24 @@
                             @endforeach
                             
                             @foreach ($planes as $plan)
-                                <td>{{$plan->nombre}}
+                                <td><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
                                 <td>{{$plan->fecha_termino}}</td>
                             @endforeach
+                            @if ($plan->completdo== 1)
+                                <td>
+                                    <p style="text-align:center">Sí</p>
+                                </td>
+                            @else
+                            <td>
+                                    <p style="text-align:center">No</p>
+                                </td>
+                            @endif
                             
                             <td>
-                                <div class="col-lg-3">
-                                    <a style="color:white !important;" class="btn btn-success btn-md" href="{{ route('categoria.reporte', $categoria->id) }}">
+                                <div class="col-lg-3 center-block" style="position: relative;text-align:center;left: 30%;">
+                                    <a style="color:white !important;" class="btn btn-success btn-sm" href="{{ route('categoria.reporte', $categoria->id) }}">
                                         <span class="fa fa-download"></span> 
-                                        Generar reporte
+                                        
                                     </a>
                                 </div>
                             </td>
