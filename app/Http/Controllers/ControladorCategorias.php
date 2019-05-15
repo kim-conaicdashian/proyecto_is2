@@ -100,7 +100,15 @@ class ControladorCategorias extends Controller
     {
         $categoria= Categoria::findOrFail($id);
         $recomendaciones = $categoria->recomendaciones;
-        $planes = PlanAccion::all();
+
+        $planes = array();
+        foreach($recomendaciones as $recomendacion)
+            if(count($recomendacion->planes)>0)
+            {
+                foreach($recomendacion->planes as $plan)
+                    array_push($planes, $plan);
+            }
+        
         return view('categorias.verCategoriaSeleccionada', compact('categoria','recomendaciones', 'planes'));
     }
 
