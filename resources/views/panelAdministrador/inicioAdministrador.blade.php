@@ -18,34 +18,42 @@
             </div>
             @if($planes->count() > 0)
                 <table class="table table-bordered table-hover">
-                    <tr>
-                        <th>Categoría</th>
-                        <th>Recomendación</th>
-                        <th>Plan de acción</th>
-                        <th>Fecha de término</th>
-                        <th>Completado</th>
-                        <th>Generar reporte del plan</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Recomendación</th>
+                            <th>Plan de acción</th>
+                            <th>Fecha de término</th>
+                            <th>Completado</th>
+                            <th>Generar reporte del plan</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+
                     @foreach ($planes as $plan)
                         <tr>
                             <td>
                                 {{$plan->recomendacion->categoria->nombre}}
                             </td>
 
-                            @foreach ($recomendaciones as $recomendacion)
-                                <td>{{$recomendacion->nombre}}</td>
-                            @endforeach
+                            <td>
+                                {{$plan->recomendacion->nombre}}
+                            </td>
                             
+                            <td>
+                                <a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a>
+                            </td>
+                            <td>
+                                {{$plan->fecha_termino}}
+                            </td>
                             
-                            <td><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
-                            <td>{{$plan->fecha_termino}}</td>
-                            
-                            @if ($plan->completdo== 1)
+                            @if ($plan->completado== 1)
                                 <td>
                                     <p style="text-align:center">Sí</p>
                                 </td>
                             @else
-                            <td>
+                                <td>
                                     <p style="text-align:center">No</p>
                                 </td>
                             @endif
@@ -61,15 +69,11 @@
                             
                         </tr>
                     @endforeach
-                    
+                    </tbody>
                 </table>
             @else
                 <h3>No hay planes de acción</h3>
             @endif
-
-            
-            
-
         </div>
     </div>
 
