@@ -63,7 +63,7 @@
     </style>
     
     <!-- Navigation --> 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top mb-5 shadow">
         @include('includes.navbar')
     </nav>
 

@@ -2,72 +2,76 @@
 @section('content')
     <title> {{$recomendacion->nombre}} </title>
     <div class="container">
-        <div class="card border-0 shadow my-5 text-center background-style">
-            <div class="card h-100 text-center" style="background-color:transparent;">
-                <br>
-                <p style="font-size:12px"><i>Recomendación seleccionada:</i></p>
-                <div class="row">
-                    <div class="col-lg-3"></div>
-                    <div class="col-lg-6">
-                        <h1 style="font-family: helvetica">{{$recomendacion->nombre}}</h1>
-                    </div>
-                    @if(auth()->user()->privilegio == 1)
-                        <div class="col-lg-3">
-                            <a class="btn btn-success btn-md" href="{{ route('recomendacion.reporte', $recomendacion->id) }}" style="color:white !important;">
-                                <span class="fa fa-download"></span> 
-                                Generar reporte
-                            </a>
-                        </div>
-                    @endif
-                </div>
-                <div class="row text-center">
-                    {{-- @if($categoria) --}}
-                    @if(isset($categoria->academico))
-                        <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Pertenece a la categoría: {{$categoria->nombre}} </i></h6></div>
-                        <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Encargado de la categoría: {{$categoria->academico->nombre}} </i></h6>
-                    </div>
-                    @else
-                        <div class="col"><h6 class="panel-title"><i>No hay ningún académico asignado a esta categoría.</i></h6>
-                        </div>
-                    @endif
-                </div>
-                <br>
-                <div class="row text-center">
-                        <hr>
-                    <div class="col"><h2>Descripción</h2>
-                        <p>{{$recomendacion->descripcion}}</p>
-                        <hr>
-                    </div>                    
-                </div>
-
-                <div class="container">
-                    @if($planes->count() != 0)
-                    <h2 class="panel-title">Plan de acción para esta categoría:</h2>
-                        @foreach($planes as $plan)
-                            <hr>
-
-                            <h4>{{$plan->nombre}}</h4>
-                            <a href="/plan/{{$plan->id}}" class="btn" style="background-color: grey; border-color: black; color:white !important;">Ver plan de acción</a>                        
-                        @endforeach
-                    @else                    
-                        <div class="panel-heading"><h6 class="panel-title"><i>No hay plan de acción para esta recomendación.</i></h6>
-                        </div>
-                    @endif
-                    @if(auth()->user()->categoria)
-                        @if(auth()->user()->categoria->id == $categoria->id)
-                            <div style="text-align:center">
-                                <form action="{{ route('plan.create')}}">
-                                    <hr>
-                                    <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/>
-                                    <input style="background-color: grey; border-color: black; color:white;" type="submit" class="btn btn-primary btn-lg" value="Agregar plan de acción" />
-                                </form>
-                            </div>
-                        @endif
-                    @endif
-                </div>
-            <div style="height: 100px"></div>
-                <p class="lead mb-0"></p>
+        
+        <div class="row text-center">
+            <div class="col-lg-12 col-md-12">
+                <h1>Recomendacíon: {{$recomendacion->nombre}}</h1>
             </div>
         </div>
+
+        <div class="row text-center">
+            <div class="col-lg-12 col-md-12">
+                <h6>Esta recomendacíon pertenece a la categoría: {{$recomendacion->categoria->nombre}}</h6>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row text-center">
+            <div class="col-lg-12 col-md-12">
+                <h3>Descripción</h3>
+                <p>{{$recomendacion->descripcion}}</p>
+            </div>
+        </div>
+        <br>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Completado</th>
+                    <th scope="col">Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($planes as $plan)
+                    <tr>
+                        <td><a  href="/plan/{{$plan->id}}" >{{$plan->nombre}}</a></td>
+                        @if ( $plan->completado == 1)
+                            <td>Sí</td>
+                        @else
+                            <td>No</td>
+                        @endif
+                        
+                        <td>{{$plan->fecha_termino}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <br>
+
+        @if (auth()->user()->privilegio == 1) 
+            <div class="row">
+                <div class="col-lg-12"> 
+                    <center>   
+                        <form action="{{ route('categorias.destroy',$plan->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Quiere borrar la categoria: {{ $plan->nombre }}?')" >
+                                Borrar <span class="fa fa-trash"></span>
+                            </button>
+                            <a style="color:white !important;" class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar <span class="fa fa-pencil"></span></a>
+                        </form>
+                    </center>  
+                </div>
+            </div>
+        @endif
+        <center>
+            <form action="{{ route('plan.create')}}">
+                    <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/><br>
+                    <input type='submit' class="btn btn-secondary" value='Agregar plan de acción'/>
+            </form>
+        </center>
     </div>
 @endsection
