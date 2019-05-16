@@ -17,7 +17,7 @@
                 </div>
             </div>
             @if($planes->count() > 0)
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered ">
                     <thead>
                         <tr>
                             <th>Categoría</th>
@@ -34,12 +34,41 @@
                     @endphp
                     {{--  --}}
                     <tbody>
-                        
-                        @foreach ($collection as $loquequiera =>$planesAgrupados)
+
                         <tr>
-                            {{-- @php
-                                dd($key);
-                            @endphp --}}
+                        @foreach ($categorias as $categoria)
+                            
+                            @if($categoria->planes()->count()>0)
+                            
+                                <td rowspan="{{$categoria->planes()->count()}}">
+                                        <a href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a>
+                                </td>
+                                @foreach ($categoria->recomendaciones as $recomendacion)
+                                
+                                    
+                                    <td rowspan="{{count($recomendacion->planes)}}">
+                                        <a href="{{route('recomendacion.show',$recomendacion->id)}}"><i>{{$recomendacion->nombre}}</i></a>
+                                    </td>
+                                    @foreach ($recomendacion->planes as $plan)
+                                        <td ><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
+                                        <td>{{$plan->fecha_termino}}</td>
+                                        <td>{{$plan->completado}}</td>
+                                        <td>
+                                            <div class="col-lg-3 center-block" style="position: relative;text-align:center;left: 30%;">
+                                                <a style="color:white !important;" class="btn btn-success btn-sm" href="{{ route('categoria.reporte', $plan->recomendacion->categoria->id) }}">
+                                                    <span class="fa fa-download"></span> 
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @endforeach
+                            @endif
+                        @endforeach
+                    
+                        {{-- @foreach ($collection as $loquequiera =>$planesAgrupados)
+                        <tr>
+                            
                             <td>
                                 {{$planesAgrupados[0]->recomendacion->categoria->nombre}}
                             </td>
@@ -47,7 +76,7 @@
                                 @if (!$loop->first)
                                     <td></td>
                                 @endif
-                                    <td>
+                                    <td rowspan="{{$loop->count}}">
                                         {{$plan->recomendacion->nombre}}
                                     </td>
                                     
@@ -80,7 +109,8 @@
                             @endforeach
                         @endforeach
                         
-                    </tbody>
+                    </tbody> --}}
+
                 </table>
             @else
                 <h3>No hay planes de acción</h3>
