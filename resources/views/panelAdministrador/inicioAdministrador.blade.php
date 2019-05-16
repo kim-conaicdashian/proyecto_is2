@@ -45,11 +45,11 @@
                                 </td>
                                 @foreach ($categoria->recomendaciones as $recomendacion)
                                 
-                                    
-                                    <td rowspan="{{count($recomendacion->planes)}}">
-                                        <a href="{{route('recomendacion.show',$recomendacion->id)}}"><i>{{$recomendacion->nombre}}</i></a>
-                                    </td>
-                                    @foreach ($recomendacion->planes as $plan)
+                                    @if (!$recomendacion->planes->isEmpty())
+                                        <td rowspan="{{count($recomendacion->planes)}}">
+                                            <a href="{{route('recomendacion.show',$recomendacion->id)}}"><i>{{$recomendacion->nombre}}</i></a>
+                                        </td>
+                                        @foreach ($recomendacion->planes as $plan)
                                         <td ><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
                                         <td>{{$plan->fecha_termino}}</td>
                                         <td>{{$plan->completado}}</td>
@@ -62,6 +62,9 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @endif
+                                    
+                                    
                                 @endforeach
                             @endif
                         @endforeach

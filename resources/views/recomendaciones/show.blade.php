@@ -34,18 +34,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($planes as $plan)
-                    <tr>
-                        <td><a  href="/plan/{{$plan->id}}" >{{$plan->nombre}}</a></td>
-                        @if ( $plan->completado == 1)
-                            <td>Sí</td>
-                        @else
-                            <td>No</td>
-                        @endif
-                        
-                        <td>{{$plan->fecha_termino}}</td>
-                    </tr>
-                @endforeach
+                @if (count($planes)>0)
+                    @foreach ($planes as $plan)
+                        <tr>
+                            <td><a  href="/plan/{{$plan->id}}" >{{$plan->nombre}}</a></td>
+                            @if ( $plan->completado == 1)
+                                <td>Sí</td>
+                            @else
+                                <td>No</td>
+                            @endif
+                            
+                            <td>{{$plan->fecha_termino}}</td>
+                        </tr>
+                    @endforeach
+                @endif
+                
             </tbody>
         </table>
         <br>
@@ -53,16 +56,19 @@
         @if (auth()->user()->privilegio == 1) 
             <div class="row">
                 <div class="col-lg-12"> 
-                    <center>   
+                    <center>
+                        @if (count($planes)>0)
                         <form action="{{ route('categorias.destroy',$plan->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Quiere borrar la categoria: {{ $plan->nombre }}?')" >
-                                Borrar <span class="fa fa-trash"></span>
-                            </button>
-                            <a style="color:white !important;" class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar <span class="fa fa-pencil"></span></a>
-                        </form>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Quiere borrar la categoria: {{ $plan->nombre }}?')" >
+                                    Borrar <span class="fa fa-trash"></span>
+                                </button>
+                                <a style="color:white !important;" class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar <span class="fa fa-pencil"></span></a>
+                            </form>
+                        @endif
+                        
                     </center>  
                 </div>
             </div>
