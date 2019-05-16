@@ -2,15 +2,17 @@
 @extends('layouts.app')
 @section('content')
 
-
+<title> Agregar plan de acción </title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/calendarJS/source/jsCalendar.css">
 <script type="text/javascript" src="/calendarJS/source/jsCalendar.js"></script>
 <script type="text/javascript" src="/calendarJS/source/jsCalendar.lang.es.js"></script>
 
-<div class="container background-style">
-  <title> Agregar plan de acción </title>
+<div class="container">
+  
   <h2 style="margin-top:20px;"> Agregar plan de acción </h2>
+  <h6>Para la recomendación: <i>{{$nombre_recomendacion}}</i></h6>
+  <hr>
   <form method="POST" action="{{route('plan.store')}}">
       @csrf
       <div class="form-group" {{ $errors->has('nombrePlan') ? 'has-error' : ''}}>
@@ -34,16 +36,7 @@
       <!-- Outputs -->
       <h4>Fecha escogida</h4>
       <input id="my-input-a" name="fecha_termino"><br>
-      {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
-      
-      {{-- Month change : <br>
-      <input id="my-input-b"><br> --}}
-
-      {{-- <div class="form-group" {{ $errors->has('fecha_termino') ? 'has-error' : ''}}>
-        <label  style="font-size: 24px;">Fecha de término:</label>
-        <input style="width: 15%;" type="date" class="form-control"  name='fecha_termino' >
-        {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}
-      </div> --}}
+      {!! $errors->first('fecha_termino','<span class="help-block" style="color:red;">:message</span>')!!}      
 
 
       <input type='hidden' name='rec' value='{{$rec}}'/>
@@ -55,7 +48,7 @@
         <p></p>
         <textarea rows="4" cols="50" name='criterioHecho'></textarea>
       </div>
-      <button type="submit" class="btn pretty-btn" style="background-color: grey; border-color: black; color:white;">Crear plan de acción</button>
+      <button type="submit" class="btn btn-primary">Crear plan de acción</button>
     </form> <br><br><br><br>
 
     <!-- Create the calendar -->

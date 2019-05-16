@@ -4,7 +4,7 @@
     <!-- Page Content -->
     <title> Inicio </title>
     <div class="container">
-        <div class="card border-0 shadow my-5 background-style">
+        <div class="card border-0 shadow my-5">
             <div class="card-body" >
                 <div class="container">
 
@@ -23,7 +23,7 @@
                                         <h2 style="color:black">{{$academico->categoria->nombre}}</h2>
                                     </h4>
                                     <p class="card-text" style="text-align: center;">{{$academico->categoria->descripcion}}</p>
-                                    <a href="categorias/{{$academico->categoria->id}}" class="btn" style="color: white!important; background: linear-gradient(to bottom right, #339933 1%, #33cc33 101%); border-color: black">Ver más</a>
+                                    <a href="categorias/{{$academico->categoria->id}}" class="btn btn-primary">Ver más</a>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                                 <h4 style="color:black">{{$categoria->nombre}}</h4>
                                             </h4>
                                             <p class="card-text" style="text-align: center;">{{$categoria->descripcion}}</p>                                        
-                                            <a href="categorias/{{$categoria->id}}" class="btn" style="color: white !important; background: linear-gradient(to bottom right, #339933 1%, #33cc33 101%); border-color: black">Ver más</a>
+                                            <a href="categorias/{{$categoria->id}}" class="btn btn-primary">Ver más</a>
                                         </div>
                                     </div>
                                 </div>
