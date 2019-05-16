@@ -10,7 +10,7 @@
             </li>
             @if (auth()->user()->categoria)
                 <li class="nav-item">
-                    <a style="color:white !important;" class="nav-link" id="home" href="/categoriaAsignada" disabled="">Mi categoría</a>
+                    <a style="color:white !important;" class="nav-link" id="home" href="{{route('categorias.show', auth()->user()->categoria->id)}}" disabled="">Mi categoría</a>
                 </li>
                 <li class="nav-item">
                     <a style="color:white !important;" class="nav-link" id="evidencias" href="/evidencias" disabled="">Subir Evidencias</a>
@@ -25,7 +25,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" style = "color:black !important;" href="{{ route('academico.editPerfil', auth()->user()->id) }}">Editar Perfil</a>
                     @if (auth()->user()->privilegio == 1)
-                            <a style="color:black !important;" class="dropdown-item" id="categorias" href="/panelAdministrador" disabled="">Manejo de Categorías</a>
+                            <a style="color:black !important;" class="dropdown-item" id="categorias" href="/categorias" disabled="">Manejo de Categorías</a>
                             <a style="color:black !important;" class="dropdown-item" id="categorias" href="/panelAdministrador" disabled="">Panel de Administrador</a>
                             <a style="color:black !important;" class="dropdown-item" href="/academicos">Manejo de Académicos</a>
 

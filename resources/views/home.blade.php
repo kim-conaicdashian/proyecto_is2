@@ -22,7 +22,7 @@
                                     <h4 class="card-title" style="text-align: center; opacity:1;">
                                         <h2 style="color:black">{{$academico->categoria->nombre}}</h2>
                                     </h4>
-                                    <p class="card-text" style="text-align: center;">{{$academico->categoria->descripcion}}</p>
+                                    <p class="card-text descripcion-texto" style="text-align: center;">{{$academico->categoria->descripcion}}</p>
                                     <a href="categorias/{{$academico->categoria->id}}" class="btn btn-primary">Ver más</a>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                             <h4 class="card-title" style="text-align: center; opacity:1;">
                                                 <h4 style="color:black">{{$categoria->nombre}}</h4>
                                             </h4>
-                                            <p class="card-text" style="text-align: center;">{{$categoria->descripcion}}</p>                                        
+                                            <p class="card-text descripcion-texto" style="text-align: center;">{{$categoria->descripcion}}</p>                                        
                                             <a href="categorias/{{$categoria->id}}" class="btn btn-primary">Ver más</a>
                                         </div>
                                     </div>

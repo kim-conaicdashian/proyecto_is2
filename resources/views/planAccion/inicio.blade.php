@@ -29,7 +29,7 @@
         
         <hr>
         <h2>Descripción</h2>
-        <p>{{$categoria->descripcion}}</p><br> <br>
+        <p class="descripcion-texto">{{$categoria->descripcion}}</p><br> <br>
         <hr> 
     
         

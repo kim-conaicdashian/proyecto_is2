@@ -20,21 +20,21 @@
         <div class="row text-center">
             <div class="col-lg-12 col-md-12">
                 <h3>Descripción</h3>
-                <p>{{$recomendacion->descripcion}}</p>
+                <p class="descripcion-texto">{{$recomendacion->descripcion}}</p>
             </div>
         </div>
         <br>
 
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Plan</th>
-                    <th scope="col">Completado</th>
-                    <th scope="col">Fecha</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (count($planes)>0)
+        @if (count($planes)>0)
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Plan</th>
+                        <th scope="col">Completado</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
                     @foreach ($planes as $plan)
                         <tr>
                             <td><a  href="/plan/{{$plan->id}}" >{{$plan->nombre}}</a></td>
@@ -47,27 +47,27 @@
                             <td>{{$plan->fecha_termino}}</td>
                         </tr>
                     @endforeach
-                @endif
-                
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        @else
+            <p>No hay planes para esta recommendación.</p>
+        @endif
+
         <br>
 
         @if (auth()->user()->privilegio == 1) 
             <div class="row">
                 <div class="col-lg-12"> 
                     <center>
-                        @if (count($planes)>0)
-                        <form action="{{ route('categorias.destroy',$plan->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Quiere borrar la categoria: {{ $plan->nombre }}?')" >
-                                    Borrar <span class="fa fa-trash"></span>
-                                </button>
-                                <a style="color:white !important;" class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar <span class="fa fa-pencil"></span></a>
-                            </form>
-                        @endif
+                        <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Quiere borrar la categoria: {{ $recomendacion->nombre }}?')" >
+                                Borrar <span class="fa fa-trash"></span>
+                            </button>
+                            <a style="color:white !important;" class="btn btn-info btn-sm" href="/plan/{{$recomendacion->id}}/edit">Editar <span class="fa fa-pencil"></span></a>
+                        </form>
                         
                     </center>  
                 </div>

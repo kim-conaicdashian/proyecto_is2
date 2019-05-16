@@ -83,7 +83,7 @@
             @foreach ($categorias as $categoria)
                 <tr>
                     <td><a style="color:black !important;" href="{{route('categorias.show',$categoria->id)}}">{{$categoria->nombre}}</a></td>
-                    <td style="height:10px;">{{$categoria->descripcion}}</td>
+                    <td style="height:10px;"><p class="descripcion-texto">{{$categoria->descripcion}}</p></td>
                     <td>
                         <div class="container">
                             <br>

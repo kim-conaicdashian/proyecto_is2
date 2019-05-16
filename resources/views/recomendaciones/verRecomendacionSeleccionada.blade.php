@@ -21,7 +21,7 @@
                 <br>
                 <div class="form-group " >
                         <div class="panel-heading"><h3 class="panel-title">Descripción</h3>
-                    <p>{{$recomendacion->descripcion}}</p>
+                    <p class="descripcion-texto">{{$recomendacion->descripcion}}</p>
                     
                 </div>
 

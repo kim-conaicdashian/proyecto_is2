@@ -162,7 +162,7 @@
     <div class="row text-center">
         <div class="col-lg-12 col-md-12">
             <h3>Descripción</h3>
-            <p>{{$plan->descripcion}}</p>
+            <p class="descripcion-texto">{{$plan->descripcion}}</p>
         </div>
     </div>
     <hr>

@@ -107,7 +107,7 @@
     <div class="row text-center">
         <div class="col-lg-12 col-md-12">
             <h3>Descripción</h3>
-            <p>{{$categoria->descripcion}}</p>
+            <p class="descripcion-texto">{{$categoria->descripcion}}</p>
         </div>
     </div>
 
@@ -133,7 +133,7 @@
                         @foreach($categoria->recomendaciones as $recomendacion)
                             <tr>
                                 <td>{{$recomendacion->nombre}}</td>
-                                <td>{{$recomendacion->descripcion}}</td>
+                                <td><p class="descripcion-texto">{{$recomendacion->descripcion}}</p></td>
                             <tr>        
                         @endforeach
                     </tbody>
