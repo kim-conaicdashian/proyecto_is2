@@ -27,7 +27,9 @@ class vistasController extends Controller{
         
         $recomendaciones = Recomendacion::all();
         $planes = PlanAccion::all();
-        return view('panelAdministrador.inicioAdministrador',compact('categorias','recomendaciones','planes'));
+        $planesAgrupados= $planes->groupBy('categoria_id');
+        // dd($planesAgrupados);
+        return view('panelAdministrador.inicioAdministrador',compact('categorias','recomendaciones','planes','planesAgrupados'));
     }
 
     public function recomendacionesAdmin(){

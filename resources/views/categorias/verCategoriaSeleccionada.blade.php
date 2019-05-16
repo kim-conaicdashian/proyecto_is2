@@ -156,8 +156,9 @@
                     <tbody>
                         @foreach($planes as $plan)                                                        
                             <tr>
-                                <td>{{$plan->recomendacion->nombre}}</td>
+                                
                                 <td>{{$plan->nombre}}</td>
+                                <td>{{$plan->recomendacion->nombre}}</td>
                                 @if($plan->completado == 0)                            
                                     <td>En proceso</td>
                                 @else

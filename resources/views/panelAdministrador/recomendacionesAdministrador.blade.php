@@ -41,7 +41,7 @@
                                             </div>
             
                                             <div class="col-lg-6 text-center">
-                                                <a style="color:white !important;" class="btn btn-info btn-sm" href="/categorias/{{$recomendacion->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
+                                                <a style="color:white !important;" class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
                                             </div>
                                         </td>
                                     </tr>

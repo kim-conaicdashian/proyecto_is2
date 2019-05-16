@@ -18,58 +18,73 @@
             </div>
             @if($planes->count() > 0)
                 <table class="table table-bordered table-hover">
-                    <tr>
-                        <th>Categoría</th>
-                        <th>Recomendación</th>
-                        <th>Plan de acción</th>
-                        <th>Fecha de término</th>
-                        <th>Completado</th>
-                        <th>Generar reporte del plan</th>
-                    </tr>
-                    @foreach ($planes as $plan)
+                    <thead>
                         <tr>
-                            <td>
-                                {{$plan->recomendacion->categoria->nombre}}
-                            </td>
-
-                            @foreach ($recomendaciones as $recomendacion)
-                                <td>{{$recomendacion->nombre}}</td>
-                            @endforeach
-                            
-                            
-                            <td><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
-                            <td>{{$plan->fecha_termino}}</td>
-                            
-                            @if ($plan->completdo== 1)
-                                <td>
-                                    <p style="text-align:center">Sí</p>
-                                </td>
-                            @else
-                            <td>
-                                    <p style="text-align:center">No</p>
-                                </td>
-                            @endif
-                            
-                            <td>
-                                <div class="col-lg-3 center-block" style="position: relative;text-align:center;left: 30%;">
-                                    <a style="color:white !important;" class="btn btn-success btn-sm" href="{{ route('categoria.reporte', $plan->recomendacion->categoria->id) }}">
-                                        <span class="fa fa-download"></span> 
-                                        
-                                    </a>
-                                </div>
-                            </td>
-                            
+                            <th>Categoría</th>
+                            <th>Recomendación</th>
+                            <th>Plan de acción</th>
+                            <th>Fecha de término</th>
+                            <th>Completado</th>
+                            <th>Generar reporte del plan</th>
                         </tr>
-                    @endforeach
-                    
+                    </thead>
+                    {{-- Asigno el valor de todos los planes agrupados a la variable collection --}}
+                    @php
+                        $collection = $planesAgrupados;
+                    @endphp
+                    {{--  --}}
+                    <tbody>
+                        
+                        @foreach ($collection as $loquequiera =>$planesAgrupados)
+                        <tr>
+                            {{-- @php
+                                dd($key);
+                            @endphp --}}
+                            <td>
+                                {{$planesAgrupados[0]->recomendacion->categoria->nombre}}
+                            </td>
+                            @foreach ($planesAgrupados as $plan)
+                                @if (!$loop->first)
+                                    <td></td>
+                                @endif
+                                    <td>
+                                        {{$plan->recomendacion->nombre}}
+                                    </td>
+                                    
+                                    <td>
+                                        <a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a>
+                                    </td>
+                                    <td>
+                                        {{$plan->fecha_termino}}
+                                    </td>
+                                    
+                                    @if ($plan->completado== 1)
+                                        <td>
+                                            <p style="text-align:center">Sí</p>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <p style="text-align:center">No</p>
+                                        </td>
+                                    @endif
+                                    
+                                    <td>
+                                        <div class="col-lg-3 center-block" style="position: relative;text-align:center;left: 30%;">
+                                            <a style="color:white !important;" class="btn btn-success btn-sm" href="{{ route('categoria.reporte', $plan->recomendacion->categoria->id) }}">
+                                                <span class="fa fa-download"></span> 
+                                            </a>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                            @endforeach
+                        @endforeach
+                        
+                    </tbody>
                 </table>
             @else
                 <h3>No hay planes de acción</h3>
             @endif
-
-            
-            
-
         </div>
     </div>
 

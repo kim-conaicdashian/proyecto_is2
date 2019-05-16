@@ -35,7 +35,12 @@
                 <div class="row text-center">
                     @if($plan->categoria)
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Pertenece a la categoría: {{$plan->categoria->nombre}} </i></h6></div>
-                        <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Encargado de la categoría: {{$plan->categoria->academico->nombre}} </i></h6></div>
+                        @if (isset($categoria->academico))
+                            <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Encargado de la categoría: {{$plan->categoria->academico->nombre}} </i></h6></div>
+                        @else
+                            <div class="col"><h6 class="panel-title" style="text-align: center; "><i>No hay academico </i></h6></div>
+                        @endif
+                        
                         <div class="col"><h6 class="panel-title" style="text-align: center; "><i>Fecha de término: {{$plan->fecha_termino}} </i></h6></div>
                     </div>
                     @else
