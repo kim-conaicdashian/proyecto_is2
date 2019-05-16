@@ -42,7 +42,8 @@ class ControladorPlanDeAccion extends Controller
         //falta mandar la categoria para manejarla en la vista
         //Se agrego parametro $id_recomendacion.
         $rec = $_REQUEST['rec_id'];
-        return view('planAccion.crearPlanAccion', compact('rec'));
+        $nombre_recomendacion = Recomendacion::findOrFail($rec)->nombre;
+        return view('planAccion.crearPlanAccion', compact('rec', 'nombre_recomendacion'));
     }
 
     /**

@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
+
 <style>
+    .center-cropped {
+        padding-top: 20px;
+        width: 200px;
+        height: 200px;
+
+        display: block;
+        margin: auto;
+        
+    }
+    .center-embed {
+        display: block;
+        margin: auto;
+    }
+</style>
+
+{{-- <style>
     .col-centered{
         float: none;
         margin: 0 auto;
@@ -99,10 +116,7 @@
                         @method('put')
                         <div class="form-group" >
                             <label for="exampleInputPassword1" style="font-size: 24px;">Plan completado</label>
-                            <select name="completado">
-                                {{-- checo si el plan esta completado o no para que el usuario pueda ver el estado del
-                                    select
-                                --}}
+                            <select name="completado">                                
                                 @if ($plan->completado == 0)
                                     <option value="0" selected>No</option>
                                     <option value="1">Sí</option>
@@ -136,5 +150,84 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+<div class="container">
+
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12">
+            <h1>Plan de acción: {{$plan->nombre}}</h1>
+        </div>
     </div>
+    <hr>
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12">
+            <h3>Descripción</h3>
+            <p>{{$plan->descripcion}}</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12">
+            <h4>Planes de acción registrados:</h4>
+        </div>
+    </div>
+
+    @if($plan->evidencias->count() > 0)
+        <div class="row" >
+            @foreach($evidencias as $evidencia)
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100" style="background-color: transparent">
+                        
+                        @if($evidencia->tipo_archivo == "pdf")
+                            <embed class="center-embed" src="archivos/pdf_preview.png" width="80px" height="80px" />
+                        @else
+                            <embed class="center-embed" src="{{$evidencia->archivo_bin}}" width="80px" height="80px" />
+                        @endif                        
+                        
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <a href="evidencias/{{$evidencia->id}}"><p style="text-align: center; color:black;">{{$evidencia->nombre_archivo}}</p></a>
+                            </h6>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <form action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm btn-block" 
+                                            onclick="return confirm('¿Está seguro de borrar la evidencia?')" >
+                                            <span class="fa fa-trash"></span>
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a style="float:right; color:white !important;" class="btn btn-primary btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
+                                        <span class="fa fa-edit"></span>
+                                        Editar
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @endforeach
+        </div>
+        <a href="/evidencias/create" class="btn btn-primary" style="float:right; color:white !important;">Crear nueva evidencia</a>
+    @else
+        <br>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <h4>No hay evidencias registradas.</h4>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <a href="{{route('evidencias.create')}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
+            </div>
+        </div>
+    
+    @endif
+
+</div>
 @endsection
