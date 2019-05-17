@@ -154,10 +154,11 @@
         </div>
     </div>
     <hr>
-    <div class="row text-center">
+    <br><br>
+    <div class="row">
         <div class="col-lg-12 col-md-12">
             <h3>Descripción</h3>
-            <p>{{$plan->descripcion}}</p>
+            <p class="descripcion-texto">{{$plan->descripcion}}</p>
         </div>
     </div>
     <hr>
@@ -182,7 +183,7 @@
                         
                         <div class="card-body">
                             <h6 class="card-title">
-                                <a href="evidencias/{{$evidencia->id}}"><p style="text-align: center; color:black;">{{$evidencia->nombre_archivo}}</p></a>
+                                <a href="/evidencias/{{$evidencia->id}}"><p style="text-align: center; color:black;">{{$evidencia->nombre_archivo}}</p></a>
                             </h6>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
