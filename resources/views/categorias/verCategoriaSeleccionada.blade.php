@@ -99,17 +99,25 @@
         </div>
     </div> --}}
     <div class="row text-center">
+            
         <div class="col-lg-12 col-md-12">
             <h1>Categoría: {{$categoria->nombre}}</h1>
+            @if(isset($categoria->academico))
+                <h6>Académico encargado de esta categoría: {{$categoria->academico->nombre}}</h6>
+            @else
+                <h6><i>No hay ningún académico asignado a esta categoría.</i></h6>
+            @endif
         </div>
     </div>
     <hr>
-    <div class="row text-center">
+    <div class="row">
         <div class="col-lg-12 col-md-12">
             <h3>Descripción</h3>
             <p class="descripcion-texto">{{$categoria->descripcion}}</p>
         </div>
     </div>
+
+    <br><br><br>
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -127,13 +135,28 @@
                         <tr>
                         <th>Recomendación</th>
                         <th>Descripción</th>
+                        @if(auth()->user()->id == $categoria->academico_id)
+                            <th>Acciones</th>
+                        @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($categoria->recomendaciones as $recomendacion)
                             <tr>
-                                <td>{{$recomendacion->nombre}}</td>
-                                <td><p class="descripcion-texto">{{$recomendacion->descripcion}}</p></td>
+                                    
+                                <td><a href="{{route('recomendacion.show',$recomendacion->id)}}">{{$recomendacion->nombre}}</a></td>
+                                <td>{{$recomendacion->descripcion}}</td>
+                                @if (auth()->user()->id == $categoria->academico_id)
+                                    <td>
+                                        <center>
+                                        
+                                        <form action="{{ route('plan.create')}}">
+                                            <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/><br>
+                                            <input type='submit' class="btn btn-secondary" value='Agregar plan de acción'/>
+                                        </form>
+                                        </center>
+                                    </td>
+                                @endif
                             <tr>        
                         @endforeach
                     </tbody>
@@ -157,7 +180,7 @@
                         @foreach($planes as $plan)                                                        
                             <tr>
                                 
-                                <td>{{$plan->nombre}}</td>
+                                <td><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
                                 <td>{{$plan->recomendacion->nombre}}</td>
                                 @if($plan->completado == 0)                            
                                     <td>En proceso</td>
@@ -172,7 +195,6 @@
             @else
                 <p>No hay planes para esta categoría.</p>
             @endif
-    
         </div>
     </div>
     
@@ -189,6 +211,10 @@
             </div>
         </div>
     @endif
+
+    <div style="height: 50px"></div>
+        <p class="lead mb-0"></p>
+    </div>
 
 </div>
 @endsection
