@@ -12,7 +12,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    @if ($recomendaciones)
+                    @if (count($recomendaciones)>0)
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
