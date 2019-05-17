@@ -5,13 +5,13 @@
         
         <div class="row text-center">
             <div class="col-lg-12 col-md-12">
-                <h1>Recomendacíon: {{$recomendacion->nombre}}</h1>
+                <h1>Recomendación: {{$recomendacion->nombre}}</h1>
             </div>
         </div>
 
         <div class="row text-center">
             <div class="col-lg-12 col-md-12">
-                <h6>Esta recomendacíon pertenece a la categoría: {{$recomendacion->categoria->nombre}}</h6>
+                <h6>Esta recomendación pertenece a la categoría: {{$recomendacion->categoria->nombre}}</h6>
             </div>
         </div>
 

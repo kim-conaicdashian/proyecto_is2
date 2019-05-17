@@ -223,9 +223,12 @@
             <div class="col-lg-6 col-md-6">
                 <h4>No hay evidencias registradas.</h4>
             </div>
-            <div class="col-lg-6 col-md-6">
-                <a href="{{route('evidencias.create')}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
-            </div>
+            @if(auth()->user()->id == $plan->recomendacion->categoria->academico_id)
+                <div class="col-lg-6 col-md-6">
+                    <a href="{{route('evidencias.create')}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
+                </div>    
+            @endif
+            
         </div>
     
     @endif

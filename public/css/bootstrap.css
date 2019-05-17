@@ -7,9 +7,7 @@
  .descripcion-texto {
   white-space: pre-wrap;
  }
- a{
-  color:#20603d !important;
- }
+ 
 :root {
   --blue: #007bff;
   --indigo: #6610f2;

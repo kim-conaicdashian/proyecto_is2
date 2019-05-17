@@ -17,13 +17,16 @@
                     <div class="row">
                         @if ($academico->categoria)
                             <div class="col-lg-12 col-md-12" style="padding-bottom: 10px">
-                                <div class="container text-center" style="background-color: transparent">
+                                <div class="container" style="background-color: transparent">
                                     <div class="card-body">
                                     <h4 class="card-title" style="text-align: center; opacity:1;">
-                                        <h2 style="color:black">{{$academico->categoria->nombre}}</h2>
+                                        <h2 style="text-align:center; color:black">{{$academico->categoria->nombre}}</h2>
                                     </h4>
-                                    <p class="card-text descripcion-texto" style="text-align: center;">{{$academico->categoria->descripcion}}</p>
-                                    <a href="categorias/{{$academico->categoria->id}}" class="btn btn-primary">Ver más</a>
+                                    <p class="descripcion-texto" style="text-align: center;">{{$academico->categoria->descripcion}}</p>
+                                    
+                                    <center>
+                                        <a href="categorias/{{$academico->categoria->id}}" class="btn btn-primary">Ver más</a>
+                                    </center>
                                     </div>
                                 </div>
                             </div>
@@ -31,13 +34,15 @@
                         @foreach ($categorias as $categoria)
                             @if ($academico->categoria != $categoria)
                                 <div class="col-lg-6 col-md-6" style="padding-bottom: 10px">
-                                    <div class="card h-100 text-center" style="background-color: transparent">
+                                    <div class="card h-100" style="background-color: transparent">
                                         <div class="card-body">
                                             <h4 class="card-title" style="text-align: center; opacity:1;">
                                                 <h4 style="color:black">{{$categoria->nombre}}</h4>
                                             </h4>
-                                            <p class="card-text descripcion-texto" style="text-align: center;">{{$categoria->descripcion}}</p>                                        
-                                            <a href="categorias/{{$categoria->id}}" class="btn btn-primary">Ver más</a>
+                                            <p class="descripcion-texto">{{$categoria->descripcion}}</p>
+                                            <center>
+                                                <a href="categorias/{{$categoria->id}}" class="btn btn-primary">Ver más</a>
+                                            </center>
                                         </div>
                                     </div>
                                 </div>
