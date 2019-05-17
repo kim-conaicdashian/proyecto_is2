@@ -162,7 +162,8 @@
                     </tbody>
                 </table>
             @else
-                <p>No hay recomendaciones para esta categoría.</p>
+                <br>
+                <p>No hay recomendaciones para esta categoría (sólo el coordinador puede agregar recomendaciones).</p>
             @endif
         </div>
         <div class="tab-pane fade" id="planes" role="tabpanel" aria-labelledby="planes-tab">
@@ -193,6 +194,7 @@
                     </tbody>
                 </table>
             @else
+                <br>
                 <p>No hay planes para esta categoría.</p>
             @endif
         </div>

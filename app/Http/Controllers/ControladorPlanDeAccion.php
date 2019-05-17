@@ -75,7 +75,7 @@ class ControladorPlanDeAccion extends Controller
             $recomendacion = Recomendacion::findOrFail($request->input("rec"));
             $recomendacion->planes()->save($plan);
             $recomendacion->save();
-            return redirect()->route('categoriaAsignada');
+            return redirect()->route('categorias.show', $plan->recomendacion->categoria->id);
         }else{
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.
             return back()->withInput(request(['nombrePlan']));

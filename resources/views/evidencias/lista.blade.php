@@ -16,7 +16,7 @@
         margin: auto;
     }
 </style>
-<div class="container background-style" >
+<div class="container">
     <title> Evidencias </title>
     <h1 class="my-4" style="text-align: center; padding-top: 10px">Lista de evidencias</h1>
     

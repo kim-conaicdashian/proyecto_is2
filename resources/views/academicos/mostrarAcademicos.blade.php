@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
-    <title>Lista de académicos</title>
-    <div  class="container background-style shadow border-0 my-5">
+<title>Lista de académicos</title>
+<div  class="container">
     <h2 class="text-center">Lista académicos</h2>
     
     <table class="table table-hover">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" style="min-width: 1%;">ID#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Email</th>
-                <th scope="col" style="min-width: 1%;">Editar</th>
-                <th scope="col" style="min-width: 1%;">Eliminar</th>
+                <th>ID#</th>
+                <th >Nombre</th>
+                <th >Email</th>
+                <th  >Acciones</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -20,21 +20,29 @@
                     <th>{{$academico->id}}</th>
                     <td>{{$academico->nombre}}</td>
                     <td>{{$academico->email}}</td>
-                    <td style="width: 77px;">
-                        <a type="button" style="color:white !important;" class="btn btn-info btn-md" href="{{ route('academicos.edit', $academico->id) }}">
-                                <span class="fa fa-edit"></span>
-                            Editar
-                        </a>
-                    </td>
-                    <td>
-                        <form style="margin: 0px;" action="{{ route('academicos.destroy',$academico->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-md" onclick="return confirm('Quiere borrar al usuario {{ $academico->nombre }}?')" >
-                                    <span class="fa fa-trash"></span>
-                                Eliminar
-                            </button>
-                        </form>
+                    <td style="width:150px">
+                        <div class="d-flex">
+                            <div class="col-lg-6 col-md-6 flex-fill">
+                                <form style="margin: 0px;" action="{{ route('academicos.destroy',$academico->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <center>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Quiere borrar al usuario {{ $academico->nombre }}?')" >
+                                            <span class="fa fa-trash"></span>
+                                        Eliminar
+                                    </button>
+                                    </center>
+                                </form>
+                            </div>
+                            <div class="col-lg-6 col-md-6 flex-fill">
+                                <center>
+                                <a type="button" style="color:white !important;" class="btn btn-info btn-sm" href="{{ route('academicos.edit', $academico->id) }}">
+                                        <span class="fa fa-edit"></span>
+                                    Editar
+                                </a>
+                                </center>
+                            </div>                            
+                        </div>
                     </td>
                 </tr>
            @endforeach
@@ -116,4 +124,5 @@
         </div>
     </div>
     {{--Fin Modal para Registrar a un usuario--}}
+</div>
 @endsection
