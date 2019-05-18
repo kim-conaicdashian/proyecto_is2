@@ -107,6 +107,12 @@
             @else
                 <h6><i>No hay ningún académico asignado a esta categoría.</i></h6>
             @endif
+            @if (auth()->user()->privilegio == 1) 
+                <a style="float:right; color:white !important;" class="btn btn-success btn-md" href="{{ route('categoria.reporte', $categoria->id) }}">
+                    <span class="fa fa-download"></span> 
+                    Generar reporte
+                </a>
+            @endif
         </div>
     </div>
     <hr>
@@ -143,17 +149,15 @@
                     <tbody>
                         @foreach($categoria->recomendaciones as $recomendacion)
                             <tr>
-                                    
                                 <td><a href="{{route('recomendacion.show',$recomendacion->id)}}">{{$recomendacion->nombre}}</a></td>
                                 <td>{{$recomendacion->descripcion}}</td>
                                 @if (auth()->user()->id == $categoria->academico_id)
                                     <td>
                                         <center>
-                                        
                                         <form action="{{ route('plan.create')}}">
                                             <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/><br>
                                             <input type='submit' class="btn btn-secondary" value='Agregar plan de acción'/>
-                                        </form>
+                                        </form>                                        
                                         </center>
                                     </td>
                                 @endif
@@ -184,9 +188,9 @@
                                 <td><a href="{{route('plan.show',$plan->id)}}">{{$plan->nombre}}</a></td>
                                 <td>{{$plan->recomendacion->nombre}}</td>
                                 @if($plan->completado == 0)                            
-                                    <td>En proceso</td>
+                                    <td>No</td>
                                 @else
-                                    <td>Completado</td>
+                                    <td>Sí</td>
                                 @endif
                                 <td>{{$plan->fecha_termino}}</td>
                             </tr>
@@ -209,7 +213,7 @@
             <div style="text-align:center" class="col-lg-4 col-md-3">
                 <form action="/recomendacion/create/{{$categoria->id}}" style="position:relative; top:50%;">
                     <input type="submit" class="btn btn-primary" value="Agregar recomendación" />
-                </form>
+                </form>                                   
             </div>
         </div>
     @endif

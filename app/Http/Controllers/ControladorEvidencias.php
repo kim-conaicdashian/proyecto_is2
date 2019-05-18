@@ -29,9 +29,8 @@ class ControladorEvidencias extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-
         $planesTodos = PlanAccion::all();
         $planes = array();
         for( $i = 0 ; $i < count($planesTodos) ; $i++ )
@@ -40,8 +39,8 @@ class ControladorEvidencias extends Controller
                 array_push($planes, $planesTodos[$i]);
             }
         }
-        
-        return view('evidencias.crear', compact('planes'));
+        $planActual = PlanAccion::findOrFail($request->id);
+        return view('evidencias.crear', compact('planes', 'planActual'));
     }
 
     /**
@@ -79,7 +78,7 @@ class ControladorEvidencias extends Controller
             // el tercer parámetro indica a qué sistema de archivos se subirá. En este caso, es a public_path()
             $archivo->storeAs('archivos/', $nombreArchivo, 'uploads');
 
-            return redirect()->route('evidencias.index');
+            return redirect()->route('plan.show', $plan->id);
 
         }else{
             //Si es falso, se regresa a la misma pagina de registro con los errores que hubo.

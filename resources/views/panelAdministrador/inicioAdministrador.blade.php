@@ -55,7 +55,7 @@
                                         <td>{{$plan->completado}}</td>
                                         <td>
                                             <div class="col-lg-3 center-block" style="position: relative;text-align:center;left: 30%;">
-                                                <a style="color:white !important;" class="btn btn-success btn-sm" href="{{ route('categoria.reporte', $plan->recomendacion->categoria->id) }}">
+                                                <a style="color:white !important;" class="btn btn-success btn-sm" href="{{ route('plan.reporte', $plan->id) }}">
                                                     <span class="fa fa-download"></span> 
                                                 </a>
                                             </div>

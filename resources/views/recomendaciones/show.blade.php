@@ -14,7 +14,13 @@
                 <h6>Esta recomendación pertenece a la categoría: {{$recomendacion->categoria->nombre}}</h6>
             </div>
         </div>
-
+        @if (auth()->user()->privilegio == 1) 
+            <a style="float:right; color:white !important;" class="btn btn-success btn-md" href="{{ route('recomendacion.reporte', $recomendacion->id) }}">
+                <span class="fa fa-download"></span> 
+                Generar reporte
+            </a>
+        @endif
+        <br>
         <hr>
 
         <div class="row text-center">
