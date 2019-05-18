@@ -3,7 +3,10 @@
 @section('content')
         
 <div class="container" >
-    <h1 style="text-align:center">Subir una nueva evidencia</h1>
+    <h1 style="text-align:center">
+        Subir una nueva evidencia 
+    </h1>
+
     <hr><br><br>
     <form method="POST" action="{{route('evidencias.store')}}" enctype="multipart/form-data">
         @csrf
@@ -22,16 +25,22 @@
         <br><br>
 
         <h4>Asignar a un plan de acción</h4>
+        @if($planActual) <p>Accesado desde el plan: <i>{{$planActual->nombre}}</i> </p> @endif
         @if(count($planes) > 0)
             <div class="panel panel-primary" id="result_panel">
                 <div class="panel-heading"></div>
                 
                 <div class="panel-body">
                     <select class="form-control"  name="plan" id="card_type">
+                        <option id="card_id" value="{{$planActual->id}}">{{$planActual->nombre}}</option>
                         @foreach ($planes as $plan)
-                            <option id="card_id" value="{{$plan->id}}">{{$plan->nombre}}</option>
+                            @if($plan->id != $planActual->id)
+                                <option id="card_id" value="{{$plan->id}}">{{$plan->nombre}}</option>
+                            @endif
                         @endforeach
+                        
                     </select>
+
                 </div>
             </div>
         @else 

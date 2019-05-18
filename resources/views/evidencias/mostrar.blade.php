@@ -8,7 +8,7 @@
     }
 </style>
 <title> {{$evidencia->nombre_archivo}} </title>
-<div class="card h-100 text-center background-style">
+<div class="card h-100 text-center">
     <h1 style="padding-top: 10px">{{$evidencia->nombre_archivo}}</h1>
     
     <embed class="center-embed" src="{{$evidencia->archivo_bin}}" width="800px" height="800px" style="padding-bottom: 20px;"/>

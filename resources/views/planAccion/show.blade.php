@@ -166,6 +166,13 @@
             <p class="descripcion-texto">{{$plan->descripcion}}</p>
         </div>
     </div>
+    @if (auth()->user()->privilegio == 1) 
+        <a style="float:right; color:white !important;" class="btn btn-success btn-md" href="{{ route('plan.reporte', $plan->id) }}">
+            <span class="fa fa-download"></span> 
+            Generar reporte
+        </a>
+    @endif
+    <br>
     <hr>
     <div class="row text-center">
         <div class="col-lg-12 col-md-12">
@@ -181,7 +188,7 @@
                     <div class="card h-100" style="background-color: transparent">
                         
                         @if($evidencia->tipo_archivo == "pdf")
-                            <embed class="center-embed" src="archivos/pdf_preview.png" width="80px" height="80px" />
+                            <embed class="center-embed" src="/archivos/pdf_preview.png" width="80px" height="80px" />
                         @else
                             <embed class="center-embed" src="{{$evidencia->archivo_bin}}" width="80px" height="80px" />
                         @endif                        
@@ -190,47 +197,50 @@
                             <h6 class="card-title">
                                 <a href="/evidencias/{{$evidencia->id}}"><p style="text-align: center; color:black;">{{$evidencia->nombre_archivo}}</p></a>
                             </h6>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <form action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm btn-block" 
-                                            onclick="return confirm('¿Está seguro de borrar la evidencia?')" >
-                                            <span class="fa fa-trash"></span>
-                                            Eliminar
-                                        </button>
-                                    </form>
+                            @if (auth()->user()->id == $plan->recomendacion->categoria->academico_id)
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <form action="{{ route('evidencias.destroy', $evidencia->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm btn-block" 
+                                                onclick="return confirm('¿Está seguro de borrar la evidencia?')" >
+                                                <span class="fa fa-trash"></span>
+                                                Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <a style="float:right; color:white !important;" class="btn btn-primary btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
+                                            <span class="fa fa-edit"></span>
+                                            Editar
+                                        </a>
+                                        
+                                    </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <a style="float:right; color:white !important;" class="btn btn-primary btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
-                                        <span class="fa fa-edit"></span>
-                                        Editar
-                                    </a>
-                                    
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
 
             @endforeach
         </div>
-        <a href="/evidencias/create" class="btn btn-primary" style="float:right; color:white !important;">Crear nueva evidencia</a>
     @else
         <br>
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <h4>No hay evidencias registradas.</h4>
             </div>
-            @if(auth()->user()->id == $plan->recomendacion->categoria->academico_id)
-                <div class="col-lg-6 col-md-6">
-                    <a href="{{route('evidencias.create')}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
-                </div>    
-            @endif
+            
             
         </div>
     
+    @endif
+
+    @if(auth()->user()->id == $plan->recomendacion->categoria->academico_id)
+        
+        <a href="{{route('evidencias.create', ['id' => $plan->id])}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
+        
     @endif
 
 </div>
