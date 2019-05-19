@@ -36,8 +36,11 @@
                 <thead>
                     <tr>
                         <th scope="col">Plan</th>
-                        <th scope="col">Completado</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Fecha</th>
+                        @if($recomendacion->categoria->academico_id == auth()->user()->id)
+                            <th scope="col">Acciones</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -45,12 +48,33 @@
                         <tr>
                             <td><a  href="/plan/{{$plan->id}}" >{{$plan->nombre}}</a></td>
                             @if ( $plan->completado == 1)
-                                <td>Sí</td>
+                                <td>Completado.</td>
                             @else
-                                <td>No</td>
-                            @endif
-                            
+                                <td>En progreso.</td>
+                            @endif                            
                             <td>{{$plan->fecha_termino}}</td>
+                            @if($recomendacion->categoria->academico_id == auth()->user()->id)
+                            <td>
+                                <div class="container">
+                                    <br>
+                                    <div class="row">                                                                
+                                        <div class="col-sm-6 text-center">
+                                            <form action="{{ route('plan.destroy',$plan->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Quiere borrar el plan de acción: {{ $plan->nombre }}?')" >
+                                                            Borrar <span class="fa fa-trash"></span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-6 text-center">
+                                            <a style="color:white !important;" class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
@@ -69,21 +93,25 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Quiere borrar la categoria: {{ $recomendacion->nombre }}?')" >
-                                Borrar <span class="fa fa-trash"></span>
+                                onclick="return confirm('Quiere borrar la recomendación: {{ $recomendacion->nombre }}?')" >
+                                Borrar recomendación <span class="fa fa-trash"></span>
                             </button>
-                            <a style="color:white !important;" class="btn btn-info btn-sm" href="/plan/{{$recomendacion->id}}/edit">Editar <span class="fa fa-pencil"></span></a>
+                            <a style="color:white !important;" class="btn btn-info btn-sm" href="/recomendacion/{{$recomendacion->id}}/edit">Editar recomendación <span class="fa fa-pencil"></span></a>
                         </form>
                         
                     </center>  
                 </div>
             </div>
         @endif
-        <center>
-            <form action="{{ route('plan.create')}}">
-                    <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/><br>
-                    <input type='submit' class="btn btn-secondary" value='Agregar plan de acción'/>
-            </form>
-        </center>
+        @if(auth()->user()->categoria != null)
+            @if(auth()->user()->categoria->id == $recomendacion->categoria->id)
+                <center>
+                    <form action="{{ route('plan.create')}}">
+                            <input type='hidden' value='{{$recomendacion->id}}' name='rec_id'/><br>
+                            <input type='submit' class="btn btn-secondary" value='Agregar plan de acción'/>
+                    </form>
+                </center>
+            @endif
+        @endif
     </div>
 @endsection

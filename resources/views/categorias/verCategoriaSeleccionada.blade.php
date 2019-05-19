@@ -99,7 +99,7 @@
         </div>
     </div> --}}
     <div class="row text-center">
-            
+        <title> {{$categoria->nombre}} </title>
         <div class="col-lg-12 col-md-12">
             <h1>Categoría: {{$categoria->nombre}}</h1>
             @if(isset($categoria->academico))
@@ -179,6 +179,9 @@
                         <th>Pertenece a la recomendación</th>                        
                         <th>Completado</th>
                         <th>Fecha de término</th>
+                        @if(auth()->user()->id == $categoria->academico_id)
+                            <th>Acciones</th>
+                        @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -193,6 +196,28 @@
                                     <td>Sí</td>
                                 @endif
                                 <td>{{$plan->fecha_termino}}</td>
+                                @if(auth()->user()->id == $categoria->academico_id)
+                                <td>
+                                    <div class="container">
+                                        <br>
+                                        <div class="row">                                                                
+                                            <div class="col-sm-6 text-center">
+                                                <form action="{{ route('plan.destroy',$plan->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                                onclick="return confirm('Quiere borrar el plan de acción: {{ $plan->nombre }}?')" >
+                                                                Borrar <span class="fa fa-trash"></span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <div class="col-sm-6 text-center">
+                                                <a style="color:white !important;" class="btn btn-info btn-sm" href="/plan/{{$plan->id}}/edit">Editar <span class="fa fa-pencil"></span></a> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

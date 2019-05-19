@@ -6,7 +6,7 @@
     <h1 style="text-align:center">
         Subir una nueva evidencia 
     </h1>
-
+    <title> Subir evidencia </title>
     <hr><br><br>
     <form method="POST" action="{{route('evidencias.store')}}" enctype="multipart/form-data">
         @csrf

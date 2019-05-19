@@ -152,7 +152,7 @@ class ControladorPlanDeAccion extends Controller
         }
         $plan->completado = $request->input('completado');
         $plan->save();
-        return redirect()->route('categoriaAsignada');
+        return view('planAccion.show', compact('plan'));
     }
 
     public function planReporte($id){
@@ -161,16 +161,16 @@ class ControladorPlanDeAccion extends Controller
 
         $pdf = PDF::loadView('planAccion/reporte', ['plan'=>$plan]);
         $output = $pdf->output();
-        file_put_contents($plan->nombre, $output);
-        $merger->addPathToPDF( $plan->nombre , 'all', 'P');
+        file_put_contents($plan->nombre .= ".pdf", $output);
+        $merger->addPathToPDF( $plan->nombre, 'all', 'P');
         foreach($plan->evidencias as $evidencia){
             if($evidencia->tipo_archivo == "pdf"){
-                $merger->addPathToPDF(ltrim($evidencia->archivo_bin, $evidencia->archivo_bin[0]));
+                $merger->addPathToPDF(ltrim($evidencia->archivo_bin, $evidencia->archivo_bin[0]), 'all', 'P'); 
             }
         }
         $merger->merge();
-        $merger->save("mergedpdf.pdf");
-        $archivo = "/mergedpdf.pdf";
+        $merger->save("rpt.pdf");
+        $archivo = "rpt.pdf";
         return view('planAccion.verReporte', compact('archivo', 'plan'));
     }
 

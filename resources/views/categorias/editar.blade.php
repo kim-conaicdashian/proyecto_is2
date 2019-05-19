@@ -100,6 +100,9 @@
                                 @foreach ($academicoSinCategoria as $academico)
                                   <option id="card_id"  value="{{$academico->id}}">{{$academico->nombre}}</option>
                                 @endforeach
+                                @if(isset($academicoAsignado))
+                                    <option id="card_id"  selected value="{{$academicoAsignado->id}}">{{$academicoAsignado->nombre}}</option>
+                                @endif
                             </select>
                         </div>
                     </div>

@@ -152,12 +152,14 @@
         </div>
     </div> --}}
 <div class="container">
-
+    <title> {{$plan->nombre}} </title>
     <div class="row text-center">
         <div class="col-lg-12 col-md-12">
             <h1>Plan de acción: {{$plan->nombre}}</h1>
+            <h6><i> Como parte de la recomendación {{$plan->categoria->nombre}} </i><h6>
         </div>
     </div>
+    
     <hr>
     <br><br>
     <div class="row">
@@ -176,7 +178,7 @@
     <hr>
     <div class="row text-center">
         <div class="col-lg-12 col-md-12">
-            <h4>Planes de acción registrados:</h4>
+            <h4>Evidencias registradas:</h4>
         </div>
     </div>
 
