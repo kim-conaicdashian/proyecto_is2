@@ -17,7 +17,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Categorías</th>
-                                    <th scope="col">Recomendacíon</th>
+                                    <th scope="col">Recomendación</th>
                                     <th class="text-center" style="width: 20%;" scope="col">Acciones</th>
                                 </tr>
                             </thead>

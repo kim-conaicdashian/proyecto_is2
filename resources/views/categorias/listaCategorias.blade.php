@@ -119,7 +119,7 @@
         {{-- <button type="submit" style="float: right; background-color:grey" class="btn pretty-btn"  type="submit" value="">Crear categoría</button> --}}
         <input style="float: right; background-color:grey; color:white" class="btn pretty-btn"  type="submit" value="Crear categoría" />
     </form><br>     
-    <div style="height: 20px"></div>
+    <div style="height: 100px"></div>
         <p class="lead mb-0"></p>
     </div>
 </div> 

@@ -243,7 +243,7 @@
         </div>
     @endif
 
-    <div style="height: 50px"></div>
+    <div style="height: 100px"></div>
         <p class="lead mb-0"></p>
     </div>
 
