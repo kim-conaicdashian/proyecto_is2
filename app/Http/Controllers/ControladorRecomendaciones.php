@@ -9,6 +9,7 @@ use App\Categoria;
 use Session;
 use App\PlanAccion;
 use PDF;
+use Illuminate\Support\Facades\URL;
 
 
 class ControladorRecomendaciones extends Controller
@@ -90,9 +91,9 @@ class ControladorRecomendaciones extends Controller
      */
     public function edit($id)
     {
-
+        $rutaPrevia = url()->previous();
         $recomendacion = Recomendacion::findOrFail($id);
-        return view('recomendaciones.edit',compact('recomendacion'));
+        return view('recomendaciones.edit',compact('recomendacion','rutaPrevia'));
     }
 
     /**
@@ -104,6 +105,9 @@ class ControladorRecomendaciones extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        $rutaPrevia = $request->rutaPrevia;
+        $rutaPrevia = explode("/",$rutaPrevia)[3];
         //
         $credentials=$this->validate($request, array(
             'nombreRec' => 'required|min:5|max:100|regex:/^[a-zA-Z][\s\S]*/',
@@ -116,6 +120,11 @@ class ControladorRecomendaciones extends Controller
             $recomendacion ->nombre= $request->input('nombreRec');
             $recomendacion ->descripcion= $request->input('descripcionRec');
             $recomendacion->save();
+
+            if($rutaPrevia == "recomendacionesAdministrador"){
+                return redirect("recomendacionesAdministrador");
+            }
+            
             Session::flash('message_editar','Se ha editado la recomendación con éxito.');
             return redirect()->route('categorias.show', [$idCategoria]);
         }else{

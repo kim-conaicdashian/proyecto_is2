@@ -6,7 +6,7 @@
         <title>Editar la recomendación {{$recomendacion->nombre}}  </title>
         <h1 style="text-align:center;margin-top:20px;"> Editar la recomendación: {{$recomendacion->nombre}} </h1>
         <hr>
-        <form method="POST" action='{{route('recomendacion.update',$recomendacion->id)}}'>
+        <form method="POST" action='{{route('recomendacion.update',['recomendacion' => $recomendacion->id, 'ruta' => $rutaPrevia])}}'>
             @csrf
             @method("put")
             <div class="form-group" {{ $errors->has('nombreRec') ? 'has-error' : ''}}>
@@ -20,6 +20,7 @@
             <textarea rows="4" cols="50" name='descripcionRec'>{{$recomendacion->descripcion}}</textarea>
             {!! $errors->first('descripcionRec','<span class="help-block" style="color:red;">:message</span>')!!}
             <hr>
+            <input type="hidden" name="rutaPrevia" value="{{$rutaPrevia}}">
             <button type="submit" class="btn btn-info " style="float:right">
                 <span class="fa fa-edit"></span>
                 Editar recomendación
