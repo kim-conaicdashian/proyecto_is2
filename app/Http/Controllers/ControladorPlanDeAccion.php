@@ -9,6 +9,7 @@ use App\Categoria;
 use App\Recomendacion;
 use PDF;
 use PDFMerger;
+use App\Evidencia;
 
 
 class ControladorPlanDeAccion extends Controller
