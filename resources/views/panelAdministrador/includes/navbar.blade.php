@@ -13,7 +13,7 @@
         </li>
         @if (auth()->user()->categoria)
             <li class="nav-item">
-                <a style="color:white;" class="nav-link" id="home" href="/categoriaAsignada" >Mi categoría</a>
+                <a style="color:white;" class="nav-link" id="home" href="{{route('categorias.show', auth()->user()->categoria->id)}}" >Mi categoría</a>
             </li>
             <li class="nav-item">
                 <a style="color:white;" class="nav-link" id="evidencias" href="/evidencias" >Subir Evidencias</a>
