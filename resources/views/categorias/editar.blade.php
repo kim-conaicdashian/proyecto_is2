@@ -109,7 +109,9 @@
                     
                     @else 
                       <p><i>No hay académicos registrados para asignar a esta categoría </i>.</p>
-                        <input type="hidden" value='NULL'>
+                      <select class="form-control" name="academicoID" id="card_type">
+                          <option id="card_id"  value="NULL">Sin asignar</option>
+                      </select>
                     @endif
                 <button type="submit" style=" border-color: black; color:white; position:relative;top:10px"
                    class="btn btn-info ">
