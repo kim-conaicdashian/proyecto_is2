@@ -10,14 +10,15 @@
                 <div class="form-group row">
                     <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
                     <div class="col-md-6">
-                    <input id="nombre" type="text" class="form-control" name="nombre" value="{{$academico->nombre}}">
+                        <input id="nombre" type="text" class="form-control" name="nombre" value="{{$academico->nombre}}" required>
+                        {!! $errors->first('nombre','<span class="help-block" style="color:red;">:message</span>')!!}
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
                     <div class="col-md-6">
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{$academico->email}}">
+                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{$academico->email}}" required>
                         {!! $errors->first('email', '<span style="color:red;">:message</span>') !!}
                     </div>
                 </div>
@@ -25,7 +26,8 @@
                 <div class="form-group row">
                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
                     <div class="col-md-6">
-                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="knhdl +w-">
+                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="knhdl +w-" required>
+                        {!! $errors->first('password','<span class="help-block" style="color:red;">:message</span>')!!}
                     </div>
                 </div>
 
@@ -39,7 +41,7 @@
                 <div class="form-group row">
                     <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Categorías') }}</label>
                     <div class="col-md-6">
-                        <select class="form-control" name="categoria" id="card_type">
+                        <select class="form-control" name="categoria" id="card_type" required>
                             @if (!$academico->categoria)
                                 <option value="NULL">Sin asignar aún</option>
                             @else
@@ -51,6 +53,7 @@
                                 @endif
                             @endforeach
                         </select>
+                        {!! $errors->first('categoria','<span class="help-block" style="color:red;">:message</span>')!!}
                     </div>
                 </div>
 
