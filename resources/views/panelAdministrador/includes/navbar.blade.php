@@ -86,7 +86,7 @@
                 @else
                 <br>
                     <li>
-                        <p style="text-align: center;">No hay categoías disponibles</p>
+                        <p style="text-align: center;">No hay categorías disponibles</p>
                     </li>
                 @endif
                 

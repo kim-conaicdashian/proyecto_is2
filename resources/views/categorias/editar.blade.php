@@ -100,6 +100,7 @@
                                 @foreach ($academicoSinCategoria as $academico)
                                   <option id="card_id"  value="{{$academico->id}}">{{$academico->nombre}}</option>
                                 @endforeach
+                                
                                 @if(isset($academicoAsignado))
                                     <option id="card_id"  selected value="{{$academicoAsignado->id}}">{{$academicoAsignado->nombre}}</option>
                                 @endif
@@ -108,10 +109,20 @@
                     </div>
                     
                     @else 
-                      <p><i>No hay académicos registrados para asignar a esta categoría </i>.</p>
-                      <select class="form-control" name="academicoID" id="card_type">
-                          <option id="card_id"  value="NULL">Sin asignar</option>
-                      </select>
+
+                        @if(isset($academicoAsignado))
+                            <div class="panel-heading"><h3 class="panel-title">Académico asignado a esta categoría: {{$academicoAsignado->nombre}}</h3>
+                        @else
+                            <div class="panel-heading"><h3 class="panel-title">Esta categoría por el momento no tiene ningún académico asignado.</h3>
+                        @endif
+                        <select class="form-control" name="academicoID" id="card_type">
+                            <option id="card_id"  value="NULL">Sin asignar</option>
+
+                            @if(isset($academicoAsignado))
+                                <option id="card_id"  selected value="{{$academicoAsignado->id}}">{{$academicoAsignado->nombre}}</option>
+                            @endif
+                        </select>
+                        
                     @endif
                 <button type="submit" style=" border-color: black; color:white; position:relative;top:10px"
                    class="btn btn-info ">
