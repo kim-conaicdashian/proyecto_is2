@@ -105,11 +105,10 @@ class ControladorEvidencias extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-
-        $evidencia= Evidencia::findOrFail($id);
-
+    {        
+        $evidencia = Evidencia::findOrFail($id);        
         $planesTodos = PlanAccion::all();
+        
         $planes = array();
         for( $i = 0 ; $i < count($planesTodos) ; $i++ )
         {
@@ -117,7 +116,9 @@ class ControladorEvidencias extends Controller
                 array_push($planes, $planesTodos[$i]);
             }
         }
-        return view('evidencias.editar', compact('evidencia','planes'));
+        
+        $planActual = PlanAccion::findOrFail($evidencia->planes[0]->id);                    
+        return view('evidencias.editar', compact('evidencia','planes', 'planActual'));
     }
 
     /**
@@ -187,9 +188,9 @@ class ControladorEvidencias extends Controller
             $evidencia->planes()->attach($plan);
         }
             
-        $evidencia->save();                                                                                                                
+        $evidencia->save();
 
-        return redirect()->route('evidencias.index');
+        return redirect()->route('plan.show', $plan->id);        
     }
 
     /**
@@ -201,12 +202,12 @@ class ControladorEvidencias extends Controller
     public function destroy($id)
     {
         $evidencia = Evidencia::findOrFail($id);
-        
+        $plan = PlanAccion::findOrFail($evidencia->planes[0]->id);
         if(count($evidencia->planes) > 0){
             $evidencia->planes()->detach($evidencia->planes[0]->id);
         }
         
         $evidencia->delete();
-        return redirect()->route('evidencias.index');
+        return redirect()->route('plan.show', $plan->id);
     }
 }

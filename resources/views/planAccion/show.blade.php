@@ -213,7 +213,7 @@
                                         </form>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <a style="float:right; color:white !important;" class="btn btn-primary btn-sm btn-block" href="/evidencias/{{$evidencia->id}}/edit">
+                                        <a style="float:right; color:white !important;" class="btn btn-primary btn-sm btn-block" href="{{route('evidencias.edit', $evidencia->id)}}">
                                             <span class="fa fa-edit"></span>
                                             Editar
                                         </a>
@@ -239,10 +239,8 @@
     
     @endif
 
-    @if(auth()->user()->id == $plan->recomendacion->categoria->academico_id)
-        
-        <a href="{{route('evidencias.create', ['id' => $plan->id])}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
-        
+    @if(auth()->user()->id == $plan->recomendacion->categoria->academico_id)        
+        <a href="{{route('evidencias.create', ['id' => $plan->id])}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>        
     @endif
 
 </div>

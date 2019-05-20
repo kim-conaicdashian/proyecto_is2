@@ -38,9 +38,7 @@
                                 <option id="card_id" value="{{$plan->id}}">{{$plan->nombre}}</option>
                             @endif
                         @endforeach
-                        
                     </select>
-
                 </div>
             </div>
         @else 
