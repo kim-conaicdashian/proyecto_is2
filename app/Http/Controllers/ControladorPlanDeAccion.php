@@ -192,7 +192,7 @@ class ControladorPlanDeAccion extends Controller
         $plan->evidencias()->detach();
 
         $plan->delete();
-        return redirect()->route('categoriaAsignada');
+        return redirect()->back();
     }
 }
  
