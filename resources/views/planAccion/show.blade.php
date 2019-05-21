@@ -159,7 +159,13 @@
             <h6><i> Como parte de la recomendación {{$plan->categoria->nombre}} </i><h6>
         </div>
     </div>
-    
+    @if (auth()->user()->privilegio == 1) 
+        <a style="float:right; color:white !important;" class="btn btn-success btn-md" href="{{ route('plan.reporte', $plan->id) }}">
+            <span class="fa fa-download"></span> 
+            Generar reporte
+        </a>
+        <br><br>
+    @endif 
     <hr>
     <br><br>
     <div class="row">
@@ -168,12 +174,25 @@
             <p class="descripcion-texto">{{$plan->descripcion}}</p>
         </div>
     </div>
-    @if (auth()->user()->privilegio == 1) 
-        <a style="float:right; color:white !important;" class="btn btn-success btn-md" href="{{ route('plan.reporte', $plan->id) }}">
-            <span class="fa fa-download"></span> 
-            Generar reporte
-        </a>
+    @if ($plan->criterio != null)
+        <hr>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h3>Criterio de hecho</h3>
+                <p class="descripcion-texto">{{$plan->criterio}}</p>
+            </div>
+        </div>
+    @else 
+        <hr>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <h3>Este plan de acción no tiene criterio de hecho</h3>
+                
+            </div>
+        </div>
     @endif
+    
+    
     <br>
     <hr>
     <div class="row text-center">
@@ -243,8 +262,10 @@
     @endif
 
     @if(auth()->user()->id == $plan->recomendacion->categoria->academico_id)        
-        <a href="{{route('evidencias.create', ['id' => $plan->id])}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>        
+        <a href="{{route('evidencias.create', ['id' => $plan->id])}}" class="btn" style="float:right; color:white !important; background-color: grey; border-color: black">Crear nueva evidencia</a>
     @endif
-
+    <div style="height: 100px"></div>
+        <p class="lead mb-0"></p>
+    </div>
 </div>
 @endsection
