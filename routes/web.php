@@ -50,3 +50,5 @@ Route::get('categoria/{categoria}/reporte', 'ControladorCategorias@categoriaRepo
 Route::get('panelAdministrador', 'vistasController@panelAdmin')->name('admin.home');
 Route::get('recomendacionesAdministrador', 'vistasController@recomendacionesAdmin')->name('admin.recomendaciones');
 
+//=====================BORRAR RECOMENDACION PARA PANEL DE ADMINISTRADOR=====================================================
+Route::delete('borrarRecomendacion/{id}','ControladorRecomendaciones@destroy2')->name('recomendacion.destroy2');
