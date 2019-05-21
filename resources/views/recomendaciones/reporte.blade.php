@@ -6,7 +6,7 @@
     <h3> Descripción: {{$recomendacion->descripcion}} </h3>
     <h4> Perteneciente a la categoria: {{$recomendacion->categoria->nombre}}</h4>
     <br>
-    <table style="width:100%;">
+    <table style="width:100%; height:30%">
         <thead>
             <tr>
                 <th scope="col">Plan de acción</th>

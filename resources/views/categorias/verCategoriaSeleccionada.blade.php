@@ -107,12 +107,6 @@
             @else
                 <h6><i>No hay ningún académico asignado a esta categoría.</i></h6>
             @endif
-            @if (auth()->user()->privilegio == 1) 
-                <a style="float:right; color:white !important;" class="btn btn-success btn-md" href="{{ route('categoria.reporte', $categoria->id) }}">
-                    <span class="fa fa-download"></span> 
-                    Generar reporte
-                </a>
-            @endif
         </div>
     </div>
     <hr>

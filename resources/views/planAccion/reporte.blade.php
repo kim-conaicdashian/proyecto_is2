@@ -5,7 +5,7 @@
     <br><br>
         <h2 style="text-align:center"> Reporte del plan de acción: {{$plan->nombre}} </h2>
         <br>
-        <table style="height: 25%;">
+        <table style="height: 30%;">
             <thead>
                 <tr>
                     <th>Descripción</th>
@@ -30,7 +30,7 @@
     </div>
     <div class="container">
         <h3 style="text-align:center"> Evidencias </h3>
-        <table style="width:100%">
+        <table style="width:100%; height:30%">
             <thead>
                 <tr>
                     <th>Nombre de la evidencia </th>
