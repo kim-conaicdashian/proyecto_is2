@@ -30,7 +30,7 @@
                                         </td>
                                         <td>
                                             <div class="col-lg-6 text-center">
-                                                <form action="{{ route('recomendacion.destroy',$recomendacion->id) }}" method="POST">
+                                                <form action="{{ route('recomendacion.destroy2',$recomendacion->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"

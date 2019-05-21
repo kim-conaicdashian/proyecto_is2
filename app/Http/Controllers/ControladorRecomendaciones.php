@@ -175,4 +175,18 @@ class ControladorRecomendaciones extends Controller
       Session::flash('message_borrar','Se ha eliminado la recomendación con éxito.');
       return redirect()->route('categorias.show', $categoria_id);
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy2($id)
+    {
+      $recomendacion= Recomendacion::findOrFail($id);
+      $categoria_id = $recomendacion->categoria->id;
+      $recomendacion->planes()->delete(); 
+      $recomendacion-> delete();
+      return redirect()->back();
+    }
 }
