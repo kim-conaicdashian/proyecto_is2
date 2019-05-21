@@ -123,6 +123,7 @@ class ControladorPlanDeAccion extends Controller
             'fecha_termino' => 'required',
             'completado' => 'required',
         ));
+        
         if($credentials){
             $plan = PlanAccion::findOrFail($id);
             $idCategoria= Auth::user()->categoria->id;
@@ -135,7 +136,8 @@ class ControladorPlanDeAccion extends Controller
             $plan->criterio = $request->input("criterioHecho");
             $plan->categoria()->associate($categoria);
             $plan->save();
-            return redirect()->route('categoriaAsignada');
+            
+            return redirect()->route('categorias.show', $plan->categoria->id);
         }else{
             return back()->withInput(request(['nombrePlan']));
         }
@@ -153,7 +155,9 @@ class ControladorPlanDeAccion extends Controller
         }
         $plan->completado = $request->input('completado');
         $plan->save();
-        return view('planAccion.show', compact('plan'));
+
+        return redirect()->route('categorias.show', $plan->categoria->id);
+        //return view('planAccion.show', compact('plan'));
     }
 
     public function planReporte($id){

@@ -182,9 +182,12 @@
         </div>
     </div>
 
+    
+        
     @if($plan->evidencias->count() > 0)
         <div class="row" >
-            @foreach($evidencias as $evidencia)
+            {{-- @php $evidencias = $plan->evidencias; @endphp --}}
+            @foreach($plan->evidencias as $evidencia)
                 
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="card h-100" style="background-color: transparent">
